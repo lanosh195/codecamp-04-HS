@@ -76,6 +76,9 @@
     // undefined
     students
     // {name: '철수'}   
+
+    // sutdents= {};
+    // students.name="철수"
 09
     const student = {
         name: "철수",
@@ -88,5 +91,182 @@
     }
     // undefined
     student.school=school
-    {name: '다람쥐초등학교', teacher: '다람이'}
+    // {name: '다람쥐초등학교', teacher: '다람이'}
     
+10
+    let student = {
+        name: "철수",
+        drink: "사이다"
+    };
+    // undefined
+    delete student.drink
+    // true
+    student
+    // {name: '철수'}
+
+11
+    const classmates = [
+        {
+            name: "철수",
+            age: 8,
+            school: "다람쥐초등학교"
+        },
+        {
+            name: "영희",
+            age: 8,
+            school: "토끼초등학교"
+        },
+        {
+            name: "짱구",
+            age: 8,
+            school: "다람쥐초등학교"
+        }
+    ];
+    // undefined
+    classmates[1].school="다람쥐초등학교"
+    // '다람쥐초등학교'
+    classmates[1].school
+    // '다람쥐초등학교'
+
+12
+
+13
+    let str = "3"
+    let number = 3
+    // undefined
+    typeof str
+    // 'string'
+    typeof number
+    // 'number'
+    str+number
+    // '33'
+14
+
+15
+16
+17
+18
+    function boolean(input1, input2) {
+        if(input1===true ||input2===true) { 
+            console.log(true)
+        }
+            else if(input1===false &&input2===false)
+        console.log(false)
+    }
+    // undefined
+    boolean(true,false)
+    // VM1562:3 true
+    // undefined
+    boolean(false,true)
+    // VM1562:3 true
+    // undefined
+    boolean(false,false)
+    // VM1562:6 false
+    // undefined
+19
+    // unction evenOdd(num) {
+
+    //     if (num%2===0) {
+    //         console.log("Even");
+    //     } else if (num%2===1) {
+    //         console.log("Odd");
+    //     } else if (num===0) {
+    //         console.log("Zero");
+    //     }
+    // }
+    // undefined
+    // evenOdd(12)
+    // VM1937:4 Even
+    // undefined
+    // evenOdd(15)
+    // VM1937:6 Odd
+    // undefined
+    // evenOdd(0)
+    // VM1937:4 Even
+    function evenOdd(num) {
+
+        if (num===0) {
+            console.log("Zero");
+        } else if (num%2===0) {
+            console.log("Even");
+        } else if (num%2===1) {
+            console.log("Odd");
+        }
+    }
+    // undefined
+    evenOdd(15)
+    // VM2158:8 Odd
+    // undefined
+    evenOdd(12)
+    // VM2158:6 Even
+    // undefined
+    evenOdd(0)
+    // VM2158:4 Zero
+20     
+    // function temperature(num){
+    //     if(num<=18) {
+    //         console.log("조금 춥네요")
+    //     } else if (19<=num<=23){
+    //         console.log("날씨가 좋네요")
+    //     } else  {
+    //         console.log("조금 덥습니다")
+    //     }
+    // }
+    // // undefined
+    // temperature(14)
+    // // VM2991:3 조금 춥네요
+    // // undefined
+    // temperature(23)
+    // // VM2991:5 날씨가 좋네요
+    // // undefined
+    // temperature(24)
+    // // VM2991:5 날씨가 좋네요
+    // // undefined
+    // temperature(25)
+    // // VM2991:5 날씨가 좋네요
+
+    function temperature(num){
+        if(num<=18) {
+            console.log("조금 춥네요")
+        } else if (19<=num &&num<=23){
+            console.log("날씨가 좋네요")
+        } else  {
+            console.log("조금 덥습니다")
+        }
+    }
+    // undefined
+    temperature(23)
+    // VM2946:5 날씨가 좋네요
+    // undefined
+    temperature(24)
+    // VM2946:7 조금 덥습니다
+21
+
+    function days(month) {
+        if(month===1
+        ||month===3
+        ||month===5
+        ||month===7
+        ||month===8
+        ||month===10
+        ||month===12      ) {
+            console.log("31")
+        }else if(month===4
+        ||month===6
+        ||month===9
+        ||month===11       ){
+            console.log("30")
+        }else if(month===2){
+            console.log("28")
+        }
+    }
+    // undefined
+    days(1)
+    // VM3778:9 31
+    // undefined
+    days(2)
+    // VM3778:16 28
+    // undefined
+    days(4)
+    // VM3778:14 30
+    // undefined
