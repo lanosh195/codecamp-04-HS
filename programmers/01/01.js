@@ -291,15 +291,19 @@ sum(5)
 
 24
 function countLetter(str) {
-	let count = 0;
-	str = str.toUpperCase()
-	for (let i = 0; i < str.length; i ++) {
-		if (str[i] === "A") {
-			count ++
-		}
-	}
-	console.log(count)
-}
+    let count= 0;
+       for(i=0; i<=str.length-1; i++){
+           if(str[i]==="a" || str[i]==="A"){
+           count++}
+       } console.log(count)
+   }
+//    undefined
+   countLetter("aaBA")
+//    VM3065:6 3
+//    undefined
+   countLetter("aaaacdeA")
+//    VM3065:6 5
+//    undefined
 // undefined
 countLetter("aaAb")
 // VM608:9 3
