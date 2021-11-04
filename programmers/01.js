@@ -244,17 +244,17 @@
 
     function days(month) {
         if(month===1
-        ||month===3
-        ||month===5
-        ||month===7
-        ||month===8
-        ||month===10
-        ||month===12      ) {
+            ||month===3
+            ||month===5
+            ||month===7
+            ||month===8
+            ||month===10
+            ||month===12      ) {
             console.log("31")
         }else if(month===4
-        ||month===6
-        ||month===9
-        ||month===11       ){
+                ||month===6
+                ||month===9
+                ||month===11  ) {
             console.log("30")
         }else if(month===2){
             console.log("28")
@@ -270,3 +270,39 @@
     days(4)
     // VM3778:14 30
     // undefined
+
+23 숫자 더하기
+function sum(num) {
+    let count=0;
+    for(i=0; i<=num; i++){
+    count=count+i}
+     console.log(count)
+}
+
+// undefined
+sum(1)
+// VM549:5 1
+// undefined
+sum(2)
+// VM549:5 3
+// undefined
+sum(5)
+// VM549:5 15    
+
+24
+
+25
+num=3
+3
+let str= '';
+for(let i=1; i<=num; i++){
+str=str+i
+
+    if(i!==num){
+        str=str+'-'}
+            console.log(str)
+}
+// VM63:7 1-
+// VM63:7 1-2-
+// VM63:7 1-2-3
+26

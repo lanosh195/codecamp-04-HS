@@ -211,3 +211,7 @@ export const Sign= styled.button`
     border-color:none;
 `
 
+export const Error= styled.div`
+    color:red;
+    font-size: 10px;
+`

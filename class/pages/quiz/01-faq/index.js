@@ -7,7 +7,7 @@ export default function Emotionpage(){
             <>
                 <Whole>
                     <Head>
-                        <Icon>돋보기</Icon>
+                            
                         <div>
                             <HeadTop>
                                 <MyMy>마이</MyMy> 

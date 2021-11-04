@@ -1,7 +1,54 @@
-import {Adress, Adress1, Adress2, Container, Contents, Contents1, Footer, Heading, Main, Password, Password1, Photo, RadioP, RadioU, Sign, Title, Title1, Upload1, upload1, Upload2, upload2, Upload3, upload3, UT, UT1, Wrapper, Wrapper1, Wrapper2, Wrapper3, Wrappertop, Wrapperupload, WrapperWriter, Writer, Writer1, Zipbutton, Zipcode} from '../../../styles/new'
-
+import {Adress, Adress1, Adress2, Container, Contents, Contents1, Error, Footer, Heading, Main, Password, Password1, Photo, RadioP, RadioU, Sign, Title, Title1, Upload1, upload1, Upload2, upload2, Upload3, upload3, UT, UT1, Wrapper, Wrapper1, Wrapper2, Wrapper3, Wrappertop, Wrapperupload, WrapperWriter, Writer, Writer1, Zipbutton, Zipcode} from '../../../styles/new'
+import {useState} from 'react'
 export default function Emotionpage(){
 
+    const [writer, setWriter]= useState("")
+    const [password, setPassword]=useState("")
+    const [title, setTitle]= useState("")
+    const [contents, setContents]=useState("")
+
+    const [writerError,setWriterError]=useState("")
+    const [passwordError,setPasswordError]=useState("")
+    const [titleError,setTitleError]=useState("")
+    const [contentsError,setContentsError]=useState("")
+    
+
+    function onChangeWriter(event){
+        setWriter(event.target.value)
+    }
+
+    function onChangePassword(event) {
+        setPassword(event.target.value)
+    }
+    
+    function onChangeTitle(event) {
+        setTitle(event.target.value)
+    }
+    function onChangeContents(event) {
+        setContents(event.target.value)
+    }
+    function Check(){
+        if(writer.length===0){
+            setWriterError("이름을 입력해주세요")
+        }   else{
+            setWriterError("")
+        }
+        if(password.length===0){
+            setPasswordError("비밀번호를 입력해주세요")
+        }   else{
+            setPasswordError("")
+        }
+        if(title.length===0){
+            setTitleError("제목을 입력해주세요")
+        }   else{
+            setTitleError("")
+        }
+        if(contents.length===0){
+            setContentsError("내용을 입력해주세요")
+        }   else{
+            setContentsError("")
+        }
+    }
 
     return(
         <>
@@ -12,22 +59,26 @@ export default function Emotionpage(){
             <Wrappertop>
                 <Wrapper2>
                     <Writer>작성자</Writer>
-                    <Writer1 type ="text" placeholder="이름을 적어주세요."></Writer1>
+                    <Writer1 type ="text" placeholder="이름을 적어주세요." onChange={onChangeWriter}/>
+                    <Error>{writerError}</Error>
                 </Wrapper2>
                 <Wrapper3>
                     <Password>비밀번호</Password>      
-                    <Password1 type ="text" placeholder="비밀번호를 입력해주세요."></Password1>
+                    <Password1 type ="text" placeholder="비밀번호를 입력해주세요." onChange={onChangePassword}></Password1>
+                    <Error>{passwordError}</Error>
                 </Wrapper3>
             </Wrappertop>
 
             <div>
                 <Title>제목</Title>
-                <Title1 type ="text" placeholder="제목을 작성해주세요."></Title1>
+                <Title1 type ="text" placeholder="제목을 작성해주세요." onChange={onChangeTitle}></Title1>
+                <Error>{titleError}</Error>
             </div>
         
             <div>
                 <Contents>내용</Contents>                  
-                <Contents1 type ="text" placeholder="내용을 작성해주세요."></Contents1>
+                <Contents1 type ="text" placeholder="내용을 작성해주세요." onChange={onChangeContents}></Contents1>
+                <Error>{contentsError}</Error>
             </div>
                        
             <div>
@@ -67,7 +118,7 @@ export default function Emotionpage(){
                 <RadioP type="radio" id="contents" /> 사진
                 </div>
             </Footer>
-            <Sign>등록하기</Sign>
+            <Sign onClick={Check}>등록하기</Sign>
         </Wrapper1>
         </Container>
         </>
