@@ -1,27 +1,26 @@
 import {useMutation,gql} from '@apollo/client'
 import { useState } from 'react'
 
+const CREATE_PRODUCT=gql`
+mutation createProduct($seller: String, $createProductInput: CreateProductInput!) {
 
-const CREATE_PRODUCT = gql`
-    mutation createProduct($seller: String, $createProductInput: CreateProductInput!) {
 
-
-        createProduct(seller: $seller, createProductInput: $createProductInput){
-        _id
-        number
-        message
-        }
+    createProduct(seller: $seller, createProductInput: $createProductInput){
+    _id
+    number
+    message
     }
+}
 `
-export default function GraphqlMutationProductPage(){
-    // const [aaa,setAaa]= useState("메시지 가져오기")
-    
+
+
+
+export default function GraphqlMutationProductExPage(){
     const [mySeller, setMySeller]= useState("")
     const [myName, setMyName]= useState("")
     const [myDetail, setMyDetail]= useState("")
     const [myPrice, setMyPrice]= useState("")
     
-    const [createProduct]= useMutation(CREATE_PRODUCT)
 
     function onChangeMySeller(event){
         setMySeller(event.target.value)
@@ -35,23 +34,27 @@ export default function GraphqlMutationProductPage(){
     function onChangeMyPrice(event){
         setMyPrice(event.target.value)
     }
-        
+
+
+    const [createProduct]=useMutation(CREATE_PRODUCT)    
+    
+    async function request(){
+    const result= await createProduct({
+        variables: {seller: mySeller,
+            createProductInput:{
+                name: myName,
+                detail: myDetail,
+                price: Number(myPrice)
+            }}
+    })
+    console.log(result)
+    
+    
+    
+    }
     
 
-    async function zzz() {
-        const result = await createProduct({
-            variables: {
-                seller: mySeller,
-                createProductInput:{
-                    name: myName,
-                    detail: myDetail,
-                    price: Number(myPrice)
-                }
-            }
-        })
-        console.log(result)
-        
-    }
+
 
     return(
         <>
@@ -59,10 +62,10 @@ export default function GraphqlMutationProductPage(){
             상품명: <input type="text" onChange={onChangeMyName}/><br/>
             상품내용: <input type="text" onChange={onChangeMyDetail}/><br/>
             상품가격: <input type="text" onChange={onChangeMyPrice}/><br/>
-            <button onClick={zzz}>상품 등록하기</button>
-
-            
+            <button onClick={request}>GRAPHQL-API 요청하기</button>        
         </>
+
     )
+
 
 }

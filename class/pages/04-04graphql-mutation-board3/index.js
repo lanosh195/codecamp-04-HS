@@ -19,8 +19,12 @@ export default function GraphqlMutationBoard3Page(){
     const [myTitle, setMyTitle]= useState("")
     const [myContents, setMyContents]= useState("")
     
+    
+    
     const [createBoard]= useMutation(CREATE_BOARD)
         
+    
+    
     function onChangeMyWriter(event){
         setMyWriter(event.target.value)
     }

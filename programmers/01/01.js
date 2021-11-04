@@ -290,6 +290,20 @@ sum(5)
 // VM549:5 15    
 
 24
+function countLetter(str) {
+	let count = 0;
+	str = str.toUpperCase()
+	for (let i = 0; i < str.length; i ++) {
+		if (str[i] === "A") {
+			count ++
+		}
+	}
+	console.log(count)
+}
+// undefined
+countLetter("aaAb")
+// VM608:9 3
+// undefined
 
 25
 num=3
@@ -306,3 +320,42 @@ str=str+i
 // VM63:7 1-2-
 // VM63:7 1-2-3
 26
+function makeOdd(num) {
+	let str = ""
+	for (let i = 0; i <= num; i++) {
+		if (i % 2 === 1) {
+			str = str + i
+		}
+	}
+	console.log(str)
+}
+    // undefined
+    makeOdd(4)
+    // VM647:8 13
+    // undefined
+    makeOdd(13)
+    // VM647:8 135791113
+    // undefined
+27
+
+function bigNum(str) {
+	let max = 0;
+	for (let i = 0; i <= str.length; i++) {
+		if (Number(str[i]) >= max) {
+			max = Number(str[i])
+		}
+	}
+	console.log(max)
+	
+}
+
+    // undefined
+    bigNum(12345)
+    // VM720:8 0
+    // undefined
+    bigNum("12345")
+    // VM720:8 5
+    // undefined
+    bigNum("87135")
+    // VM720:8 8
+    // undefined

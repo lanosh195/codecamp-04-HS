@@ -1,5 +1,21 @@
 import {Adress, Adress1, Adress2, Container, Contents, Contents1, Error, Footer, Heading, Main, Password, Password1, Photo, RadioP, RadioU, Sign, Title, Title1, Upload1, upload1, Upload2, upload2, Upload3, upload3, UT, UT1, Wrapper, Wrapper1, Wrapper2, Wrapper3, Wrappertop, Wrapperupload, WrapperWriter, Writer, Writer1, Zipbutton, Zipcode} from '../../../styles/new'
 import {useState} from 'react'
+import {useMutation,gql} from '@apollo/client'
+
+
+const CREATE_BOARD = gql`
+    mutation createBoard($createBoardInput: CreateBoardInput!) {
+
+
+        createBoard(createBoardInput: $createBoardInput){
+            _id
+            writer
+            title
+        
+        }
+    }
+`
+
 export default function Emotionpage(){
 
     const [writer, setWriter]= useState("")
@@ -12,7 +28,27 @@ export default function Emotionpage(){
     const [titleError,setTitleError]=useState("")
     const [contentsError,setContentsError]=useState("")
     
+    
+    // 게시물 등록하기
 
+
+    const [createBoard]= useMutation(CREATE_BOARD)
+     
+    
+    function onChangeWriter(event){
+        setWriter(event.target.value)
+    }
+
+    function onChangeTitle(event){
+        setTitle(event.target.value)
+    }
+    
+    function onChangeContents(event){
+            setContents(event.target.value)
+    }
+
+        
+    
     function onChangeWriter(event){
         setWriter(event.target.value)
     }
@@ -27,7 +63,11 @@ export default function Emotionpage(){
     function onChangeContents(event) {
         setContents(event.target.value)
     }
-    function Check(){
+
+
+    async function Check(){
+        
+
         if(writer.length===0){
             setWriterError("이름을 입력해주세요")
         }   else{
@@ -48,6 +88,17 @@ export default function Emotionpage(){
         }   else{
             setContentsError("")
         }
+        const result= await createBoard({
+            variables: {
+                createBoardInput:{
+                    writer:writer,
+                    password:password,
+                    title:title,
+                    contents:contents
+                }
+            }
+        })
+        console.log(result)
     }
 
     return(
