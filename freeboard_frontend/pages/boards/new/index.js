@@ -1,6 +1,7 @@
 import {Adress, Adress1, Adress2, Container, Contents, Contents1, Error, Footer, Heading, Main, Password, Password1, Photo, RadioP, RadioU, Sign, Title, Title1, Upload1, upload1, Upload2, upload2, Upload3, upload3, UT, UT1, Wrapper, Wrapper1, Wrapper2, Wrapper3, Wrappertop, Wrapperupload, WrapperWriter, Writer, Writer1, Zipbutton, Zipcode} from '../../../styles/new'
 import {useState} from 'react'
 import {useMutation,gql} from '@apollo/client'
+import {useRouter} from "next/router"
 
 
 const CREATE_BOARD = gql`
@@ -17,6 +18,9 @@ const CREATE_BOARD = gql`
 `
 
 export default function Emotionpage(){
+    
+    const router=useRouter()
+    const [createBoard]=useMutation(CREATE_BOARD)
 
     const [writer, setWriter]= useState("")
     const [password, setPassword]=useState("")
@@ -32,7 +36,7 @@ export default function Emotionpage(){
     // 게시물 등록하기
 
 
-    const [createBoard]= useMutation(CREATE_BOARD)
+    
      
     
     function onChangeWriter(event){
@@ -99,6 +103,7 @@ export default function Emotionpage(){
             }
         })
         console.log(result)
+        router.push('routed-product-read/'+result.data.createBoard._id)
     }
 
     return(
