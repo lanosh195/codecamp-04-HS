@@ -16,6 +16,7 @@ const CREATE_PRODUCT = gql`
 `
 export default function GraphqlMutationProductPage(){
     // const [aaa,setAaa]= useState("메시지 가져오기")
+    // test
     const router= useRouter()
     
     const [mySeller, setMySeller]= useState("")
