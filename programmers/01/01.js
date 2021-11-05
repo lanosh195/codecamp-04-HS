@@ -363,3 +363,97 @@ function bigNum(str) {
     bigNum("87135")
     // VM720:8 8
     // undefined
+
+41 조건문 실전 적용 -점수에 따른 등급
+function grade(score) {
+    let aaa;
+    if (score<=100 &&score>=90){
+        aaa="A"
+    }else if(score<=89 && score>=80){
+        aaa="B"    
+    }else if(score<=79 && score>=70){
+        aaa="C"
+    }else if(score<=69 && score>=60){
+        aaa="D"    
+    }else if (score<=59 && score>=0){
+        aaa="F"    
+    }else {
+        aaa="잘못된 점수입니다"
+    }
+        console.log(aaa)
+}
+    // undefined
+    grade(-10)
+    // VM1211:16 잘못된 점수입니다
+    // undefined
+    grade(105)
+    // VM1211:16 잘못된 점수입니다
+    // undefined
+    grade(97)
+    // VM1211:16 A
+    // undefined
+    grade(86)
+    // VM1211:16 B
+    // undefined
+    grade(75)
+    // VM1211:16 C
+    // undefined
+    grade(66)
+    // VM1211:16 D
+    // undefined
+    grade(52)
+    // VM1211:16 F
+    // undefined
+
+42
+
+const myShopping = [
+    { category: "과일", price: 12000　},
+    { category: "의류", price:10000　 },
+    { category: "의류", price: 20000　},
+    { category: "장난감", price: 9000 },
+    { category: "과일", price: 5000　 },
+    { category: "의류", price: 10000  },
+    { category: "과일", price: 8000　　},
+    { category: "의류", price: 7000　　},
+    { category: "장난감", price: 5000  },
+    { category: "의류", price: 10000　 },
+]
+// undefined
+
+
+    // let count; let totalPrice; let grade;
+    // for(i=0; i<myShopping.length; i++){     
+    //     if(myShopping[i].category==="의류"){
+    //         count++, totalPrice=myShopping[i].price +totalPrice
+    //     }
+    // }
+    //         if(count>=0 && count<=2){
+    //             grade="Bronze"
+    //         }else if(count>=3 && count<=4){
+    //             grade="Silver"
+    //         }else if(count>=5){
+    //             grade="Gold"
+    //         }        
+   
+    //     console.log("의료를 구매한 횟수는 총"+count+"회 금액은"+totalPrice+"원이며"+"등급은"+grade+"입니다")
+
+
+
+        let count=0; let totalPrice=0; let grade="";
+    for(i=0; i<myShopping.length; i++){     
+        if(myShopping[i].category==="의류"){
+            count++, totalPrice=myShopping[i].price +totalPrice
+        }
+    }
+            if(count>=0 && count<=2){
+                grade="Bronze"
+            }else if(count>=3 && count<=4){
+                grade="Silver"
+            }else if(count>=5){
+                grade="Gold"
+            }        
+   
+        console.log("의료를 구매한 횟수는 총"+count+"회 금액은"+totalPrice+"원이며"+"등급은"+grade+"입니다")
+VM166:15 의료를 구매한 횟수는 총5회 금액은57000원이며등급은Gold입니다
+
