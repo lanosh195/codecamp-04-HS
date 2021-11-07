@@ -21,6 +21,8 @@ export const Container = styled.div`
     box-shadow: 0px 0px 10px gray;
     border: 1px solid black;
     border: none;
+    box-shadow: 0px 0px 10px gray;
+    border: 1px solid black;
     
 `
 
@@ -31,7 +33,8 @@ export const Wrapper1 = styled.div`
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
-      
+    
+    
 `
 
 export const Wrappertop= styled.div`
