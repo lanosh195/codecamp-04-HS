@@ -116,3 +116,7 @@ export const CounterWrapper= styled.div`
     display: flex;
     justify-content: space-between;
 `
+export const Imagebox1= styled.img`
+    width: 100%;
+    height: 100%;
+`

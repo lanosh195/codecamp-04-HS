@@ -16,7 +16,8 @@ import {Container,
         MapMarkerIcon,
         DisLikeIcon,
         LikeIcon,
-        CounterWrapper
+        CounterWrapper,
+        Imagebox1
 } from "../../../../styles/routed-new"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faThumbsDown, faThumbsUp, faUserCircle} from "@fortawesome/free-regular-svg-icons"
@@ -85,7 +86,8 @@ export default function DynamicBoardReadPage() {
                 </Header>
                 <Body>
                     <ImageBox>
-                        <img src={ContentsImage} />
+                        <Imagebox1 src="/images/aaa.png"/>
+                        {/* <Avatar src="/images/avatar.png" /> */}
                     </ImageBox>
                     <Contents>내용: {data?.fetchBoard.contents}</Contents>
                     <VedioBox></VedioBox>
