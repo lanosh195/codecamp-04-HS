@@ -214,13 +214,14 @@ export const RadioP= styled.input`
 
 export const Sign= styled.button`
     font-size: 16px;
-    background-color:#ffd600 ;
+    background-color: ${ props=> props.submitChk ? "#ffd600" : "#bdbdbd;"};
     display:flex;
     justify-content: center;
     align-items: center;
     width: 179px;
     height: 52px;
     border-color:none;
+
 `
 
 export const Error= styled.div`

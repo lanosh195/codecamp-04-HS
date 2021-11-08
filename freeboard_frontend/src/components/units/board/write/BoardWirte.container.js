@@ -8,6 +8,8 @@ import { CREATE_BOARD } from './BoardWirte.queries'
 
 export default function ContainerPage(){
     
+    const [chk,setChk]= useState(false)
+
     const router=useRouter()
     const [createBoard]=useMutation(CREATE_BOARD)
 
@@ -22,41 +24,75 @@ export default function ContainerPage(){
     const [contentsError,setContentsError]=useState("")
     
     
-    // 게시물 등록하기
-
-
-    
-     
-    
     function onChangeWriter(event){
-        setWriter(event.target.value)
+        setWriter(event.target.value);
+        if (event.target.value !==""){
+            setWriterError("");
+        }
+    }  
+
+    
+
+    function onChangePassword(event){
+        setPassword(event.target.value)
+        if (event.target.value !==""){
+            setPasswordError("")
+        }
     }
 
     function onChangeTitle(event){
         setTitle(event.target.value)
+        if (event.target.value !==""){
+            setTitleError("")
+        }
     }
     
     function onChangeContents(event){
             setContents(event.target.value)
+            if (event.target.value !==""){
+                setContentsError("")
+            }
     }
 
-        
     
+
     function onChangeWriter(event){
-        setWriter(event.target.value)
+        const chkWriter = event.target.value;
+        setWriter(chkWriter)
+        checkcontents(chkWriter , password , title, contents)
+        
     }
 
     function onChangePassword(event) {
+        const chkPassword = event.target.value;
         setPassword(event.target.value)
+        checkcontents(writer , chkPassword , title, contents)
+        
     }
     
     function onChangeTitle(event) {
-        setTitle(event.target.value)
+        const chkTitle = event.target.value;
+        setTitle(event.target.value);
+        checkcontents(writer, password, chkTitle, contents)
+        
     }
+    
     function onChangeContents(event) {
+        const chkContents = event.target.value;
         setContents(event.target.value)
+        checkcontents(writer, password, title, chkContents)
+        
     }
 
+    function checkcontents(chkWriter , chkPassword , chkTitle , chkContenes){
+        if (chkWriter!=="" && chkPassword!=="" && chkTitle!=="" && chkContenes!==""){
+            setChk(true)
+        }else{
+            setChk(false)
+        }
+    
+
+    }
 
     async function Check(){
         
@@ -93,6 +129,8 @@ export default function ContainerPage(){
         })
         console.log(result)
         router.push('routed-product-read/'+result.data.createBoard._id)
+
+        
     }
 
     return(
@@ -106,6 +144,51 @@ export default function ContainerPage(){
             bbb={passwordError}
             ccc={titleError}
             ddd={contentsError}
+            fff={chk}
         />
     )
 } 
+
+
+// function onChangeMyWriter(event) {
+//     setMyWriter(event.target.value);
+//     if (event.target.value !== "") {
+//       setMyWriterError("");
+//     }
+//   }
+
+//   function onChangeMyPassword(event) {
+//     setMyPassword(event.target.value);
+//     if (event.target.value !== "") {
+//       setMyPasswordError("");
+//     }
+//   }
+
+//   function onChangeMyTitle(event) {
+//     setMyTitle(event.target.value);
+//     if (event.target.value !== "") {
+//       setMyTitleError("");
+//     }
+//   }
+
+//   function onChangeMyContents(event) {
+//     setMyContents(event.target.value);
+//     if (event.target.value !== "") {
+//       setMyContentsError("");
+//     }
+//   }
+
+//   async function onClickSubmit() {
+//     if (myWriter === "") {
+//       setMyWriterError("작성자를 입력해주세요.");
+//     }
+//     if (myPassword === "") {
+//       setMyPasswordError("비밀번호를 입력해주세요.");
+//     }
+//     if (myTitle === "") {
+//       setMyTitleError("제목을 입력해주세요.");
+//     }
+//     if (myContents === "") {
+//       setMyContentsError("내용을 입력해주세요.");
+//     }
+//     if (myWriter !== "" && myPassword !== "" && myTitle !== "" && myContents !== "")

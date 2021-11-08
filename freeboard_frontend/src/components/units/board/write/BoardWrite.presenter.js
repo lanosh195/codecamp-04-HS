@@ -104,7 +104,7 @@ export default function PresenterPage(props){
                 <RadioP type="radio" id="contents" /> 사진
                 </div>
             </Footer>
-            <Sign onClick={props.cHK}>등록하기</Sign>
+            <Sign onClick={props.cHK} submitChk={props.fff}>등록하기</Sign>
         </Wrapper1>
         </Container>
         </>

@@ -33,8 +33,8 @@ export default function BoardWrite(){
 
         
 
-        function checkContents(event){
-            if (setMyWriter(event.target.value)!=="" && setMyTitle(event.target.value)!=="" && setMyContents(event.target.value)!==""){
+        function checkContents(){
+            if (myWriter!=="" && myTitle!=="" && myContents!==""){
                 setMyqqq(true)
             }
 
