@@ -11,46 +11,44 @@ export default function ContainerPage(){
     const [chk,setChk]= useState(false)
 
     const router=useRouter()
-    const [createBoard]=useMutation(CREATE_BOARD)
+    const [createBoard]=useMutation(CREATE_BOARD);
 
-    const [writer, setWriter]= useState("")
-    const [password, setPassword]=useState("")
-    const [title, setTitle]= useState("")
-    const [contents, setContents]=useState("")
+    const [writer, setWriter]= useState("");
+    const [password, setPassword]=useState("");
+    const [title, setTitle]= useState("");
+    const [contents, setContents]=useState("");
 
-    const [writerError,setWriterError]=useState("")
-    const [passwordError,setPasswordError]=useState("")
-    const [titleError,setTitleError]=useState("")
-    const [contentsError,setContentsError]=useState("")
+    const [writerError,setWriterError]=useState("");
+    const [passwordError,setPasswordError]=useState("");
+    const [titleError,setTitleError]=useState("");
+    const [contentsError,setContentsError]=useState("");
     
     
-    function onChangeWriter(event){
+    function onChangeWriter(event) {
         setWriter(event.target.value);
-        if (event.target.value !==""){
+        if (event.target.value !== "") {
             setWriterError("");
         }
-    }  
-
-    
+    }
 
     function onChangePassword(event){
-        setPassword(event.target.value)
+        setPassword(event.target.value);
         if (event.target.value !==""){
-            setPasswordError("")
+            setPasswordError("");
         }
     }
 
     function onChangeTitle(event){
-        setTitle(event.target.value)
+        setTitle(event.target.value);
         if (event.target.value !==""){
-            setTitleError("")
+            setTitleError("");
         }
     }
     
     function onChangeContents(event){
-            setContents(event.target.value)
+            setContents(event.target.value);
             if (event.target.value !==""){
-                setContentsError("")
+                setContentsError("");
             }
     }
 
@@ -97,26 +95,20 @@ export default function ContainerPage(){
     async function Check(){
         
 
-        if(writer.length===0){
+        if(writer===""){
             setWriterError("이름을 입력해주세요")
-        }   else{
-            setWriterError("")
-        }
-        if(password.length===0){
+        }   
+        if(password===""){
             setPasswordError("비밀번호를 입력해주세요")
-        }   else{
-            setPasswordError("")
-        }
-        if(title.length===0){
+        }   
+        if(title===""){
             setTitleError("제목을 입력해주세요")
-        }   else{
-            setTitleError("")
-        }
-        if(contents.length===0){
+        }   
+        if(contents===""){
             setContentsError("내용을 입력해주세요")
-        }   else{
-            setContentsError("")
-        }
+        }   
+
+        if(writer !== "" && password !=="" && title !== "" && contents !== ""){
         const result= await createBoard({
             variables: {
                 createBoardInput:{
@@ -129,7 +121,7 @@ export default function ContainerPage(){
         })
         console.log(result)
         router.push('routed-product-read/'+result.data.createBoard._id)
-
+        }
         
     }
 

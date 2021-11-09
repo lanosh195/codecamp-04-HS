@@ -43,3 +43,67 @@ function solution(phone_number) {
     answer += phone_number.slice( phone_number.length-4,phone_number.length)
 }
 
+04
+"짝수와 홀수"
+
+function solution(num) {
+    let answer = "";
+    if(num%2===0){
+        answer = "Even"
+    } else{
+        answer = "Odd"
+    }
+    return answer;
+}
+
+// function evenOrOdd(num) {
+//     return num % 2 ? "Odd" : "Even";
+//   }
+
+05
+"평균 구하기"
+
+function solution(arr) {
+    let answer = 0;
+    for(let i=0; i<arr.length; i++){
+        answer += arr[i];
+    }
+    return answer/arr.length;
+}
+
+// 1 function average(array){
+//     return array.reduce((a, b) => a + b) / array.length;
+//   }
+  
+
+// 2 function average(array){
+//     var result = array.reduce(function(a,b){ return a + b; });
+//     return result/array.length;
+//   }
+  
+
+06
+"가운데 글자 가져오기"
+
+function solution(s) {
+    let answer = '';
+    let half= Math.floor(s.length/2);
+    
+    if(s.length%2 !==0){
+        answer=s[half]
+    }else {
+        answer= s[half-1]+s[half]
+    }
+    
+    return answer;
+}
+
+// 1 function solution(s) {
+//     return s.substr(Math.ceil(s.length / 2) - 1, s.length % 2 === 0 ? 2 : 1);
+// }
+
+
+// 2 function solution(s) {
+//     const mid = Math.floor(s.length/2);
+//     return s.length %2 === 1 ? s[mid] : s[mid-1]+s[mid];
+// }
