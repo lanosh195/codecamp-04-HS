@@ -1,8 +1,7 @@
 import { useRouter } from "next/router"
 import { useQuery}from '@apollo/client'
-import { useState } from "react"
 import DetailPresenterPage from "./BoardRead.presenter"
-import {FETCH_BOARD}from '../read/BoardRead.queries'
+import {FETCH_BOARD}from './BoardRead.queries'
 
 
 
@@ -10,23 +9,17 @@ export default function DetailContainerPage() {
     
     const router =useRouter()
     const {data} = useQuery(FETCH_BOARD, {
-        variables:{boardId:router.query.myid}
+        variables:{boardId: router.query.boardId}
     })
-
-    const [likeCounter, setLikeCounter]= useState(0)
-    const [dislikeCounter, setDisLikeConter]= useState(0)
-
-    function likeCountUp() {
-        setLikeCounter(likeCounter+1)
+    
+    function GoToList(){
+        router.push(`/boards/list`)
     }
-    function disLikeCountUp() {
-        setDisLikeConter(dislikeCounter+1)
-    }
+    
     
     return(
         <DetailPresenterPage 
-            countup={likeCountUp}
-            countdown={disLikeCountUp}
+            GoToList={GoToList}
             data={data}
         />
     )       

@@ -107,3 +107,39 @@ function solution(s) {
 //     const mid = Math.floor(s.length/2);
 //     return s.length %2 === 1 ? s[mid] : s[mid-1]+s[mid];
 // }
+
+07
+"서울에서 김서방 찾기"
+
+function solution(seoul) {
+    let answer=seoul.indexOf("Kim");
+    return "김서방은 "+answer+"에 있다";
+        // return `김서방은 ${answer}에 있다`
+}
+
+08
+"문자열 다루기"
+
+function solution(s) {
+    let answer = parseInt(s)
+    if((s.length===4 || s.length===6)&&s==answer){
+        answer=true
+    }   else{
+        answer=false
+    }
+    return answer;
+    // console.log(answer)
+}
+
+09
+"약수의 합"
+
+function solution(n) {
+    let answer=0
+    for(let i=1; i<=n; i++){
+        if(n%i===0){
+            answer+=i
+        }
+    }
+    return answer;
+}

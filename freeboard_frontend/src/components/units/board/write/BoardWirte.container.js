@@ -83,7 +83,7 @@ export default function ContainerPage(){
     }
 
     function checkcontents(chkWriter , chkPassword , chkTitle , chkContenes){
-        if (chkWriter!=="" && chkPassword!=="" && chkTitle!=="" && chkContenes!==""){
+        if (chkWriter && chkPassword && chkTitle && chkContenes){
             setChk(true)
         }else{
             setChk(false)
@@ -95,32 +95,32 @@ export default function ContainerPage(){
     async function Check(){
         
 
-        if(writer===""){
+        if(!writer){
             setWriterError("이름을 입력해주세요")
         }   
-        if(password===""){
+        if(!password){
             setPasswordError("비밀번호를 입력해주세요")
         }   
-        if(title===""){
+        if(!title){
             setTitleError("제목을 입력해주세요")
         }   
-        if(contents===""){
+        if(!contents){
             setContentsError("내용을 입력해주세요")
         }   
 
-        if(writer !== "" && password !=="" && title !== "" && contents !== ""){
+        if(writer && password && title && contents){
         const result= await createBoard({
             variables: {
                 createBoardInput:{
-                    writer:writer,
-                    password:password,
-                    title:title,
+                    writer/*:writer*/,
+                    password,
+                    title,
                     contents:contents
                 }
             }
         })
         console.log(result)
-        router.push('routed-product-read/'+result.data.createBoard._id)
+        router.push(`/boards/${result.data.createBoard._id}`)
         }
         
     }
@@ -142,45 +142,3 @@ export default function ContainerPage(){
 } 
 
 
-// function onChangeMyWriter(event) {
-//     setMyWriter(event.target.value);
-//     if (event.target.value !== "") {
-//       setMyWriterError("");
-//     }
-//   }
-
-//   function onChangeMyPassword(event) {
-//     setMyPassword(event.target.value);
-//     if (event.target.value !== "") {
-//       setMyPasswordError("");
-//     }
-//   }
-
-//   function onChangeMyTitle(event) {
-//     setMyTitle(event.target.value);
-//     if (event.target.value !== "") {
-//       setMyTitleError("");
-//     }
-//   }
-
-//   function onChangeMyContents(event) {
-//     setMyContents(event.target.value);
-//     if (event.target.value !== "") {
-//       setMyContentsError("");
-//     }
-//   }
-
-//   async function onClickSubmit() {
-//     if (myWriter === "") {
-//       setMyWriterError("작성자를 입력해주세요.");
-//     }
-//     if (myPassword === "") {
-//       setMyPasswordError("비밀번호를 입력해주세요.");
-//     }
-//     if (myTitle === "") {
-//       setMyTitleError("제목을 입력해주세요.");
-//     }
-//     if (myContents === "") {
-//       setMyContentsError("내용을 입력해주세요.");
-//     }
-//     if (myWriter !== "" && myPassword !== "" && myTitle !== "" && myContents !== "")
