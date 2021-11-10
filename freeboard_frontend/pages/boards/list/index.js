@@ -24,8 +24,8 @@ import { BestBoard,
 } from "../../../src/components/units/board/list/BoardList.styles";
 
 import {useQuery,gql} from '@apollo/client'
-
-
+import {getDate} from "../../../src/commons/libraries/utils"
+import {useRouter} from 'next/router'
 
 
 const FETCH_BOARDS_BEST=gql`
@@ -48,11 +48,15 @@ fetchBoards {
 }
 `
 
-export default function boardListPage(){
-
+export default function boardListPage(props){
+const router =useRouter()
 const {data1}= useQuery(FETCH_BOARDS_BEST)
 const {data}= useQuery(FETCH_BOARDS)
+// const router= useRouter()
 
+function GoToNew(){
+    router.push('/boards/new')
+}
 
 return(
 <>
@@ -87,7 +91,7 @@ return(
                         <IndexN>{index+1}</IndexN>
                         <TitleN>{el.title}</TitleN>
                         <WriterN>{el.writer}</WriterN>
-                        <CreatedDateN>{el.createdAt}</CreatedDateN>            
+                        <CreatedDateN>{getDate(el.createdAt)}</CreatedDateN>            
                     </ListWrapper>
                 ))}
                     
@@ -95,7 +99,7 @@ return(
             
         </Body>
             <BoardFooter>
-                <BoardSubmit>게시물 등록하기</BoardSubmit>
+                <BoardSubmit onClick={GoToNew}>게시물 등록하기</BoardSubmit>
             </BoardFooter>
     </Container>
 </>

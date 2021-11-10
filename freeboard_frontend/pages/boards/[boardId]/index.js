@@ -2,6 +2,6 @@ import DetailContainerPage from "../../../src/components/units/board/read/BoardR
 
 export default function BoardDetailPage(){
     return(
-        <DetailContainerPage/>
+        <DetailContainerPage />
     )
 }

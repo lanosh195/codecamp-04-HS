@@ -39,9 +39,8 @@ export default function PresenterPage(props){
     return(
         <>
         <Container>
-        <Heading>게시물 등록</Heading>
-        
-        <Wrapper1>
+            {!props.isEdit && <Heading > 게시물 등록</Heading>}
+                <Wrapper1>
             <Wrappertop>
                 <Wrapper2>
                     <Writer>작성자</Writer>
@@ -104,9 +103,12 @@ export default function PresenterPage(props){
                 <RadioP type="radio" id="contents" /> 사진
                 </div>
             </Footer>
-            <Sign onClick={props.cHK} submitChk={props.fff}>등록하기</Sign>
+            {!props.isEdit && <Sign onClick={props.Check}> 등록하기</Sign>}
+            {props.isEdit && <Sign onClick={props.Edit}> 수정하기</Sign>}
+            
         </Wrapper1>
         </Container>
         </>
     )
 } 
+

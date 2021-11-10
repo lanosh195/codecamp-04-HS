@@ -46,7 +46,10 @@ export default function DetailPresenterPage(props) {
                     </S.CounterWrapper>
                 </S.Body>
                 <S.Footer>
-                    <S.FooterButton onClick={props.GoToList}>목록으로</S.FooterButton><S.FooterButton>수정하기</S.FooterButton>
+                    <S.FooterButton onClick={props.GoToList}>목록으로</S.FooterButton>
+                    <S.FooterButton onClick={props.GoToNew}>수정하기</S.FooterButton>
+                    <S.FooterButton>삭제하기</S.FooterButton>
+
                 </S.Footer>
             </S.Container>
         </>    

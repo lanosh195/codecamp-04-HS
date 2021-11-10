@@ -2,16 +2,18 @@ import PresenterPage from './BoardWrite.presenter'
 import {useState} from 'react'
 import {useMutation} from '@apollo/client'
 import {useRouter} from "next/router"
-import { CREATE_BOARD } from './BoardWirte.queries'
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 
 
 
-export default function ContainerPage(){
+
+export default function ContainerPage(props){
     
     const [chk,setChk]= useState(false)
-
+    
     const router=useRouter()
     const [createBoard]=useMutation(CREATE_BOARD);
+    const [UpdateBoard]=useMutation(UPDATE_BOARD);
 
     const [writer, setWriter]= useState("");
     const [password, setPassword]=useState("");
@@ -122,8 +124,25 @@ export default function ContainerPage(){
         console.log(result)
         router.push(`/boards/${result.data.createBoard._id}`)
         }
+
         
     }
+    async function Edit() {
+        // alert("수정하기 버튼")
+        const result= await UpdateBoard({
+            variables: {
+                boardId : router.query.boardId, 
+                updateBoardInput : {
+                title: title, 
+                contents:contents
+                },
+                password : password
+            }
+        })
+        router.push(`/board/${router.query.boardId}`)
+        
+    }
+    
 
     return(
         <PresenterPage
@@ -137,6 +156,8 @@ export default function ContainerPage(){
             ccc={titleError}
             ddd={contentsError}
             fff={chk}
+            isEdit={props.isEdit}
+            Edit={Edit}
         />
     )
 } 

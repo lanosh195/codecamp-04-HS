@@ -32,7 +32,7 @@ export const BestPost= styled.div`
     border-radius: 10px;
 `
 
-export const Body=styled.div`
+export const Body=styled.div`   
     display: flex;
     flex-direction: column;
     margin-bottom: 54px;
@@ -74,6 +74,7 @@ export const BoardFooter= styled.div`
 export const BoardSubmit= styled.button`
     width: 107px;
     height: 24px;
+    align-self: flex-end;
 `   
 export const Table= styled.div`
     width:1200px;
