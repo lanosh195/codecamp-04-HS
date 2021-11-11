@@ -39,7 +39,7 @@ export default function PresenterPage(props){
     return(
         <>
         <Container>
-            {!props.isEdit && <Heading > 게시물 등록</Heading>}
+           <Heading >  {props.isEdit ? "게시물 수정" : "게시물 등록"}</Heading>
                 <Wrapper1>
             <Wrappertop>
                 <Wrapper2>
@@ -103,7 +103,7 @@ export default function PresenterPage(props){
                 <RadioP type="radio" id="contents" /> 사진
                 </div>
             </Footer>
-            {!props.isEdit && <Sign onClick={props.Check}> 등록하기</Sign>}
+            {!props.isEdit && <Sign onClick={props.cHK} submitChk={props.oCC}> 등록하기</Sign>}
             {props.isEdit && <Sign onClick={props.Edit}> 수정하기</Sign>}
             
         </Wrapper1>

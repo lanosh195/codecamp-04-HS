@@ -16,8 +16,8 @@ export default function DetailContainerPage() {
         router.push(`/boards/list`)
     }
     
-    function GoToNew(){
-        router.push('/boards/new')
+    function GoToEdit(){
+        router.push('/boards/edit')
     }
 
     // async function DeleteBoard(){
@@ -29,7 +29,7 @@ export default function DetailContainerPage() {
     return(
         <DetailPresenterPage 
             GoToList={GoToList}
-            GoToNew={GoToNew}
+            GoToNew={GoToEdit}
             data={data}
         />
     )       

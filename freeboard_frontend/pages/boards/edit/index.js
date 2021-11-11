@@ -3,6 +3,6 @@ import ContainerPage from "../../../src/components/units/board/write/BoardWrite.
 export default function BoardEditPage(){
     
     return(
-        <ContainerPage isEdit={false}/>
+        <ContainerPage isEdit={true}/>
     )
 }

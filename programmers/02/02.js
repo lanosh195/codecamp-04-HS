@@ -143,3 +143,30 @@ function solution(n) {
     }
     return answer;
 }
+
+10
+"자릿수 더하기"
+
+function solution(n)
+{
+    let answer = 0;
+    let a= String(n);
+    for(let i=0; i<a.length; i++){
+        answer+=parseInt(a[i]);
+    }  
+    return answer;
+}
+
+
+
+11
+"x만큼 간격이 있는 n개의 숫자"
+
+function solution(x, n) {
+    let answer = [];
+    for(let i=1; i<=n; i++){
+        answer.push(x*i)
+    }
+    return answer;
+}
+
