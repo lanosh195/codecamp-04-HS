@@ -1,165 +1,160 @@
-import PresenterPage from './BoardWrite.presenter'
-import {useState} from 'react'
-import {useMutation} from '@apollo/client'
-import {useRouter} from "next/router"
+import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { useState } from 'react'
+import { useMutation } from "@apollo/client";
+import { useRouter } from 'next/router'
 
+export default function BoardWrite(props){
+    const router = useRouter()
 
+    const [myWriter, setMyWriter] = useState("");
+    const [myPassword, setMyPassword] = useState("");
+    const [myTitle, setMyTitle] = useState("");
+    const [myContents, setMyContents] = useState("");
+  
+    const [myWriterError, setMyWriterError] = useState("");
+    const [myPasswordError, setMyPasswordError] = useState("");
+    const [myTitleError, setMyTitleError] = useState("");
+    const [myContentsError, setMyContentsError] = useState("");
+  
+    const [isActive, setIsActive] = useState(false)
 
+    const [createBoard] = useMutation(CREATE_BOARD);
+    const [updateBoard] = useMutation(UPDATE_BOARD);
+  
+    function onChangeMyWriter(event) {
+      setMyWriter(event.target.value);
+      if (event.target.value !== "") {
+        setMyWriterError("");
+      }
 
-export default function ContainerPage(props){
-    
-    const [chk,setChk]= useState(false)
-    
-    const router=useRouter()
-    const [createBoard]=useMutation(CREATE_BOARD);
-    const [UpdateBoard]=useMutation(UPDATE_BOARD);
-
-    const [writer, setWriter]= useState("");
-    const [password, setPassword]=useState("");
-    const [title, setTitle]= useState("");
-    const [contents, setContents]=useState("");
-
-    const [writerError,setWriterError]=useState("");
-    const [passwordError,setPasswordError]=useState("");
-    const [titleError,setTitleError]=useState("");
-    const [contentsError,setContentsError]=useState("");
-    
-    
-    function onChangeWriter(event) {
-        setWriter(event.target.value);
-        if (event.target.value !== "") {
-            setWriterError("");
-        }
+      if(event.target.value !== "" && myTitle !== "" && myContents !== "" && myPassword !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
+      }
     }
+  
+    function onChangeMyPassword(event) {
+      setMyPassword(event.target.value);
+      if (event.target.value !== "") {
+        setMyPasswordError("");
+      }
 
-    function onChangePassword(event){
-        setPassword(event.target.value);
-        if (event.target.value !==""){
-            setPasswordError("");
-        }
+      if(myWriter !== "" && myTitle !== "" && myContents !== "" && event.target.value !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
+      }
     }
+  
+    function onChangeMyTitle(event) {
+      setMyTitle(event.target.value);
+      if (event.target.value !== "") {
+        setMyTitleError("");
+      }
 
-    function onChangeTitle(event){
-        setTitle(event.target.value);
-        if (event.target.value !==""){
-            setTitleError("");
-        }
+      if(myWriter && event.target.value && myContents  && myPassword ){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
+      }
     }
-    
-    function onChangeContents(event){
-            setContents(event.target.value);
-            if (event.target.value !==""){
-                setContentsError("");
+  
+    function onChangeMyContents(event) {
+      setMyContents(event.target.value);
+      if (event.target.value !== "") {
+        setMyContentsError("");
+      }
+
+      if(myWriter !== "" && myTitle !== "" && event.target.value !== "" && myPassword !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
+      }
+    }
+    //등록버튼
+    async function onClickSubmit() {
+      if (!myWriter) {
+        setMyWriterError("작성자를 입력해주세요.");
+      }
+      if (!myPassword) {
+        setMyPasswordError("비밀번호를 입력해주세요.");
+      }
+      if (!myTitle) {
+        setMyTitleError("제목을 입력해주세요.");
+      }
+      if (!myContents) {
+        setMyContentsError("내용을 입력해주세요.");
+      }
+      if (myWriter && myPassword && myTitle && myContents) {
+        const result = await createBoard({ 
+          variables: { 
+            createBoardInput: { 
+              writer: myWriter,
+              password: myPassword,
+              title: myTitle,
+              contents: myContents
             }
-    }
-
-    
-
-    function onChangeWriter(event){
-        const chkWriter = event.target.value;
-        setWriter(chkWriter)
-        checkcontents(chkWriter , password , title, contents)
-        
-    }
-
-    function onChangePassword(event) {
-        const chkPassword = event.target.value;
-        setPassword(event.target.value)
-        checkcontents(writer , chkPassword , title, contents)
-        
-    }
-    
-    function onChangeTitle(event) {
-        const chkTitle = event.target.value;
-        setTitle(event.target.value);
-        checkcontents(writer, password, chkTitle, contents)
-        
-    }
-    
-    function onChangeContents(event) {
-        const chkContents = event.target.value;
-        setContents(event.target.value)
-        checkcontents(writer, password, title, chkContents)
-        
-    }
-
-    function checkcontents(chkWriter , chkPassword , chkTitle , chkContenes){
-        if (chkWriter && chkPassword && chkTitle && chkContenes){
-            setChk(true)
-        }else{
-            setChk(false)
-        }
-    
-
-    }
-
-    async function Check(){
-        
-
-        if(!writer){
-            setWriterError("이름을 입력해주세요")
-        }   
-        if(!password){
-            setPasswordError("비밀번호를 입력해주세요")
-        }   
-        if(!title){
-            setTitleError("제목을 입력해주세요")
-        }   
-        if(!contents){
-            setContentsError("내용을 입력해주세요")
-        }   
-
-        if(writer && password && title && contents){
-        const result= await createBoard({
-            variables: {
-                createBoardInput:{
-                    writer/*:writer*/,
-                    password,
-                    title,
-                    contents:contents
-                }
-            }
-        })
-        console.log(result)
+          }
+        });
         router.push(`/boards/${result.data.createBoard._id}`)
-        }
-
-        
+      }
     }
-    async function Edit() {
-        // alert("수정하기 버튼")
-        const result= await UpdateBoard({
-            variables: {
-                boardId : router.query.boardId, 
-                updateBoardInput : {
-                title: title, 
-                contents:contents
-                },
-                password : password
+
+    //수정 버튼
+    async function onClickUpdate() {
+
+      const myVariables ={
+        boardId : Number(router.query.boardId)
+      }
+      if (!myWriter) {
+        setMyWriterError("작성자를 입력해주세요."),
+        myVariables.writer=myWriter
+      }
+      if (!myPassword) {
+        setMyPasswordError("비밀번호를 입력해주세요.");
+        
+      }
+      if (!myTitle) {
+        setMyTitleError("제목을 입력해주세요."),
+        myVariables.title=myTitle
+      }
+      if (!myContents) {
+        setMyContentsError("내용을 입력해주세요."),
+        myVariables.contents=myContents
+      }
+      // if (myWriter && myPassword && myTitle && myContents) {
+        {
+        await updateBoard({ 
+          variables: { 
+            boardId: router.query.boardId,
+            password: myPassword,
+            updateBoardInput: { 
+              title: myTitle,
+              contents: myContents
             }
-        })
-        router.push(`/board/${router.query.boardId}`)
-        
+          }
+        });
+        router.push(`/boards/${router.query.boardId}`)
+      }
     }
-    
 
-    return(
-        <PresenterPage
-            oCW={onChangeWriter}
-            oCT={onChangeTitle}
-            oCC={onChangeContents}
-            oCP={onChangePassword}
-            cHK={Check}
-            aaa={writerError}
-            bbb={passwordError}
-            ccc={titleError}
-            ddd={contentsError}
-            fff={chk}
-            isEdit={props.isEdit}
-            Edit={Edit}
+    return (
+        <BoardWriteUI
+          myWriterError={myWriterError}
+          myPasswordError={myPasswordError}
+          myTitleError={myTitleError}
+          myContentsError={myContentsError}
+          onChangeMyWriter={onChangeMyWriter}
+          onChangeMyPassword={onChangeMyPassword}
+          onChangeMyTitle={onChangeMyTitle}
+          onChangeMyContents={onChangeMyContents}
+          onClickSubmit={onClickSubmit}
+          onClickUpdate={onClickUpdate}
+          isActive={isActive}
+          isEdit={props.isEdit}
+          data={props.data}
         />
     )
-} 
-
-
+}

@@ -1,230 +1,177 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
-export const Heading = styled.div`
-    font-size: 36px;
-    padding-top: 10px;
-`
-export const Container = styled.div`
-    box-sizing: border-box;
-    width: 1200px;
+export const Wrapper = styled.div`
+  width: 1200px;
   /* height: 1847px; */
-    border: 1px solid black;
-    margin: 100px;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    padding-left: 102px;
-    padding-right: 102px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: none;
-    box-shadow: 0px 0px 10px gray;
-    border: 1px solid black;
-    border: none;
-    
-`
+  border: 1px solid black;
+  margin: 100px;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  padding-left: 102px;
+  padding-right: 102px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  box-shadow: 0px 0px 10px gray;
+`;
 
-export const Wrapper1 = styled.div`
-    width: 996px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-      
-`
+export const Title = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+`;
 
-export const Wrappertop= styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
-`
+export const WriterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 40px;
+`;
 
-export const Wrapper2= styled.div`
-    width: 486px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`
-export const Wrapper3= styled.div`
-    width: 486px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`
+export const Writer = styled.input`
+  width: 486px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
-export const Writer= styled.div`
-    font-size: 13px;
-    font-weight: bold;
-     
-`
+export const Password = styled.input`
+  width: 486px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
-export const Writer1= styled.input`
-    height: 52px;
-    width: 486px;
-    margin-top: 10px;
-    
-`
-export const Password= styled.div`
-    font-size: 13px;
-    font-weight: bold;
-`
+export const Label = styled.div`
+  padding-bottom: 16px;
+  font-size: 16px;
+  font-weight: 500;
+`;
 
-export const Password1= styled.input`
-    width: 486px;
-    height: 52px;
-    margin-top: 10px;
-`
-export const Title= styled.div`
-    font-size: 13px;
-    padding-top: 10px;
-    font-weight: bold;
-`
+export const InputWrapper = styled.div`
+  padding-top: 40px;
+`;
 
-export const Title1= styled.input`
-    width:996px;
-    height: 52px;
-    margin-top: 10px;
-`
-export const Contents= styled.div`
-    font-size: 13px;
-    padding-top: 10px;
-    font-weight: bold;
-`
+export const Subject = styled.input`
+  width: 996px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
-export const Contents1= styled.textarea`
-    width:996px;
-    height: 480px;
-    padding: 14px 16px;
-    margin-top: 10px;
-`
+export const Contents = styled.textarea`
+  width: 996px;
+  height: 480px;
+  padding-left: 16px;
+  padding: 14px;
+  border: 1px solid #bdbdbd;
+`;
 
+export const ZipcodeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
+export const Zipcode = styled.input`
+  width: 77px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
-export const Adress= styled.div`
-    font-size: 13px;
-    margin-top: 10px;
-    font-weight: bold;
-`
-export const Zipcode= styled.input`
-    width: 77px;
-    height: 52px;
-    margin-top: 10px;
-`
+export const SearchButton = styled.button`
+  width: 124px;
+  height: 52px;
+  margin-left: 16px;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+`;
 
-export const Adress1= styled.input`
-    width:996px;
-    height: 52px;
-    margin-top: 10px;
-`
-export const Adress2= styled.input`
-    width:996px;
-    height: 52px;
-    margin-top: 10px;
-`
+export const Address = styled.input`
+  width: 996px;
+  height: 52px;
+  margin-top: 16px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
+export const Youtube = styled.input`
+  width: 996px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
+export const ImageWrapper = styled.div`
+  width: 996px;
+  padding-top: 40px;
+`;
 
-export const Zipbutton= styled.button`
-    width: 124px;
-    height: 52px;
-    background-color: black;
-    color: white;
-`
-export const UT= styled.div`
-    font-size: 13px;
-    margin-top: 16px;
-    font-weight: bold;
-    
-`
-export const UT1= styled.input`
-    width: 996px;
-    height: 52px;
-    margin-top: 1px;
-`
+export const UploadButton = styled.button`
+  width: 78px;
+  height: 78px;
+  background-color: #bdbdbd;
+  margin-right: 24px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+`;
 
-export const Photo= styled.div`
-    font-size: 13px;
-    margin-top: 20px;
-    font-weight: bold;
-    
-`
-export const Wrapperupload= styled.div`
-    display: flex;
-    margin-top: 10px;
-`
+export const OptionWrapper = styled.div`
+  width: 996px;
+  padding-top: 40px;
+`;
 
-export const Upload1= styled.div`
-    width: 78px;
-    height: 78px;
-    background-color: #bdbdbd;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    line-height: 18px;
-    cursor: pointer;
-`
-export const Upload2= styled.div`
-    width: 78px;
-    height: 78px;
-    background-color: #bdbdbd;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    line-height: 18px;
-    margin-left: 10px;
-    cursor: pointer;
-`
-export const Upload3= styled.div`
-    width: 78px;
-    height: 78px;
-    background-color: #bdbdbd;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    line-height: 18px;
-    margin-left: 10px;
-    cursor: pointer;
-`
-export const Main= styled.div`
-    font-size: 13px;
-    margin-top: 10px;
-    font-weight: bold;
-    
-`
-export const Footer= styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-`
-export const RadioU= styled.input`
-`
-     
-export const RadioP= styled.input`
-    margin-left: 20px;
-`
+export const RadioButton = styled.input`
+  cursor: pointer;
+`;
 
+export const RadioLabel = styled.label`
+  margin-left: 8px;
+  margin-right: 20px;
+  font-weight: 500;
+  cursor: pointer;
+`;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 80px;
+`;
 
-export const Sign= styled.button`
-    font-size: 16px;
-    background-color: ${ props=> props.submitChk ? "#ffd600" : "#bdbdbd;"};
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    width: 179px;
-    height: 52px;
-    border-color:none;
+export const CancelButton = styled.button`
+  width: 179px;
+  height: 52px;
+  background-color: #bdbdbd;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-right: 12px;
+  cursor: pointer;
+`;
 
-`
+export const SubmitButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-right: 12px;
+  background-color: ${(props) => props.isActive ? 'gold' : 'none'};
+  
+  :hover {
+    cursor: ${(props) => props.isActive ? 'pointer' : 'default'};
+  }
+`;
 
-export const Error= styled.div`
-    color:red;
-    font-size: 10px;
-`
+export const Error = styled.div`
+  padding-top: 10px;
+  font-size: 14px;
+  color: red;
+`;
