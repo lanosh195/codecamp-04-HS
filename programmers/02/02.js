@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 01 
 "문자열 정수로 바꾸기"
 
@@ -152,11 +154,21 @@ function solution(n)
     let answer = 0;
     let a= String(n);
     for(let i=0; i<a.length; i++){
-        answer+=parseInt(a[i]);
+        answer+=Number(a[i]);
     }  
     return answer;
 }
 
+// function solution(n) {
+//     let answer= 0;
+
+//     string(n)
+//     .split("")
+//     .forEach(num => {
+//         answer += Number(num);
+//     })
+//     return answer;
+// }
 
 
 11
@@ -169,4 +181,44 @@ function solution(x, n) {
     }
     return answer;
 }
+
+12
+"문자열 내림차순으로 배치하기"
+
+function solution(s) {
+    return s.split('').sort().reverse().join('')
+}
+
+13
+"K번째수"
+
+function solution(array, commands) {
+    let answer= [];
+     for( let idx=0; idx<commands.length; idx++){
+         const i= commands[idx][0];
+         const j= commands[idx][1];
+         const k= commands[idx][2];
+         
+         const result= array.slice(i-1,j)
+                             .sort((a,b)=>{
+                                 return a-b
+                             })
+         answer.push( result[k-1])
+     }
+     return answer;
+ }
+
+//  function solution(array, commands) {
+//     let answer = commands.map(el =>{
+//         const result= array.slice(el[0]-1, el[1])
+//                             .sort((a,b)=>{
+//                                 return a-b
+//                             })
+//         return result[el[2]-1]
+//         })
+    
+//     return answer;
+// }
+
+
 
