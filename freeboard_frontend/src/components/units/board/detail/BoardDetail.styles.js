@@ -66,6 +66,8 @@ export const BottomWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   padding-top: 80px;
+  padding-bottom: 87px;
+  border-bottom: solid #bdbdbd 1px; ;
 `;
 
 export const Button = styled.button`
@@ -82,5 +84,89 @@ export const Button = styled.button`
   }
 `;
 
+export const CommentRapper = styled.div`
+  margin-top: 40px;
+`;
+export const CommentSubmit = styled.div``;
+export const CommentHeader = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+`;
 
+export const CommentPssword = styled.input`
+  width: 180px;
+  height: 52px;
+  padding-left: 10px;
+  margin-right: 24px;
+`;
+export const CommentRating = styled.div``;
+export const CommentBody = styled.div`
+  border: solid #bdbdbd 1px;
+`;
 
+export const CommentBox = styled.input`
+  width: 1200px;
+  height: 64px;
+  border: solid white 0px;
+  margin-left: 10px;
+`;
+export const CommentContent = styled.div``;
+export const CommentFooter = styled.div`
+  height: 52px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-top: solid #f2f2f2 1px; ;
+`;
+export const ContentsCounter = styled.div`
+  padding-left: 10px;
+  font-size: 13px;
+  color: #bdbdbd;
+`;
+export const CommentButton = styled.button`
+  width: 91px;
+  height: 52px;
+  background-color: black;
+  color: white;
+`;
+export const CommentListWrapper = styled.div`
+  margin-top: 46px;
+  border-bottom: solid #bdbdbd 1px;
+`;
+// export const WriterIcon = styled.div``;
+export const CommentListMain = styled.div`
+  margin-left: 10px;
+`;
+export const CommentListHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const CommentListLeft = styled.div`
+  display: flex;
+`;
+export const CommentListRight = styled.div`
+  display: flex;
+`;
+export const CommentWriter = styled.div`
+  height: 24px;
+`;
+export const StarRating = styled.div`
+  margin-left: 10px;
+`;
+export const CommentEdit = styled.button`
+  font-size: 25px;
+  margin-right: 10px;
+  border: none;
+  color: #bdbdbd;
+  background-color: white;
+  :hover {
+    color: Black;
+  }
+`;
+export const PostedComment = styled.div`
+  margin-bottom: 5px;
+`;
+export const CommentDate = styled.div`
+  padding-bottom: 10px;
+  font-size: 13px;
+`;
