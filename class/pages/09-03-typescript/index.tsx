@@ -34,7 +34,7 @@ export default function TypescriptPage(){
         age:8,
         school: "다람쥐초등학교"
     }
-    profile.age = "8살"
+    profile.age = "8살"  //<union으로 설정했기 때문에 가능
     profile.school= 3  //< string으로 설정됨
     
 }
