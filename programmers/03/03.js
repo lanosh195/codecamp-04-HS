@@ -84,3 +84,29 @@ function solution(s) {
                      }).join(" ") //공백을 기준으로 문자열 만들어줌
      return answer;
  }
+
+ 03
+ "자연수 뒤집어 배열로 만들기"
+
+ function solution(n) {
+  let answer = [];
+  var N = n.toString().split('');
+  for(let i=N.length-1; i>=0; i--){
+      answer.push(Number(N[i]))
+  }
+  console.log(answer)
+  return answer;
+}
+
+04
+"나누어 떨어지는 숫자 배열"
+
+function solution(arr, divisor) {
+  let answer = [];
+  for(let i=0; i<arr.length; i++){
+      if(arr[i]%divisor===0){
+          answer.push(arr[i])  }         
+      // else if(answer=[]){answer.push(-1)}
+  }
+  return answer.sort((a,b)=>a-b);
+}

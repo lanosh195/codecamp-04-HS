@@ -30,15 +30,14 @@ export default function BoardDetailUI(props) {
             <S.CommentPssword
               type="text"
               placeholder="작성자"
-              onChange={props.onChangeMyWriter}
-              {...props.onChangecommentWriter}
+              onChange={props.onChangeCommentWriter}
             />
             <S.CommentPssword
               type="text"
               placeholder="비밀번호"
-              onChange={props.onChangeMyPassword}
+              onChange={props.onChangeCommentPassword}
             />
-            <S.CommentRating>⭐︎⭐︎⭐︎⭐︎⭐︎</S.CommentRating>
+            <S.CommentRating></S.CommentRating>
           </S.CommentHeader>
           <S.CommentBody>
             <S.CommentBox
@@ -46,7 +45,7 @@ export default function BoardDetailUI(props) {
               placeholder="개인정보를 공유 및 요청하거나, 명예훼손
               ,무단광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은
               게시자에게 있습니다"
-              onChange={props.onChangeMyContents}
+              onChange={props.onChangeCommentContents}
             />
             <S.CommentFooter>
               <S.ContentsCounter>0/100 카운터</S.ContentsCounter>
@@ -62,7 +61,7 @@ export default function BoardDetailUI(props) {
             <S.CommentListHeader>
               <S.CommentListLeft>
                 <S.CommentWriter>댓글작성자</S.CommentWriter>
-                <S.StarRating>⭐︎⭐︎⭐︎⭐︎⭐︎</S.StarRating>
+                <S.StarRating></S.StarRating>
               </S.CommentListLeft>
               <S.CommentListRight>
                 <S.CommentEdit>✓</S.CommentEdit>
@@ -70,7 +69,7 @@ export default function BoardDetailUI(props) {
               </S.CommentListRight>
             </S.CommentListHeader>
             <S.PostedComment>댓글 내용</S.PostedComment>
-            <S.CommentDate {...props.data2?.fetchBoardComments.createdAt}>
+            <S.CommentDate>
               날짜
             </S.CommentDate>
           </S.CommentListMain>
