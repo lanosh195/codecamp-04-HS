@@ -1,19 +1,24 @@
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
-
+  //보드 등록 정보
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
   const [myContents, setMyContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
+  const [myZonecode, setMyZonecode] = useState("");
+  const [myAddressDetail, setMyAddressDetail] = useState("");
 
+  //에러 체크
   const [myWriterError, setMyWriterError] = useState("");
   const [myPasswordError, setMyPasswordError] = useState("");
   const [myTitleError, setMyTitleError] = useState("");
@@ -21,7 +26,10 @@ export default function BoardWrite(props) {
 
   const [isActive, setIsActive] = useState(false);
 
-  function onChangeMyWriter(event) {
+  const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
+
+  function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);
     if (event.target.value !== "") {
       setMyWriterError("");
@@ -39,7 +47,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeMyPassword(event) {
+  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
     setMyPassword(event.target.value);
     if (event.target.value !== "") {
       setMyPasswordError("");
@@ -57,20 +65,25 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onChangeMyTitle(event) {
+  function onChangeMyTitle(event: ChangeEvent<HTMLInputElement>) {
     setMyTitle(event.target.value);
     if (event.target.value !== "") {
       setMyTitleError("");
     }
 
-    if (myWriter && event.target.value && myContents && myPassword) {
+    if (
+      myWriter !== "" &&
+      event.target.value !== "" &&
+      myContents !== "" &&
+      myPassword !== ""
+    ) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
   }
 
-  function onChangeMyContents(event) {
+  function onChangeMyContents(event: ChangeEvent<HTMLTextAreaElement>) {
     setMyContents(event.target.value);
     if (event.target.value !== "") {
       setMyContentsError("");
@@ -87,7 +100,21 @@ export default function BoardWrite(props) {
       setIsActive(false);
     }
   }
-  //등록버튼
+
+  function onChangeMyYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
+    setYoutubeUrl(event.target.value);
+  }
+
+  function onChangeMyAddress(event: ChangeEvent<HTMLInputElement>) {
+    setMyAddress(event.target.value);
+  }
+  function onChangeMyZonecode(event: ChangeEvent<HTMLInputElement>) {
+    setMyZonecode(event.target.value);
+  }
+  function onChangeMyAadressDetail(event: ChangeEvent<HTMLInputElement>) {
+    setMyAddressDetail(event.target.value);
+  }
+
   async function onClickSubmit() {
     if (!myWriter) {
       setMyWriterError("작성자를 입력해주세요.");
@@ -109,47 +136,54 @@ export default function BoardWrite(props) {
             password: myPassword,
             title: myTitle,
             contents: myContents,
+            youtubeUrl: youtubeUrl,
+            boardAddress: {
+              zipcode: myZonecode,
+              address: myAddress,
+              addressDetail: myAddressDetail,
+            },
           },
         },
       });
+      console.log(result);
       router.push(`/boards/${result.data.createBoard._id}`);
     }
   }
 
-  //수정 버튼
   async function onClickUpdate() {
-    const myVariables = {
-      boardId: Number(router.query.boardId),
-    };
-    if (!myWriter) {
-      setMyWriterError("작성자를 입력해주세요."),
-        (myVariables.writer = myWriter);
+    if (!myTitle && !myContents && !youtubeUrl) {
+      alert("수정된 내용이 없습니다.");
+      return;
     }
-    if (!myPassword) {
-      setMyPasswordError("비밀번호를 입력해주세요.");
-    }
-    if (!myTitle) {
-      setMyTitleError("제목을 입력해주세요."), (myVariables.title = myTitle);
-    }
-    if (!myContents) {
-      setMyContentsError("내용을 입력해주세요."),
-        (myVariables.contents = myContents);
-    }
-    // if (myWriter && myPassword && myTitle && myContents) {
-    {
+
+    const myUpdateboardInput: IMyUpdateBoardInput = {};
+    if (myTitle) myUpdateboardInput.title = myTitle;
+    if (myContents) myUpdateboardInput.contents = myContents;
+    if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+
+    try {
       await updateBoard({
         variables: {
           boardId: router.query.boardId,
           password: myPassword,
-          updateBoardInput: {
-            title: myTitle,
-            contents: myContents,
-          },
+          updateBoardInput: myUpdateboardInput,
         },
       });
       router.push(`/boards/${router.query.boardId}`);
+    } catch (error) {
+      alert(error.message);
     }
   }
+
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: any) => {
+    setMyAddress(data.address);
+    setMyZonecode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <BoardWriteUI
@@ -161,11 +195,21 @@ export default function BoardWrite(props) {
       onChangeMyPassword={onChangeMyPassword}
       onChangeMyTitle={onChangeMyTitle}
       onChangeMyContents={onChangeMyContents}
+      onChangeMyYoutubeUrl={onChangeMyYoutubeUrl}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}
+      onToggleModal={onToggleModal}
+      handleComplete={handleComplete}
+      setMyAddressDetail={setMyAddressDetail}
+      isOpen={isOpen}
+      myZonecode={myZonecode}
+      myAddress={myAddress}
+      onChangeMyAddress={onChangeMyAddress}
+      onChangeMyZonecode={onChangeMyZonecode}
+      onChangeMyAadressDetail={onChangeMyAadressDetail}
     />
   );
 }

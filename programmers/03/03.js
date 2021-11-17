@@ -90,7 +90,7 @@ function solution(s) {
 
  function solution(n) {
   let answer = [];
-  var N = n.toString().split('');
+  let N = n.toString().split('');
   for(let i=N.length-1; i>=0; i--){
       answer.push(Number(N[i]))
   }
@@ -98,15 +98,111 @@ function solution(s) {
   return answer;
 }
 
+// function solution(n) {
+//   const answer = String(n)
+//                   .split("")
+//                   .reverse()
+//                   .map((n)=>{
+//                      return Number(n)
+//                   })      
+//   return answer;
+// }
+
 04
-"나누어 떨어지는 숫자 배열"
+"I나누어 떨어지는 숫자 배열"
 
 function solution(arr, divisor) {
   let answer = [];
   for(let i=0; i<arr.length; i++){
       if(arr[i]%divisor===0){
-          answer.push(arr[i])  }         
-      // else if(answer=[]){answer.push(-1)}
+          answer.push(arr[i])  
+      }
   }
+    if(answer.length === 0) {
+        answer.push(-1)
+    }
   return answer.sort((a,b)=>a-b);
 }
+
+
+function solution(arr, divisor) {
+  let answer = [];
+  for(let i=0; i<arr.length; i++){
+      if(arr[i]% divisor===0){
+          answer.push(arr[i])
+      }
+  }
+  
+  return answer.length ===0 
+      ? [-1]
+      : answer.sort((a,b)=>a-b)
+}
+
+// function solution(arr, divisor) {
+//   const answer= arr.filter(num =>{
+//       return num%divisor ===0
+//   }) 
+//   return answer.length ===0
+//       ? [-1]
+//       : answer.sort((a,b)=>a-b)
+// }
+
+05
+"콜라츠 추측"
+
+function solution(num) {
+    let answer = 0;
+    for(let i= 0; i<500; i++){
+        if(num!==1){
+            if(num%2===0){
+                num= num/2
+            }else{
+                num=num*3+1
+            }
+        }else{
+            return answer= i
+        }
+    }
+    return answer= -1;
+}
+
+function solution(num) {
+    let count = 0;
+    for(let i= 0; i<500; i++){
+        if(num===1){
+            break; //for문을 중단
+        }
+        count++;
+        
+        num=num%2===0
+        ? num/2
+        :num*3+1
+    }
+    return num!== 1 ? -1 : count
+}
+///while문
+function solution(num) {
+    let counter = 0;
+    while (num !== 1){
+        if(counter++ === 500) return -1;
+        num = num%2 ? num*3+1 : num/2;
+    }
+    return counter;
+}
+///매서드 방식
+function solution(num) {
+    let count = 0;
+    
+    const arr= new Array(500)
+                .fill(1)
+                .forEach( _ =>{ // _ 사용되지 않는 데이터 언더바로 둠.
+                    if(num!== 1){
+                        count++;
+
+                        num = num % 2 ? num*3+1 : num/2
+                    }
+                })
+    return num === 1 ? count : -1;
+}
+//for나 while은 조건 만족 시 멈추는데 forEach는 끝날 때까지 계속 돈다.
+
