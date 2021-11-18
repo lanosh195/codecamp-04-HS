@@ -32,6 +32,8 @@ export default function BoardCommentListUIItem(
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
+  const [myPassword, setMyPassword] =useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [deleteBoardComment] =
     useMutation<
       Pick<IMutation, "deleteBoardComment">,
@@ -43,7 +45,6 @@ export default function BoardCommentListUIItem(
   }
 
   async function onClickDelete() {
-    const myPassword = prompt("비밀번호를 입력하세요.");
     try {
       await deleteBoardComment({
         variables: {
@@ -61,6 +62,18 @@ export default function BoardCommentListUIItem(
       alert(error.message);
     }
   }
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
+
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
 
   return (
     <>

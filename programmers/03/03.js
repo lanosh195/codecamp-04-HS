@@ -206,3 +206,51 @@ function solution(num) {
 }
 //for나 while은 조건 만족 시 멈추는데 forEach는 끝날 때까지 계속 돈다.
 
+
+
+06
+"두 개 뽑아서 더하기"
+
+function solution(numbers) {
+    let answer = [];
+    
+    for(let i=0; i<numbers.length; i++){
+        for(let l=i+1; l<numbers.length; l++){
+            const sum = numbers[i]+ numbers[l];
+            if (answer.includes(sum)===false)
+            answer.push(sum);
+        }
+    }
+    return answer.sort((a,b)=>a-b);
+}
+
+// function solution(numbers) {
+//     let answer = new Set([]);
+    
+//     for(let i=0; i<numbers.length; i++){
+//         for(let l=i+1; l<numbers.length; l++){
+//             const sum = numbers[i]+ numbers[l];
+            
+//             answer.add(sum);
+//         }
+//     }
+//     answer= Array.from(answer)
+//     return answer.sort((a,b)=>a-b);
+// }
+
+// function solution(numbers) {
+//     // const answer = [];
+//     const answer = new Set([]);
+    
+//     numbers.forEach ((num,i)=> {
+//         numbers.slice(i+1, numbers.length).forEach(num2 =>{
+//                 const sum =num+num2;
+//             answer.add(sum)
+//             // if(answer.includes(sum)===false){
+//             //     answer.push(sum)
+//             // }
+//        })    
+//     })
+//     // return answer.sort((a,b)=>a- b)
+//     return Array.from(answer).sort((a,b)=> a- b)
+// }

@@ -105,7 +105,7 @@ export const LocationIcon = styled.img``;
 
 export const LikeIcon = styled(LikeOutlined)`
   font-size: 24px;
-  color: #ffd600;
+  color: black;
   margin: 0px 20px;
   cursor: pointer;
 `;
@@ -118,7 +118,7 @@ export const DislikeIcon = styled(DislikeOutlined)`
 `;
 
 export const LikeCount = styled.div`
-  color: #ffd600;
+  color: black;
 `;
 
 export const DislikeCount = styled.div`

@@ -33,7 +33,10 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           placeholder="비밀번호"
           onChange={props.onChangeMyPassword}
         />
-        <Star onChange={props.onChangeStar} />
+        <Star
+          onChange={props.onChangeStar}
+          defaultValue={props.el?.rating || 0}
+        />
       </InputWrapper>
       <ContentsWrapper>
         <Contents

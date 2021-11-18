@@ -151,7 +151,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   }
 
   async function onClickUpdate() {
-    if (!myTitle && !myContents && !youtubeUrl) {
+    if (!myTitle && !myContents && !youtubeUrl 
+        && !myAddress && !myZonecode && !myAddressDetail) {
       alert("수정된 내용이 없습니다.");
       return;
     }

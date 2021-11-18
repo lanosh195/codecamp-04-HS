@@ -71,20 +71,24 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <Label>주소</Label>
         <ZipcodeWrapper>
           <Zipcode
-            onChange={props.onChangeMyZonecode}
-            defaultValue={props.data?.fetchBoard.boardAddress.zipcode}
+            value={
+              props.myZonecode ||
+              props.data?.fetchBoard.boardAddress?.zipcode ||
+              ""
+            }
           />
 
           <Button onClick={props.onToggleModal}>주소 검색</Button>
         </ZipcodeWrapper>
         <Address
-          onChange={props.onChangeMyAddress}
-          defaultValue={props.data?.fetchBoard.boardAddress.address}
+          value={props.myAddress ||
+          props.data?.fetchBoard.boardAddress.address ||
+        ""}
         />
 
         <AddressDetail
           onChange={props.onChangeMyAadressDetail}
-          defaultValue={props.data?.fetchBoard.boardAddress.addressDetail}
+          defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail || ""}
         ></AddressDetail>
         {props.isOpen && (
           <Modal
@@ -101,7 +105,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <Youtube
           placeholder="링크를 복사해주세요."
           onChange={props.onChangeMyYoutubeUrl}
-          defaultValue={props.data?.fetchBoard.youtubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
         />
       </InputWrapper>
       <ImageWrapper>
