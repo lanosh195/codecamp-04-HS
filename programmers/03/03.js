@@ -254,3 +254,36 @@ function solution(numbers) {
 //     // return answer.sort((a,b)=>a- b)
 //     return Array.from(answer).sort((a,b)=> a- b)
 // }
+
+07
+"정수 제곱근 판별"
+
+function solution(n) {
+    let answer = -1;
+    
+    for(let i=1; i*i <=n; i++){
+        if(i*i===n){
+            answer=Math.pow(i+1,2)
+        }
+    }return answer
+}
+
+//  while문 활용
+function solution(n) {
+    let num = 1;
+    // while(num*num !== n){
+        while(num*num < n){
+            num++
+        }
+    return num*num === n
+        ? Math.pow(num+1,2)
+        : -1
+} //조건을 !==n 이 아니고 <n 으로 했어야 함.
+
+
+//매서드 방식
+function solution(n) {
+    return Number.isInteger( Math.sqrt(n))
+        ? Math.pow(Math.sqrt(n)+1,2)
+        : -1
+}

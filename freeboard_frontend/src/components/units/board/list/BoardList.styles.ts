@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { LikeOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -59,7 +60,6 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-top: 50px;
 `;
 
 export const PencilIcon = styled.img``;
@@ -77,5 +77,60 @@ export const Button = styled.button`
 
   :hover {
     background-color: #f5f2fc;
+    cursor: pointer;
   }
+`;
+
+export const CommentPagination = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+`;
+
+export const BestBoardWrapper = styled.div`
+  display: flex;
+`;
+export const BestBoard = styled.div`
+  width: 282px;
+  height: 257px;
+  border: solid black 1px;
+  border-radius: 5px;
+  margin-right: 24px;
+  /* background-color: black; */
+`;
+export const BestBoardHeader = styled.div`
+  width: 282px;
+  height: 120px;
+  border-radius: 5px;
+  border-bottom: solid black 1px;
+  background-color: black;
+`;
+export const BestBoardContents = styled.div`
+  /* display: flex;
+  flex-direction: column; */
+`;
+export const BestBoardBody = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+`;
+export const BestBoardTitle = styled.div`
+  margin: 24px 10px;
+  font-size: 18px;
+`;
+export const BestBoardWriter = styled.div``;
+export const LikeCounter = styled.div``;
+export const BestBoardDate = styled.div`
+  font-size: 12px;
+`;
+export const BestBoardCount = styled.div`
+  margin-right: 10px;
+`;
+
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 20px;
+  color: gold;
+  cursor: pointer;
 `;

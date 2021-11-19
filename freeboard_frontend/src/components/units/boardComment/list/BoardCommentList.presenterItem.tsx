@@ -1,7 +1,8 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { Modal } from "antd";
+import { getDate } from "../../../../commons/libraries/utils";
 import {
   IMutation,
   IMutationDeleteBoardCommentArgs,
@@ -24,6 +25,7 @@ import {
   Star,
   UpdateIcon,
   Writer,
+  PasswordInput,
 } from "./BoardCommentList.styles";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
@@ -32,13 +34,13 @@ export default function BoardCommentListUIItem(
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
-  const [myPassword, setMyPassword] =useState("");
+  const [myPassword, setMyPassword] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [deleteBoardComment] =
-    useMutation<
-      Pick<IMutation, "deleteBoardComment">,
-      IMutationDeleteBoardCommentArgs
-    >(DELETE_BOARD_COMMENT);
+
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
 
   function onClickUpdate() {
     setIsEdit(true);
@@ -67,16 +69,18 @@ export default function BoardCommentListUIItem(
     setIsModalVisible(true);
   };
 
-  // const handleOk = () => {
-  //   setIsModalVisible(false);
-  // };
-
-  // const handleCancel = () => {
-  //   setIsModalVisible(false);
-  // };
+  function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>) {
+    setMyPassword(event.target.value);
+  }
 
   return (
     <>
+      {isModalVisible && (
+        <Modal visible={true} onOk={onClickDelete}>
+          <div>비밀번호 입력:</div>
+          <PasswordInput type="password" onChange={onChangeDeletePassword} />
+        </Modal>
+      )}
       {!isEdit && (
         <ItemWrapper>
           <FlexWrapper>
@@ -89,17 +93,11 @@ export default function BoardCommentListUIItem(
               <Contents>{props.el?.contents}</Contents>
             </MainWrapper>
             <OptionWrapper>
-              <UpdateIcon
-                src="/images/boardComment/list/option_update_icon.png/"
-                onClick={onClickUpdate}
-              />
-              <DeleteIcon
-                src="/images/boardComment/list/option_delete_icon.png/"
-                onClick={onClickDelete}
-              />
+              <UpdateIcon src="/images/edit.png/" onClick={onClickUpdate} />
+              <DeleteIcon src="/images/bin.png/" onClick={showModal} />
             </OptionWrapper>
           </FlexWrapper>
-          <DateString>{props.el?.createdAt}</DateString>
+          <DateString>{getDate(props.el?.createdAt)}</DateString>
         </ItemWrapper>
       )}
       {isEdit && (

@@ -47,6 +47,7 @@ export const DeleteIcon = styled.img`
   width: 24px;
   height: 24px;
   cursor: pointer;
+  margin-left: 5px;
 `;
 
 export const DateString = styled.div`

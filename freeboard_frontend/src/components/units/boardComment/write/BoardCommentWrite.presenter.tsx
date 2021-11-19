@@ -15,12 +15,12 @@ import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
 export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
   return (
     <Wrapper>
-      {!props.isEdit && (
+      {/* {!props.isEdit && (
         <>
           <PencilIcon src="/images/boardComment/write/pencil.png" />
           <span>댓글</span>
         </>
-      )}
+      )} */}
       <InputWrapper>
         <Input
           placeholder="작성자"
