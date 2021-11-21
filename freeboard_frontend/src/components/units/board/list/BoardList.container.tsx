@@ -57,11 +57,16 @@ export default function BoardList() {
     router.push(`/boards/${event.target.id}`);
   }
 
+  function onClickMoveToBestBoard(event) {
+    router.push(`/boards/${event.target.id}`);
+  }
+
   return (
     <BoardListUI
       data={data}
       onClickMoveToBoardNew={onClickMoveToBoardNew}
       onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+      onClickMoveToBestBoard={onClickMoveToBestBoard}
       onClickPage={onClickPage}
       onClickPrevPage={onClickPrevPage}
       onClickNextPage={onClickNextPage}

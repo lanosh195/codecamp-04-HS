@@ -119,6 +119,7 @@ export const BestBoardBody = styled.div`
 export const BestBoardTitle = styled.div`
   margin: 24px 10px;
   font-size: 18px;
+  cursor: pointer;
 `;
 export const BestBoardWriter = styled.div``;
 export const LikeCounter = styled.div``;

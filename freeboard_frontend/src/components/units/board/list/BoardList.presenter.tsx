@@ -32,7 +32,9 @@ export default function BoardListUI(props) {
         {props.boardsBest?.fetchBoardsOfTheBest.map((el) => (
           <BestBoard key={el._id}>
             <BestBoardHeader></BestBoardHeader>
-            <BestBoardTitle>{el.title}</BestBoardTitle>
+            <BestBoardTitle id={el._id} onClick={props.onClickMoveToBestBoard}>
+              {el.title}
+            </BestBoardTitle>
             <BestBoardBody>
               <BestBoardContents>
                 <BestBoardWriter>{el.writer}</BestBoardWriter>
