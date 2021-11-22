@@ -6,19 +6,24 @@ import Navigation from "./Navigation/Navigation.container";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-const Wrapper = styled.div``;
-
+const Wrapper = styled.div`
+  width: 100%;
+  /* display: flex; */
+  /* justify-content: center; */
+`;
 const Body = styled.div`
-  width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const BodyWrapper = styled.div`
   display: flex;
 `;
 const Sidebar = styled.div`
-  width: 300px;
+  /* width: 300px;
   height: 500px;
-  /* background-color: #eef8b2; */
+  background-color: #eef8b2; */
 `;
 
 const HIDDEN_HEADERS = [

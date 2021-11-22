@@ -28,10 +28,11 @@ import {
 export default function BoardListUI(props) {
   return (
     <Wrapper>
+      {/* 베스트 게시물 */}
       <BestBoardWrapper>
         {props.boardsBest?.fetchBoardsOfTheBest.map((el) => (
           <BestBoard key={el._id}>
-            <BestBoardHeader></BestBoardHeader>
+            <BestBoardHeader src={"/images/a.jpg"}></BestBoardHeader>
             <BestBoardTitle id={el._id} onClick={props.onClickMoveToBestBoard}>
               {el.title}
             </BestBoardTitle>
@@ -48,6 +49,7 @@ export default function BoardListUI(props) {
           </BestBoard>
         ))}
       </BestBoardWrapper>
+      {/* 게시글 목록 */}
       <TableTop />
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
@@ -66,6 +68,7 @@ export default function BoardListUI(props) {
         </Row>
       ))}
       <TableBottom />
+      {/* 게시글 목록 페이지 네이션 */}
       <CommentPagination>
         <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
           ←

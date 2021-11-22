@@ -100,12 +100,12 @@ export const BestBoard = styled.div`
   margin-right: 24px;
   /* background-color: black; */
 `;
-export const BestBoardHeader = styled.div`
+export const BestBoardHeader = styled.img`
   width: 282px;
   height: 120px;
   border-radius: 5px;
   border-bottom: solid black 1px;
-  background-color: black;
+  /* background-color: black; */
 `;
 export const BestBoardContents = styled.div`
   /* display: flex;
@@ -117,6 +117,7 @@ export const BestBoardBody = styled.div`
   margin-left: 10px;
 `;
 export const BestBoardTitle = styled.div`
+  /* max-height: 80px; */
   margin: 24px 10px;
   font-size: 18px;
   cursor: pointer;

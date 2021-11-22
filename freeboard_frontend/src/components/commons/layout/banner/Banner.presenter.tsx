@@ -1,34 +1,40 @@
-import { Banner, Carousel, CarouselImg } from "./Banner.styles";
+import {
+  Banner,
+  Carousel,
+  CarouselImg,
+  CarouselContainer,
+  CarouselWrapper,
+} from "./Banner.styles";
 import Slider from "react-slick";
 
 export default function BannerUI(props) {
   return (
     <Banner>
       <>
-        <div>
+        <CarouselContainer>
           <Slider {...props.settings}>
-            <div>
+            {/* <CarouselWrapper>
+              <Carousel>
+                <CarouselImg src="/images/banner-1.jpg" />
+              </Carousel>
+            </CarouselWrapper> */}
+            <CarouselWrapper>
+              <Carousel>
+                <CarouselImg src="/images/flower.jpg" />
+              </Carousel>
+            </CarouselWrapper>
+            {/* <CarouselWrapper>
+              <Carousel>
+                <CarouselImg src="/images/banner-4.jpg" />
+              </Carousel>
+            </CarouselWrapper> */}
+            {/* <CarouselWrapper>
               <Carousel>
                 <CarouselImg src="/images/a.jpg" />
               </Carousel>
-            </div>
-            <div>
-              <Carousel>
-                <CarouselImg src="/images/10.jpeg" />
-              </Carousel>
-            </div>
-            <div>
-              <Carousel>
-                <CarouselImg src="/images/11.jpeg" />
-              </Carousel>
-            </div>
-            <div>
-              <Carousel>
-                <CarouselImg src="/images/a.jpg" />
-              </Carousel>
-            </div>
+            </CarouselWrapper> */}
           </Slider>
-        </div>
+        </CarouselContainer>
       </>
     </Banner>
   );
