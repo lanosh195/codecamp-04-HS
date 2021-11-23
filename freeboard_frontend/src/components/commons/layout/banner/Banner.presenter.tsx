@@ -20,7 +20,7 @@ export default function BannerUI(props) {
             </CarouselWrapper> */}
             <CarouselWrapper>
               <Carousel>
-                <CarouselImg src="/images/flower.jpg" />
+                <CarouselImg src="/images/4.jpeg" />
               </Carousel>
             </CarouselWrapper>
             {/* <CarouselWrapper>

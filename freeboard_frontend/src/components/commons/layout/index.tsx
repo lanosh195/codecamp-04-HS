@@ -10,20 +10,19 @@ const Wrapper = styled.div`
   width: 100%;
   /* display: flex; */
   /* justify-content: center; */
+  /* background-color: black; */
 `;
 const Body = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
 `;
 
 const BodyWrapper = styled.div`
   display: flex;
 `;
 const Sidebar = styled.div`
-  /* width: 300px;
-  height: 500px;
-  background-color: #eef8b2; */
+  width: 300px;
+  /* height: 500px; */
+  background-color: #eef8b2;
 `;
 
 const HIDDEN_HEADERS = [

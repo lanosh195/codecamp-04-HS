@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function Header() {
   const [weatherUrl, setWeatherUrl] = useState("");
   const [cityNmae, setCityName] = useState("");
-  const [weatherIcon, setWeatherIcon] = useState("");
+  const [weatherMain, setWeatherMain] = useState("");
   const [temp, setTemp] = useState("");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Header() {
       setWeatherUrl(result);
       console.log(result);
       setCityName(result.data.name);
-      setWeatherIcon(result.data.weather[0].icon);
+      setWeatherMain(result.data.weather[0].main);
       setTemp(result.data.main.temp);
     }
 
@@ -27,8 +27,8 @@ export default function Header() {
     <>
       <div>
         <div>{cityNmae}</div>
-        <div>{weatherIcon}</div>
-        <div>{temp} 273.15도 뺴고 보세요</div>
+        <div>{weatherMain}</div>
+        <div>{temp}</div>
         <HeaderUI />
       </div>
     </>

@@ -23,6 +23,6 @@ export const Button = styled.button`
   border-radius: 10px;
   color: black;
   :hover {
-    background-color: gold;
+    background-color: #de9ba1;
   }
 `;
