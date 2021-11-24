@@ -39,13 +39,13 @@ function solution(a, b) {
   return answer;
 }
 
-// function solution(a, b) {
-//   let result = 0;
-//   for (let i in a) {
-//       result += a[i] * b[i]
-//   }
-//   return result
-// }
+function solution(a, b) {
+  let answer = 0;
+  for (let i in a) {
+    answer += a[i] * b[i];
+  }
+  return answer;
+}
 
 function solution(a, b) {
   const answer = a.reduce((el, cu, i) => {
@@ -74,4 +74,37 @@ function solution(arr) {
     return num !== min;
   });
   return answer.length === 0 ? [-1] : answer;
+}
+
+04;
+("행렬의 덧셈");
+function solution(arr1, arr2) {
+  let answer = [[]];
+  for (let i = 0; i < arr1.length; i++) {
+    answer[i] = [];
+    for (let j = 0; j < arr1[i].length; j++) {
+      answer[i].push(arr1[i][j] + arr2[i][j]);
+    }
+  }
+  return answer;
+}
+
+function solution(arr1, arr2) {
+  let answer = [[]];
+
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr1[i].length; j++) {
+      const sum = arr1[i][j] + arr2[i][j];
+
+      if (answer[i] === undefined) {
+        answer[i] === [];
+      }
+    }
+    answer[i][j] = sum;
+  }
+  return answer;
+}
+
+function solution(arr1, arr2) {
+  return arr1.map((a, i) => arr2[i].map((b, j) => arr1[i][j] + arr2[i][j]));
 }
