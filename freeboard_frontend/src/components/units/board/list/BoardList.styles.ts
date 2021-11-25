@@ -60,6 +60,7 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-top: 10px;
 `;
 
 export const PencilIcon = styled.img``;
@@ -82,11 +83,12 @@ export const Button = styled.button`
 `;
 
 export const CommentPagination = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* padding-top: 50px; */
+  /* position: relative; */
 `;
 
 export const BestBoardWrapper = styled.div`

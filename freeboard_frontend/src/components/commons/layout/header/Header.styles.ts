@@ -10,13 +10,15 @@ export const Header = styled.div`
 export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
+  padding-left: 150px;
+  /* background-color: black; */
 `;
 
 export const HeaderLeft = styled.div``;
 
 export const Button = styled.button`
-  width: 64px;
-  height: 24px;
+  width: 84px;
+  height: 28px;
   margin: 10px;
   font-size: 10px;
   background-color: white;

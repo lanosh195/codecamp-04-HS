@@ -13,11 +13,11 @@ export default function BannerUI(props) {
       <>
         <CarouselContainer>
           <Slider {...props.settings}>
-            {/* <CarouselWrapper>
+            <CarouselWrapper>
               <Carousel>
-                <CarouselImg src="/images/banner-1.jpg" />
+                <CarouselImg src="/images/banner-2.jpg" />
               </Carousel>
-            </CarouselWrapper> */}
+            </CarouselWrapper>
             <CarouselWrapper>
               <Carousel>
                 <CarouselImg src="/images/4.jpeg" />

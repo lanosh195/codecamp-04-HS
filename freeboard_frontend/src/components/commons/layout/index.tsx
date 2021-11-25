@@ -22,7 +22,7 @@ const BodyWrapper = styled.div`
 const Sidebar = styled.div`
   width: 300px;
   /* height: 500px; */
-  background-color: #eef8b2;
+  /* background-color: #eef8b2; */
 `;
 
 const HIDDEN_HEADERS = [

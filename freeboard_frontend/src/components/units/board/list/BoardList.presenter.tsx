@@ -69,29 +69,29 @@ export default function BoardListUI(props) {
       ))}
       <TableBottom />
       {/* 게시글 목록 페이지 네이션 */}
-      <CommentPagination>
-        <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
-          ←
-        </span>
-        {new Array(5).fill(1).map(
-          (_, index) =>
-            props.startPage + index <= props.lastPage && (
-              <span
-                key={props.startPage + index}
-                onClick={props.onClickPage}
-                id={String(props.startPage + index)}
-                style={{ margin: "10px", cursor: "pointer" }}
-              >
-                {" "}
-                {props.startPage + index}
-              </span>
-            )
-        )}
-        <span onClick={props.onClickNextPage} style={{ cursor: "pointer" }}>
-          →
-        </span>
-      </CommentPagination>
       <Footer>
+        <CommentPagination>
+          <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
+            ←
+          </span>
+          {new Array(10).fill(1).map(
+            (_, index) =>
+              props.startPage + index <= props.lastPage && (
+                <span
+                  key={props.startPage + index}
+                  onClick={props.onClickPage}
+                  id={String(props.startPage + index)}
+                  style={{ margin: "10px", cursor: "pointer" }}
+                >
+                  {" "}
+                  {props.startPage + index}
+                </span>
+              )
+          )}
+          <span onClick={props.onClickNextPage} style={{ cursor: "pointer" }}>
+            →
+          </span>
+        </CommentPagination>
         <Button onClick={props.onClickMoveToBoardNew}>
           <PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
