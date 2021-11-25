@@ -1,6 +1,6 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { ChangeEvent, useState } from "react";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
+import { ChangeEvent, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
@@ -13,10 +13,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myTitle, setMyTitle] = useState("");
   const [myContents, setMyContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [myAddress, setMyAddress] = useState("");
   const [myZonecode, setMyZonecode] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [myAddressDetail, setMyAddressDetail] = useState("");
+  const [myImages, setMyImages] = useState<string[]>([]);
 
   //에러 체크
   const [myWriterError, setMyWriterError] = useState("");
@@ -25,9 +26,29 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myContentsError, setMyContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+
+  //이미지 업로드
+  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+    const myFile = event.target.files?.[0];
+    console.log(myFile);
+
+    const result = await uploadFile({
+      variables: {
+        file: myFile,
+      },
+    });
+    console.log(result.data.uploadFile.url);
+    setMyImages([result.data.uploadFile.url]);
+  }
+
+  function onClickMyImage() {
+    fileRef.current?.click();
+  }
 
   function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
     setMyWriter(event.target.value);
@@ -137,6 +158,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
+            images: myImages,
             boardAddress: {
               zipcode: myZonecode,
               address: myAddress,
@@ -151,8 +173,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
   }
 
   async function onClickUpdate() {
-    if (!myTitle && !myContents && !youtubeUrl 
-        && !myAddress && !myZonecode && !myAddressDetail) {
+    if (
+      !myTitle &&
+      !myContents &&
+      !youtubeUrl &&
+      !myAddress &&
+      !myZonecode &&
+      !myAddressDetail
+    ) {
       alert("수정된 내용이 없습니다.");
       return;
     }
@@ -211,6 +239,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeMyAddress={onChangeMyAddress}
       onChangeMyZonecode={onChangeMyZonecode}
       onChangeMyAadressDetail={onChangeMyAadressDetail}
+      onChangeFile={onChangeFile}
+      onClickMyImage={onClickMyImage}
+      fileRef={fileRef}
+      myImages={myImages}
     />
   );
 }

@@ -19,6 +19,7 @@ export default function InfiniteScrollerPage() {
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardArgs
   >(FETCH_BOARDS);
+
   const onLoadMore = () => {
     if (!data) return;
     fetchMore({

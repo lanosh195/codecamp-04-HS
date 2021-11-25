@@ -26,6 +26,7 @@ export interface IBoardWriteUIProps {
   isActive: boolean;
   isEdit?: boolean;
   data?: any;
+  myImages: string[];
 }
 
 export interface ISubmitButtonProps {

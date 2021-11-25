@@ -65,6 +65,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           onChange={props.onChangeMyContents}
           defaultValue={props.data?.fetchBoard.contents}
         />
+        <img src={`https://storage.googleapis.com/${props.myImages[0]}`} />
+
         <Error>{props.myContentsError}</Error>
       </InputWrapper>
       <InputWrapper>
@@ -81,14 +83,16 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <Button onClick={props.onToggleModal}>주소 검색</Button>
         </ZipcodeWrapper>
         <Address
-          value={props.myAddress ||
-          props.data?.fetchBoard.boardAddress.address ||
-        ""}
+          value={
+            props.myAddress || props.data?.fetchBoard.boardAddress.address || ""
+          }
         />
 
         <AddressDetail
           onChange={props.onChangeMyAadressDetail}
-          defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail || ""}
+          defaultValue={
+            props.data?.fetchBoard.boardAddress?.addressDetail || ""
+          }
         ></AddressDetail>
         {props.isOpen && (
           <Modal
@@ -110,7 +114,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
-        <UploadButton>
+        {/* <img src={`https://storage.googleapis.com/${props.myImages[0]}`} /> */}
+        <input
+          style={{ display: "none" }}
+          type="file"
+          ref={props.fileRef}
+          onChange={props.onChangeFile}
+        />
+        <UploadButton onClick={props.onClickMyImage}>
           <>+</>
           <>Upload</>
         </UploadButton>

@@ -7,7 +7,21 @@ export const Banner = styled.div`
   height: 380px;
 `;
 
-export const CarouselContainer = styled.div``;
+export const CarouselContainer = styled.div`
+  .slick-slider {
+    .slick-dots {
+      /* color: #FFD400; */
+      position: relative;
+      top: -50px;
+      /* background-color: red; */
+      button {
+        ::before {
+          color: white;
+        }
+      }
+    }
+  }
+`;
 
 export const CarouselWrapper = styled.div`
   width: 100%;
