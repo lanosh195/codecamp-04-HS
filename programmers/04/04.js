@@ -171,7 +171,7 @@ function solution(n, m) {
 }
 function solution(n, m) {
   //유클리드 호재법
-
+  //test
   let a = m; //큰 수
   let b = n; //작은 수
   let r = 0; // a를 b로 나눈 나머지
@@ -184,3 +184,4 @@ function solution(n, m) {
   return [b, (n * m) / b];
 }
 test1;
+test2;
