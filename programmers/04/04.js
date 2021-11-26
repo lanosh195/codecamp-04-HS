@@ -146,3 +146,40 @@ function solution(a, b) {
 
   return week[days];
 }
+
+6;
+("최대공약수와 최소공배수");
+
+function solution(n, m) {
+  const answer = [];
+  //최대공약수 구하기
+  const gcdArr = [];
+  for (let i = 1; i <= m; i++) {
+    if (n % i === 0 && m % i === 0) {
+      gcdArr.push(i);
+    }
+  }
+  answer[0] = Math.max(...gcdArr);
+  // 최소공배수 구하기
+  for (let i = m; i <= n * m; i += m) {
+    if (i % n === 0) {
+      answer[1] = i;
+      break;
+    }
+  }
+  return answer;
+}
+function solution(n, m) {
+  //유클리드 호재법
+
+  let a = m; //큰 수
+  let b = n; //작은 수
+  let r = 0; // a를 b로 나눈 나머지
+
+  while (a % b > 0) {
+    r = a % b;
+    a = b; //큰 수에 작은 수를 할당
+    b = r; // 작은 수에 나머지 값 할당
+  }
+  return [b, (n * m) / b];
+}
