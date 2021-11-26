@@ -183,3 +183,4 @@ function solution(n, m) {
   }
   return [b, (n * m) / b];
 }
+test1;
