@@ -4,6 +4,7 @@ import { ChangeEvent, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
+import { Address, Zipcode } from "./BoardWrite.styles";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -15,7 +16,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [myAddress, setMyAddress] = useState("");
   const [myZonecode, setMyZonecode] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [myAddressDetail, setMyAddressDetail] = useState("");
   const [myImages, setMyImages] = useState<string[]>([]);
 
@@ -26,6 +26,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [myContentsError, setMyContentsError] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -43,7 +44,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       },
     });
     console.log(result.data.uploadFile.url);
-    setMyImages([result.data.uploadFile.url]);
+    setMyImages((prev) => [...prev, result.data.uploadFile.url]);
   }
 
   function onClickMyImage() {
@@ -132,7 +133,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   function onChangeMyZonecode(event: ChangeEvent<HTMLInputElement>) {
     setMyZonecode(event.target.value);
   }
-  function onChangeMyAadressDetail(event: ChangeEvent<HTMLInputElement>) {
+  function onChangeMyAddressDetail(event: ChangeEvent<HTMLInputElement>) {
     setMyAddressDetail(event.target.value);
   }
 
@@ -158,12 +159,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
-            images: myImages,
             boardAddress: {
               zipcode: myZonecode,
               address: myAddress,
               addressDetail: myAddressDetail,
             },
+            images: myImages,
           },
         },
       });
@@ -177,8 +178,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       !myTitle &&
       !myContents &&
       !youtubeUrl &&
-      !myAddress &&
       !myZonecode &&
+      !myAddress &&
       !myAddressDetail
     ) {
       alert("수정된 내용이 없습니다.");
@@ -189,6 +190,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;
+    if (myZonecode || myAddress || myAddressDetail) {
+      myUpdateboardInput.boardAddress = {};
+      if (myZonecode) myUpdateboardInput.boardAddress.zipcode = myZonecode;
+      if (myAddress) myUpdateboardInput.boardAddress.address = myAddress;
+      if (myAddressDetail)
+        myUpdateboardInput.boardAddress.addressDetail = myAddressDetail;
+    }
 
     try {
       await updateBoard({
@@ -232,13 +240,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       data={props.data}
       onToggleModal={onToggleModal}
       handleComplete={handleComplete}
-      setMyAddressDetail={setMyAddressDetail}
       isOpen={isOpen}
       myZonecode={myZonecode}
       myAddress={myAddress}
-      onChangeMyAddress={onChangeMyAddress}
-      onChangeMyZonecode={onChangeMyZonecode}
-      onChangeMyAadressDetail={onChangeMyAadressDetail}
+      onChangeMyAddressDetail={onChangeMyAddressDetail}
       onChangeFile={onChangeFile}
       onClickMyImage={onClickMyImage}
       fileRef={fileRef}

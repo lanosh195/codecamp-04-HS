@@ -186,3 +186,12 @@ export const Error = styled.div`
   font-size: 14px;
   color: red;
 `;
+
+export const ImgBox = styled.img`
+  width: 78px;
+  height: 78px;
+  margin-right: 20px;
+  border: 2px solid #c6bba8;
+  text-align: center;
+  line-height: 78px;
+`;

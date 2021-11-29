@@ -7,6 +7,7 @@ export default function Header() {
   const [cityNmae, setCityName] = useState("");
   const [weatherMain, setWeatherMain] = useState("");
   const [temp, setTemp] = useState("");
+  const [weather, setWeather] = useState("");
 
   useEffect(() => {
     async function fetchWeather() {
@@ -18,19 +19,24 @@ export default function Header() {
       setCityName(result.data.name);
       setWeatherMain(result.data.weather[0].main);
       setTemp(result.data.main.temp);
+      setWeather(result.data.weather[0].description);
     }
 
     fetchWeather();
   }, []);
 
+  function getTemp(temp: any) {
+    return (temp - 273.15).toFixed(2);
+  }
+
   return (
     <>
-      <div>
-        <div>{cityNmae}</div>
-        <div>{weatherMain}</div>
-        <div>{temp}</div>
-        <HeaderUI />
-      </div>
+      <HeaderUI
+        getTemp={getTemp}
+        weatherMain={weatherMain}
+        temp={temp}
+        cityName={cityNmae}
+      />
     </>
   );
 }

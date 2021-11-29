@@ -50,10 +50,9 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
-
-  :hover {
-    color: blue;
-  }
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 export const Footer = styled.div`
@@ -123,6 +122,9 @@ export const BestBoardTitle = styled.div`
   margin: 24px 10px;
   font-size: 18px;
   cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 export const BestBoardWriter = styled.div``;
 export const LikeCounter = styled.div``;

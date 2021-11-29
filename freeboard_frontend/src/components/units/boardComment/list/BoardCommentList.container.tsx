@@ -17,5 +17,23 @@ export default function BoardCommentList() {
     variables: { boardId: String(router.query.boardId) },
   });
 
+  function onLoadMore() {
+    if (!data) return;
+
+    fetchMore({
+      variables: { page: Math.ceil(data?.fetchBoardComments.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchBoardComments)
+          return { fetchBoardComments: [...prev.fetchBoardComments] };
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
+    });
+  }
+
   return <BoardCommentListUI data={data} />;
 }

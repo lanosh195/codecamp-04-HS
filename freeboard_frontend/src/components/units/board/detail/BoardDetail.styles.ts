@@ -124,3 +124,15 @@ export const LikeCount = styled.div`
 export const DislikeCount = styled.div`
   color: #828282;
 `;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Image = styled.img`
+  width: 700px;
+  height: 450px;
+  margin-bottom: 30px;
+`;

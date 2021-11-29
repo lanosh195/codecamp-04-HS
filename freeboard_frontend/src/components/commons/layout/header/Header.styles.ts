@@ -14,7 +14,9 @@ export const HeaderRight = styled.div`
   /* background-color: black; */
 `;
 
-export const HeaderLeft = styled.div``;
+export const HeaderLeft = styled.div`
+  padding-top: 15px;
+`;
 
 export const Button = styled.button`
   width: 84px;

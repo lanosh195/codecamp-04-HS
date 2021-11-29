@@ -1,76 +1,62 @@
 import { getDate } from "../../../../commons/libraries/utils";
-import {
-  Wrapper,
-  TableTop,
-  TableBottom,
-  Row,
-  ColumnHeaderBasic,
-  ColumnHeaderTitle,
-  ColumnBasic,
-  ColumnTitle,
-  Footer,
-  PencilIcon,
-  Button,
-  CommentPagination,
-  BestBoardWrapper,
-  BestBoard,
-  BestBoardHeader,
-  BestBoardTitle,
-  BestBoardWriter,
-  BestBoardDate,
-  BestBoardCount,
-  BestBoardBody,
-  BestBoardContents,
-  LikeCounter,
-  LikeIcon,
-} from "./BoardList.styles";
+import * as S from "./BoardList.styles";
 
 export default function BoardListUI(props) {
   return (
-    <Wrapper>
+    <S.Wrapper>
       {/* 베스트 게시물 */}
-      <BestBoardWrapper>
-        {props.boardsBest?.fetchBoardsOfTheBest.map((el) => (
-          <BestBoard key={el._id}>
-            <BestBoardHeader src={"/images/a.jpg"}></BestBoardHeader>
-            <BestBoardTitle id={el._id} onClick={props.onClickMoveToBestBoard}>
+      <S.BestBoardWrapper>
+        {props.boardsBest?.fetchBoardsOfTheBest.map((el: any) => (
+          <S.BestBoard key={el._id}>
+            <S.BestBoardHeader src={"/images/a.jpg"}></S.BestBoardHeader>
+            {/* {el.images[0] ? (
+              <S.BestBoardHeader
+                src={`https://storage.googleapis.com/${el?.images[0]}`}
+              />
+            ) : (
+              <S.BestBoardHeader src={"/images/a.jpg"}></S.BestBoardHeader>
+            )} */}
+            <S.BestBoardTitle
+              id={el._id}
+              onClick={props.onClickMoveToBestBoard}
+            >
               {el.title}
-            </BestBoardTitle>
-            <BestBoardBody>
-              <BestBoardContents>
-                <BestBoardWriter>{el.writer}</BestBoardWriter>
-                <BestBoardDate>{getDate(el.createdAt)}</BestBoardDate>
-              </BestBoardContents>
-              <LikeCounter>
-                <LikeIcon>icon</LikeIcon>
-                <BestBoardCount>{el.likeCount}</BestBoardCount>
-              </LikeCounter>
-            </BestBoardBody>
-          </BestBoard>
+            </S.BestBoardTitle>
+            <S.BestBoardBody>
+              <S.BestBoardContents>
+                <S.BestBoardWriter>{el.writer}</S.BestBoardWriter>
+                <S.BestBoardDate>{getDate(el.createdAt)}</S.BestBoardDate>
+              </S.BestBoardContents>
+              <S.LikeCounter>
+                <S.LikeIcon>icon</S.LikeIcon>
+                <S.BestBoardCount>{el.likeCount}</S.BestBoardCount>
+              </S.LikeCounter>
+            </S.BestBoardBody>
+          </S.BestBoard>
         ))}
-      </BestBoardWrapper>
+      </S.BestBoardWrapper>
       {/* 게시글 목록 */}
-      <TableTop />
-      <Row>
-        <ColumnHeaderBasic>번호</ColumnHeaderBasic>
-        <ColumnHeaderTitle>제목</ColumnHeaderTitle>
-        <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
-        <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
-      </Row>
+      <S.TableTop />
+      <S.Row>
+        <S.ColumnHeaderBasic>번호</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
+      </S.Row>
       {props.data?.fetchBoards.map((el, index) => (
-        <Row key={el._id}>
-          <ColumnBasic>{index + 1}</ColumnBasic>
-          <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+        <S.Row key={el._id}>
+          <S.ColumnBasic>{index + 1}</S.ColumnBasic>
+          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
             {el.title}
-          </ColumnTitle>
-          <ColumnBasic>{el.writer}</ColumnBasic>
-          <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
-        </Row>
+          </S.ColumnTitle>
+          <S.ColumnBasic>{el.writer}</S.ColumnBasic>
+          <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
+        </S.Row>
       ))}
-      <TableBottom />
+      <S.TableBottom />
       {/* 게시글 목록 페이지 네이션 */}
-      <Footer>
-        <CommentPagination>
+      <S.Footer>
+        <S.CommentPagination>
           <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
             ←
           </span>
@@ -91,12 +77,12 @@ export default function BoardListUI(props) {
           <span onClick={props.onClickNextPage} style={{ cursor: "pointer" }}>
             →
           </span>
-        </CommentPagination>
-        <Button onClick={props.onClickMoveToBoardNew}>
-          <PencilIcon src="/images/board/list/write.png" />
+        </S.CommentPagination>
+        <S.Button onClick={props.onClickMoveToBoardNew}>
+          <S.PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
-        </Button>
-      </Footer>
-    </Wrapper>
+        </S.Button>
+      </S.Footer>
+    </S.Wrapper>
   );
 }

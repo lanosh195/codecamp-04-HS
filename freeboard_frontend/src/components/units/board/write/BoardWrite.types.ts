@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, RefObject } from "react";
 
 export interface IBoardWriteProps {
   isEdit?: boolean;
@@ -9,6 +9,12 @@ export interface IMyUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
+  images?: string[];
 }
 
 export interface IBoardWriteUIProps {
@@ -21,12 +27,22 @@ export interface IBoardWriteUIProps {
   onChangeMyTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeMyYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeMyAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeFile: (event: ChangeEvent<HTMLInputElement>) => void;
+
   onClickSubmit: () => void;
   onClickUpdate: () => void;
+  onToggleModal: () => void;
+  onClickMyImage: () => void;
+  handleComplete: (data: any) => void;
+  fileRef: RefObject<HTMLInputElement>;
   isActive: boolean;
   isEdit?: boolean;
+  isOpen: boolean;
   data?: any;
   myImages: string[];
+  myZonecode: string;
+  myAddress: string;
 }
 
 export interface ISubmitButtonProps {
