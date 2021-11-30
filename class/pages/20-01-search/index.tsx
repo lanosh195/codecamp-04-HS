@@ -11,22 +11,24 @@ const FETCH_BAORDS = gql`
       _id
       writer
       title
+      createdAt
     }
   }
 `;
 
 export default function SearchPage() {
   const [mySearch, serMySearch] = useState("");
-  const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
-    FETCH_BAORDS
-  );
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BAORDS);
 
   function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
     serMySearch(event.target.value);
   }
   function onClickSearch() {
     //mySearch 키워드로 fetchBoard 요청하기!
-    refetch({search: mySearch})
+    refetch({ search: mySearch });
   }
   return (
     <>

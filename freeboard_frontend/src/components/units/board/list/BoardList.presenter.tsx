@@ -1,5 +1,6 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardList.styles";
+import { v4 as uuid } from "uuid";
 
 export default function BoardListUI(props) {
   return (
@@ -47,13 +48,21 @@ export default function BoardListUI(props) {
         <S.Row key={el._id}>
           <S.ColumnBasic>{index + 1}</S.ColumnBasic>
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
+            {el.title
+              .replaceAll(props.myKeyword, `#$%${props.myKeyword}#$%`)
+              .split("#$%")
+              .map((el) => (
+                <S.MyWord key={uuid()} isMatched={props.myKeyword === el}>
+                  {el}
+                </S.MyWord>
+              ))}
           </S.ColumnTitle>
           <S.ColumnBasic>{el.writer}</S.ColumnBasic>
           <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
         </S.Row>
       ))}
       <S.TableBottom />
+      <input type="text" onChange={props.onChangeSearch} />
       {/* 게시글 목록 페이지 네이션 */}
       <S.Footer>
         <S.CommentPagination>
@@ -78,6 +87,7 @@ export default function BoardListUI(props) {
             →
           </span>
         </S.CommentPagination>
+
         <S.Button onClick={props.onClickMoveToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기

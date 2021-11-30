@@ -140,3 +140,10 @@ export const LikeIcon = styled(LikeOutlined)`
   color: gold;
   cursor: pointer;
 `;
+
+interface IProps {
+  isMatched: boolean;
+}
+export const MyWord = styled.span`
+  color: ${(props: IProps) => (props.isMatched ? "red" : "black")};
+`;

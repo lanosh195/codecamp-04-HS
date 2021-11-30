@@ -1,5 +1,6 @@
 import BoardListUI from "./BoardList.presenter";
 import { gql, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
@@ -7,6 +8,7 @@ import {
 } from "./BoardList.queries";
 import { useRouter } from "next/router";
 import { useState, MouseEvent } from "react";
+import _ from "lodash";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -34,10 +36,10 @@ export default function BoardList() {
     ? Math.ceil(dataBoardsCount?.fetchBoardsCount / 10)
     : 0;
 
-  function onClickPage(event: MouseEvent<HTMLSpanElement>) {
-    if (event.target instanceof Element)
-      refetch({ page: Number(event.target.id) });
-  }
+  // function onClickPage(event: MouseEvent<HTMLSpanElement>) {
+  //   if (event.target instanceof Element)
+  //     refetch({ page: Number(event.target.id) });
+  // }
 
   function onClickPrevPage() {
     if (startPage <= 1) return;
@@ -61,6 +63,20 @@ export default function BoardList() {
     router.push(`/boards/${event.target.id}`);
   }
 
+  const [myKeyword, setMyKeyword] = useState("");
+
+  const getDebounce = _.debounce((data) => {
+    refetch({ search: data, page: 1 });
+    setMyKeyword(data);
+  }, 1000);
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    getDebounce(event.target.value);
+  };
+  const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
+    event.target instanceof Element &&
+      refetch({ search: myKeyword, page: Number(event.target.id) });
+  };
+
   return (
     <BoardListUI
       data={data}
@@ -70,9 +86,11 @@ export default function BoardList() {
       onClickPage={onClickPage}
       onClickPrevPage={onClickPrevPage}
       onClickNextPage={onClickNextPage}
+      onChangeSearch={onChangeSearch}
       startPage={startPage}
       lastPage={lastPage}
       boardsBest={boardsBest}
+      myKeyword={myKeyword}
     />
   );
 }

@@ -6,6 +6,7 @@ import {
   IQueryFetchBoardsArgs,
 } from "../../src/commons/types/generated/type";
 import { v4 as uuidv4 } from "uuid";
+
 const FETCH_BAORDS = gql`
   query fetchBoards($search: String, $page: Int) {
     fetchBoards(search: $search, page: $page) {

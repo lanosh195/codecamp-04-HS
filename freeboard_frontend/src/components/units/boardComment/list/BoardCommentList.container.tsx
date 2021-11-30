@@ -10,7 +10,7 @@ import { FETCH_BOARD_COMMENTS } from "./BoardCommentList.queries";
 
 export default function BoardCommentList() {
   const router = useRouter();
-  const { data } = useQuery<
+  const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
@@ -35,5 +35,5 @@ export default function BoardCommentList() {
     });
   }
 
-  return <BoardCommentListUI data={data} />;
+  return <BoardCommentListUI data={data} onLoadMore={onLoadMore} />;
 }
