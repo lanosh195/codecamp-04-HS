@@ -1,27 +1,44 @@
-import { RadioButton } from "../../board/write/BoardWrite.styles";
+import Login from "../../../../../pages/boards/login";
+import * as S from "./login.styles";
 
 export default function LoginPageUI(props) {
   return (
     <>
-      <div>
-        <div>X</div>
-        <div>로그인</div>
-        <input type="text" placeholder="아이디" />
-        <br />
-        <input type="password" placeholder="비밀번호" />
-        <br />
-        <button>로그인</button>
-        <div></div>
-        <div>ㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+      <S.Wrapper>
+        <S.WrapperBody>
+          <S.ExitBtn onClick={props.MoveHome}>x</S.ExitBtn>
+          <S.LoginForm>
+            <S.Login>로그인</S.Login>
+            <S.UserEmail
+              type="text"
+              placeholder="email"
+              name="email"
+              onChange={props.onChangeMyEmail}
+            />
+            <br />
+            <S.Password
+              type="password"
+              placeholder="비밀번호"
+              name="password"
+              onChange={props.onChangeMyPassword}
+            />
+            <br />
+            <S.LoginButton onClick={props.Login}>로그인</S.LoginButton>
+            <S.Line></S.Line>
 
-        <div>
-          <span>회원가입</span>
-          <span>|</span>
-          <span>HOME</span>
-          <div>ID찾기</div>
-          <div>비밀번호 찾기</div>
-        </div>
-      </div>
+            <S.LoginBot>
+              <S.SignupWrapper>
+                <S.Signup>회원가입</S.Signup>
+              </S.SignupWrapper>
+              <S.HomeWrapper>
+                <S.Home onClick={props.MoveHome}>HOME</S.Home>
+              </S.HomeWrapper>
+            </S.LoginBot>
+            <S.Find>ID찾기</S.Find>
+            <S.Find>비밀번호 찾기</S.Find>
+          </S.LoginForm>
+        </S.WrapperBody>
+      </S.Wrapper>
     </>
   );
 }

@@ -61,7 +61,6 @@ function solution(answers) {
   return result;
 }
 
-
 ///매서드
 //수포자들이 찍는 방식
 const answerTable = [
@@ -100,4 +99,38 @@ function solution(answers) {
     return el.score === biggest;
   });
   return result.map((el) => el.student);
+}
+
+03;
+("폰켓몬");
+
+function solution(nums) {
+  const answer = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    // console.log(nums[i])
+    if (
+      answer.length !== nums.length / 2 &&
+      answer.includes(nums[i]) === false
+    ) {
+      answer.push(nums[i]);
+    }
+  }
+  console.log(answer);
+  return answer.length;
+}
+//매서드 방식
+function solution(nums) {
+  const answer = [];
+
+  nums.forEach((monster) => {
+    // console.log(monster)
+    if (
+      answer.length !== nums.length / 2 &&
+      answer.includes(monster) === false
+    ) {
+      answer.push(monster);
+    }
+  });
+  return answer.length;
 }

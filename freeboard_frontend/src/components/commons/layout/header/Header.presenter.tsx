@@ -8,8 +8,8 @@ export default function HeaderUI(props) {
         <div>온도: {props.getTemp(props.temp)}</div>
       </HeaderLeft>
       <HeaderRight>
-        <Button>로그인</Button>
-        <Button>회원가입</Button>
+        <Button onClick={props.MoveLogin}>로그인</Button>
+        <Button onClick={props.MoveSignup}>회원가입</Button>
       </HeaderRight>
     </Header>
   );

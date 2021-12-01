@@ -1,6 +1,7 @@
 import HeaderUI from "./Header.presenter";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [weatherUrl, setWeatherUrl] = useState("");
@@ -8,7 +9,7 @@ export default function Header() {
   const [weatherMain, setWeatherMain] = useState("");
   const [temp, setTemp] = useState("");
   const [weather, setWeather] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     async function fetchWeather() {
       const result: any = await axios.get(
@@ -28,6 +29,12 @@ export default function Header() {
   function getTemp(temp: any) {
     return (temp - 273.15).toFixed(2);
   }
+  function MoveLogin() {
+    router.push("/boards/login");
+  }
+  function MoveSignup() {
+    router.push("/boards/signup");
+  }
 
   return (
     <>
@@ -36,6 +43,8 @@ export default function Header() {
         weatherMain={weatherMain}
         temp={temp}
         cityName={cityNmae}
+        MoveLogin={MoveLogin}
+        MoveSignup={MoveSignup}
       />
     </>
   );
