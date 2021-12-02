@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useApolloClient, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationLoginUserArgs,
@@ -14,15 +14,28 @@ const LOGIN_USER = gql`
     }
   }
 `;
+
+const FETCH_USER_LOGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+      picture
+    }
+  }
+`;
+
 export default function LoginPage() {
   const router = useRouter();
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setUserInfo } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
+
+  const client = useApolloClient(); // 이 client를 axois라고 생각하면 편함
 
   function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
     setMyEmail(event.target.value);
@@ -41,17 +54,24 @@ export default function LoginPage() {
     });
 
     ///로컬 스토리지에 토큰 넣어주기!!!!!
-    localStorage.setItem(
-      "accessToken",
-      result.data?.loginUser.accessToken || ""
-    );
-    setAccessToken(result.data?.loginUser.accessToken || "");
+    const accessToken = result.data?.loginUser.accessToken;
+    localStorage.setItem("accessToken", accessToken || "");
+    setAccessToken(accessToken || "");
 
-    //const result = await axois.get(~)     -- 이러한 방식으로 원하는 곳에서 useQuery 필요!!
+    //const result = await axois.get("~")     -- 이러한 방식으로 원하는 곳에서 useQuery 필요!!
+    const resultUserInfo = await client.query({
+      query: FETCH_USER_LOGED_IN,
+      context: {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      }, //헤더에 베어러 방식으로 토큰 요청했지만 안들어온 상태라서 강제로 넣어줘야 함
+    });
+    setUserInfo(resultUserInfo.data.fetchUserLoggedIn);
     //const result = fetchUserLoggedIn()
     // setUserInfo(result.data?.fetchUserLoggedIn)
 
-    router.push("/23-05-login-success");
+    router.push("/24-02-login-success");
 
     //heaser authorizaion에 추가 시키는 거 app.tsx에서
   }

@@ -37,6 +37,11 @@ const firebaseConfig = {
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
+  useInfo?: {
+    name?: string;
+    email?: string;
+    picture?: string;
+  };
 }
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
@@ -44,12 +49,12 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const GlobalContext = createContext<IGlobalContext>({});
 function MyApp({ Component, pageProps }: AppProps) {
   const [myAccessToken, setAccessToken] = useState("");
-  // const [myuserInfo, setMyUserInfo] = useState({});
+  const [myuserInfo, setUserInfo] = useState({});
   const myValue = {
     accessToekn: myAccessToken,
     setAccessToken: setAccessToken,
-    // userInfo: myuserInfo,
-    // setUserInfo: setMyUserInfo,
+    userInfo: myuserInfo,
+    setUserInfo: setUserInfo,
   };
   // ///윈도우가 없다면, 즉 서버라면
   // if(typeof window !=="undefined"){
