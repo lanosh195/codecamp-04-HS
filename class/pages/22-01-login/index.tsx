@@ -39,7 +39,7 @@ export default function LoginPage() {
         password: myPassword,
       },
     });
-    setAccessToken(result.data?.loginUser.accessToken); //여기서 setAccessToken 필요! (글로벌 스테이트에)app.tsx(최상위)
+    setAccessToken(result.data?.loginUser.accessToken || ""); //여기서 setAccessToken 필요! (글로벌 스테이트에)app.tsx(최상위)
 
     //로그인 성공된 페이지로 이동시키기
     router.push("/22-02-login-success");

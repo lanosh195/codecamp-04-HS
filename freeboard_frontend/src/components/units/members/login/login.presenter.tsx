@@ -6,7 +6,7 @@ export default function LoginPageUI(props) {
     <>
       <S.Wrapper>
         <S.WrapperBody>
-          <S.ExitBtn onClick={props.MoveHome}>x</S.ExitBtn>
+          <S.ExitBtn onClick={props.MoveHome}></S.ExitBtn>
           <S.LoginForm>
             <S.Login>로그인</S.Login>
             <S.UserEmail
@@ -30,6 +30,7 @@ export default function LoginPageUI(props) {
               <S.SignupWrapper>
                 <S.Signup>회원가입</S.Signup>
               </S.SignupWrapper>
+              <div></div>
               <S.HomeWrapper>
                 <S.Home onClick={props.MoveHome}>HOME</S.Home>
               </S.HomeWrapper>

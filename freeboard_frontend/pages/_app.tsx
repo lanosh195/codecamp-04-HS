@@ -8,9 +8,15 @@ import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { Global } from "@emotion/react";
-import { globalStyles } from "../src/commons/styles/globalstyles";
+import { globalStyles } from "../src/commons/styles/globalStyles";
 import { createUploadLink } from "apollo-upload-client";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 // // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // // TODO: Add SDKs for Firebase products that you want to use
@@ -43,6 +49,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     // userInfo: myuserInfo,
     // setUserInfo: setMyUserInfo,
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setAccessToken(accessToken);
+  });
+
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${myAccessToken} ` },

@@ -119,6 +119,18 @@ function solution(nums) {
   console.log(answer);
   return answer.length;
 }
+//new Set 함수 사용
+function solution(nums) {
+  const answer = new Set([]);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (answer.size !== nums.length / 2) {
+      answer.add(nums[i]);
+    }
+  }
+  return answer.size;
+}
+
 //매서드 방식
 function solution(nums) {
   const answer = [];
@@ -133,4 +145,50 @@ function solution(nums) {
     }
   });
   return answer.length;
+}
+
+//new Set 이용
+function solution(nums) {
+  const answer = new Set(nums).size;
+  //폰켓몬 최대 개수
+  const limit = nums.length / 2;
+  console.log(answer, limit);
+
+  if (limit >= answer) {
+    return answer;
+  }
+  return limit;
+}
+
+04; 
+("피보나치 수");  
+function solution(n) {
+let arr = [0, 1];
+    for(let i=2; i<=n; i++){
+        let sum = (arr[i - 2] + arr[i - 1])% 1234567
+        //현재 피보나치 위치에서 2칸 앞에 있는 데이터
+        let prev = arr[i - 1]
+        //현재 피보나치 위치에서 1칸 앞에 있는 데이터
+        let next =sum;
+        
+        arr.push(sum)
+        // console.log(sum, prev, next, arr)
+    }
+    return arr[n]    
+}
+
+//매서드 방식 
+let prev= 0; //0번째 피보나치 수의 결과
+    let next= 1; //1번째 피보나치 수의 결과
+    let sum = prev + next; //0 + 1 = 1;
+    const result = new Array(n - 1)
+                    .fill(1)
+                    .reduce(el => {
+                        sum= (prev + el)% 1234567
+                        prev = el
+                        next = sum;
+                        
+                        return sum;
+                    }, sum)
+    return result;
 }

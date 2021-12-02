@@ -1,20 +1,24 @@
-import { useState, useContext, ChangeEvent } from "react";
-import LoginPageUI from "./login.presenter";
-import { LOGIN_USER } from "./login.queries";
-import { useMutation } from "@apollo/client";
+import { ChangeEvent, useContext, useState } from "react";
+import { gql, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationLoginUserArgs,
-} from "../../../../commons/types/generated/types";
+} from "../../src/commons/types/generated/type";
+import { GlobalContext } from "../_app";
 import { useRouter } from "next/router";
-import { GlobalContext } from "../../../../../pages/_app";
 
+const LOGIN_USER = gql`
+  mutation loginUser($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
+      accessToken
+    }
+  }
+`;
 export default function LoginPage() {
   const router = useRouter();
   const { setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
-
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
@@ -36,26 +40,22 @@ export default function LoginPage() {
       },
     });
 
+    ///로컬 스토리지에 토큰 넣어주기!!!!!
     localStorage.setItem(
       "accessToken",
       result.data?.loginUser.accessToken || ""
     );
     setAccessToken(result.data?.loginUser.accessToken || "");
 
-    router.push("/boards");
-    console.log(result);
-  }
-  function MoveHome() {
-    router.push("/boards");
-  }
+    router.push("/23-05-login-success");
 
+    //heaser authorizaion에 추가 시키는 거 app.tsx에서
+  }
   return (
-    <LoginPageUI
-      // onClickLogin={onClickLogin}
-      Login={onClickLogin}
-      onChangeMyEmail={onChangeMyEmail}
-      onChangeMyPassword={onChangeMyPassword}
-      MoveHome={MoveHome}
-    />
+    <>
+      이메일: <input type="text" onChange={onChangeMyEmail} />
+      비밀번호: <input type="password" onChange={onChangeMyPassword} />
+      <button onClick={onClickLogin}>로그인 하기</button>
+    </>
   );
 }

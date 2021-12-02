@@ -2,6 +2,12 @@ import HeaderUI from "./Header.presenter";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { FETCH_USER_LOGED_IN } from "./Header.queries";
+import { useQuery } from "@apollo/client";
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function Header() {
   const [weatherUrl, setWeatherUrl] = useState("");
@@ -9,6 +15,7 @@ export default function Header() {
   const [weatherMain, setWeatherMain] = useState("");
   const [temp, setTemp] = useState("");
   const [weather, setWeather] = useState("");
+  const [isloggedin, setIsLoggedin] = useState(false);
   const router = useRouter();
   useEffect(() => {
     async function fetchWeather() {
@@ -25,6 +32,9 @@ export default function Header() {
 
     fetchWeather();
   }, []);
+
+  const { data } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGED_IN);
 
   function getTemp(temp: any) {
     return (temp - 273.15).toFixed(2);
@@ -45,6 +55,7 @@ export default function Header() {
         cityName={cityNmae}
         MoveLogin={MoveLogin}
         MoveSignup={MoveSignup}
+        data={data}
       />
     </>
   );

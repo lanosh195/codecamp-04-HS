@@ -13,7 +13,14 @@ import { createUploadLink } from "apollo-upload-client";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
+import router from "next/router";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -44,6 +51,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     // userInfo: myuserInfo,
     // setUserInfo: setMyUserInfo,
   };
+  // ///윈도우가 없다면, 즉 서버라면
+  // if(typeof window !=="undefined"){
+
+  // }
+  // /// 브라우저인지 아닌지
+  // if(process.browser)
+
+  //useEffect 사용
+  //로컬 스토리지에 토큰이 있으면 꺼내서 글로벌 스테이트로!!!!///////////
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setAccessToken(accessToken);
+  });
 
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
