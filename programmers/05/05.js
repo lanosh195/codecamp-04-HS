@@ -160,35 +160,51 @@ function solution(nums) {
   return limit;
 }
 
-04; 
-("피보나치 수");  
+04;
+("피보나치 수");
 function solution(n) {
-let arr = [0, 1];
-    for(let i=2; i<=n; i++){
-        let sum = (arr[i - 2] + arr[i - 1])% 1234567
-        //현재 피보나치 위치에서 2칸 앞에 있는 데이터
-        let prev = arr[i - 1]
-        //현재 피보나치 위치에서 1칸 앞에 있는 데이터
-        let next =sum;
-        
-        arr.push(sum)
-        // console.log(sum, prev, next, arr)
-    }
-    return arr[n]    
+  let arr = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    let sum = (arr[i - 2] + arr[i - 1]) % 1234567;
+    //현재 피보나치 위치에서 2칸 앞에 있는 데이터
+    let prev = arr[i - 1];
+    //현재 피보나치 위치에서 1칸 앞에 있는 데이터
+    let next = sum;
+
+    arr.push(sum);
+    // console.log(sum, prev, next, arr)
+  }
+  return arr[n];
 }
 
-//매서드 방식 
-let prev= 0; //0번째 피보나치 수의 결과
-    let next= 1; //1번째 피보나치 수의 결과
-    let sum = prev + next; //0 + 1 = 1;
-    const result = new Array(n - 1)
-                    .fill(1)
-                    .reduce(el => {
-                        sum= (prev + el)% 1234567
-                        prev = el
-                        next = sum;
-                        
-                        return sum;
-                    }, sum)
-    return result;
+//매서드 방식
+function solution(n) {
+  let prev = 0; //0번째 피보나치 수의 결과
+  let next = 1; //1번째 피보나치 수의 결과
+  let sum = prev + next; //0 + 1 = 1;
+  const result = new Array(n - 1).fill(1).reduce((el) => {
+    sum = (prev + el) % 1234567;
+    prev = el;
+    next = sum;
+
+    return sum;
+  }, sum);
+  return result;
+}
+
+05;
+("숫자 문자열과 영단어");
+function solution(s) {
+  s = s.replace(/zero/g, "0");
+  s = s.replace(/one/g, "1");
+  s = s.replace(/two/g, "2");
+  s = s.replace(/three/g, "3");
+  s = s.replace(/four/g, "4");
+  s = s.replace(/five/g, "5");
+  s = s.replace(/six/g, "6");
+  s = s.replace(/seven/g, "7");
+  s = s.replace(/eight/g, "8");
+  s = s.replace(/nine/g, "9");
+
+  return Number(s);
 }

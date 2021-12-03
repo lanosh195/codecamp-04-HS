@@ -9,6 +9,7 @@ export default function MyFormUI(props) {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
+
   return (
     <form onSubmit={handleSubmit(props.onClickLogin)}>
       이메일:
