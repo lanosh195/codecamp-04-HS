@@ -13,16 +13,16 @@ export default function ProductRegister() {
     if (data.name && data.remarks && data.contents && data.price) {
       const result = await createProduct({
         variables: {
-          createProductInput: {
+          createUseditemInput: {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
-            price: data.price,
+            price: Number(data.price),
           },
         },
       });
       console.log(result.data);
-      router.push(`/boards/market/${result.data.createProduct._id}`);
+      router.push(`/boards/market/${result.data.createUseditem._id}`);
     }
   }
 

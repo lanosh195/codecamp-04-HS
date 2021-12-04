@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Banner = styled.div`
-  height: 500px;
-  background-color: #ececa2;
+  height: 300px;
+  background-color: #4fb87b;
 `;

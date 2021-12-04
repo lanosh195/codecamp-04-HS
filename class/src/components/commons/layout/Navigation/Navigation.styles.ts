@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
 export const Navigation = styled.div`
-  height: 500px;
-  background-color: #3d3c92;
+  height: 300px;
+  background-color: #e0bc5a;
 `;
