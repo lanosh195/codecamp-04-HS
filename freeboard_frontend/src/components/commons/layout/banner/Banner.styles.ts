@@ -12,11 +12,11 @@ export const CarouselContainer = styled.div`
     .slick-dots {
       /* color: #FFD400; */
       position: relative;
-      top: -50px;
+      top: -40px;
       /* background-color: red; */
       button {
         ::before {
-          color: white;
+          color: black;
         }
       }
     }
@@ -28,11 +28,13 @@ export const CarouselWrapper = styled.div`
   height: 100%;
 `;
 export const Carousel = styled.div`
-  width: 100%;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
   /* height: 200px; */
 `;
 
 export const CarouselImg = styled.img`
-  width: 2550px;
-  height: 380px;
+  width: 100%;
+  height: 100%;
 `;

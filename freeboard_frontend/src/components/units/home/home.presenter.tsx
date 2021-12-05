@@ -1,7 +1,12 @@
+import * as S from "./home.styles";
 export default function HomeUI() {
   return (
     <>
-      <div>홈입니다.</div>
+      <S.Wrapper>
+        <S.Body>
+          <S.BodyImg src="/images/geeks.jpg" />
+        </S.Body>
+      </S.Wrapper>
     </>
   );
 }

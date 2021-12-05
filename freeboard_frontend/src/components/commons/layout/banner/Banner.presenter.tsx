@@ -15,24 +15,14 @@ export default function BannerUI(props) {
           <Slider {...props.settings}>
             <CarouselWrapper>
               <Carousel>
-                <CarouselImg src="/images/banner-2.jpg" />
+                <CarouselImg src="/images/heart.png" />
               </Carousel>
             </CarouselWrapper>
             <CarouselWrapper>
               <Carousel>
-                <CarouselImg src="/images/4.jpeg" />
+                <CarouselImg src="/images/thumbs-up.png" />
               </Carousel>
             </CarouselWrapper>
-            {/* <CarouselWrapper>
-              <Carousel>
-                <CarouselImg src="/images/banner-4.jpg" />
-              </Carousel>
-            </CarouselWrapper> */}
-            {/* <CarouselWrapper>
-              <Carousel>
-                <CarouselImg src="/images/a.jpg" />
-              </Carousel>
-            </CarouselWrapper> */}
           </Slider>
         </CarouselContainer>
       </>

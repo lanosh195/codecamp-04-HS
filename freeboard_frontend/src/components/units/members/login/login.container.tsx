@@ -11,7 +11,7 @@ import { GlobalContext } from "../../../../../pages/_app";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setIsLoggedin } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
 
@@ -42,11 +42,13 @@ export default function LoginPage() {
     );
     setAccessToken(result.data?.loginUser.accessToken || "");
 
-    router.push("/boards");
+    setIsLoggedin(true);
+    alert("로그인 되었습니다.");
     console.log(result);
+    router.push("/boards/home");
   }
   function MoveHome() {
-    router.push("/boards");
+    router.push("/boards/home");
   }
 
   return (

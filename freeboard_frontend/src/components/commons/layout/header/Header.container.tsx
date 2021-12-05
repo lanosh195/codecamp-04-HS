@@ -1,6 +1,6 @@
 import HeaderUI from "./Header.presenter";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGED_IN } from "./Header.queries";
 import { useQuery } from "@apollo/client";
@@ -8,6 +8,7 @@ import {
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
+import { GlobalContext } from "../../../../../pages/_app";
 
 export default function Header() {
   const [weatherUrl, setWeatherUrl] = useState("");
@@ -15,7 +16,6 @@ export default function Header() {
   const [weatherMain, setWeatherMain] = useState("");
   const [temp, setTemp] = useState("");
   const [weather, setWeather] = useState("");
-  const [isloggedin, setIsLoggedin] = useState(false);
   const router = useRouter();
   useEffect(() => {
     async function fetchWeather() {
@@ -32,7 +32,7 @@ export default function Header() {
 
     fetchWeather();
   }, []);
-
+  const { accessToken, isLoggedin, setIsLoggedin } = useContext(GlobalContext);
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGED_IN);
 
@@ -45,6 +45,11 @@ export default function Header() {
   function MoveSignup() {
     router.push("/boards/signup");
   }
+  function logout() {
+    localStorage.removeItem("accessToken");
+    alert("로그아웃 되었습니다.");
+    setIsLoggedin(false);
+  }
 
   return (
     <>
@@ -56,6 +61,9 @@ export default function Header() {
         MoveLogin={MoveLogin}
         MoveSignup={MoveSignup}
         data={data}
+        logout={logout}
+        accessToken={accessToken}
+        isLoggedin={isLoggedin}
       />
     </>
   );

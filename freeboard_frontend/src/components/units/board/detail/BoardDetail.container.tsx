@@ -82,6 +82,9 @@ export default function BoardDetail() {
       error instanceof Error && console.log(error.message);
     }
   }
+  const imgError = (event: any) => {
+    (event.target as any).style = "display: none;";
+  };
 
   return (
     <BoardDetailUI
@@ -91,6 +94,7 @@ export default function BoardDetail() {
       onClickDelete={onClickDelete}
       onClickLike={onClickLike}
       onClickDislike={onClickDislike}
+      imgError={imgError}
     />
   );
 }

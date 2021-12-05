@@ -79,8 +79,8 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: #de9ba1;
-    border-color: white;
+    background-color: gold;
+    border-color: black;
   }
 `;
 
@@ -126,13 +126,14 @@ export const DislikeCount = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const Image = styled.img`
-  width: 700px;
-  height: 450px;
+  max-width: 100%;
+  margin: 0 auto;
   margin-bottom: 30px;
 `;

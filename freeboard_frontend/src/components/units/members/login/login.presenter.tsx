@@ -5,6 +5,7 @@ export default function LoginPageUI(props) {
   return (
     <>
       <S.Wrapper>
+        <S.BackgroundImg src="/images/snow.png" />
         <S.WrapperBody>
           <S.ExitBtn onClick={props.MoveHome}></S.ExitBtn>
           <S.LoginForm>
@@ -23,7 +24,9 @@ export default function LoginPageUI(props) {
               onChange={props.onChangeMyPassword}
             />
             <br />
+
             <S.LoginButton onClick={props.Login}>로그인</S.LoginButton>
+
             <S.Line></S.Line>
 
             <S.LoginBot>

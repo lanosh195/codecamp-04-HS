@@ -1,15 +1,26 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  /* width: 1200px; */
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  width: 400px;
-  height: 491px;
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.2);
+`;
+
+export const BackgroundImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 export const WrapperBody = styled.div`
-  width: 100%;
+  position: absolute;
+  width: 500px;
+  height: 491px;
+  max-width: 400px;
+  top: 30%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 40px;
 `;
 export const ExitBtn = styled.button`
@@ -60,6 +71,7 @@ export const UserEmail = styled.input`
   height: 45px;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0);
+  color: white;
   border-color: white;
 `;
 export const PasswordWrapper = styled.div`
@@ -71,6 +83,7 @@ export const Password = styled.input`
   height: 45px;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0);
+  color: white;
   border-color: white;
 `;
 export const LoginBtnWrapper = styled.div`
@@ -88,9 +101,10 @@ export const LoginButton = styled.button`
   }
   margin-bottom: 25px;
 `;
+
 export const Line = styled.div`
   width: 320px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   color: white;
   margin-bottom: 25px;
 `;
@@ -104,10 +118,14 @@ export const SignupWrapper = styled.div`
   height: 19px;
   display: flex;
   justify-content: end;
+  ::after {
+    content: "|";
+    color: white;
+    margin: 0 5px;
+  }
 `;
+
 export const Signup = styled.button`
-  width: 100px;
-  height: 19px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
   border: none;
@@ -122,8 +140,6 @@ export const HomeWrapper = styled.div`
   justify-content: start;
 `;
 export const Home = styled.button`
-  width: 100px;
-  height: 19px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
   border: none;

@@ -121,7 +121,7 @@ export const ImageWrapper = styled.div`
 export const UploadButton = styled.button`
   width: 78px;
   height: 78px;
-  background-color: #de9ba1;
+  background-color: gold;
   color: white;
   margin-right: 24px;
   outline: none;
@@ -155,7 +155,7 @@ export const ButtonWrapper = styled.div`
 export const CancelButton = styled.button`
   width: 179px;
   height: 52px;
-  background-color: #bdbdbd;
+  background-color: gold;
   border: none;
   font-size: 16px;
   font-weight: 500;
@@ -173,7 +173,7 @@ export const SubmitButton = styled.button`
   margin-left: 12px;
   margin-right: 12px;
   background-color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "#de9ba1" : "none"};
+    props.isActive ? "gold" : "none"};
 
   :hover {
     cursor: ${(props: ISubmitButtonProps) =>

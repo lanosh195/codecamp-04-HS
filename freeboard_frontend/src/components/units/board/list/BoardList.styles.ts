@@ -21,10 +21,6 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
-
-  :hover {
-    color: blue;
-  }
 `;
 
 export const TextToken = styled.span`
@@ -53,12 +49,15 @@ export const ColumnTitle = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  :hover {
+    color: blue;
+    cursor: pointer;
+  }
 `;
 
 export const Footer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 10px;
 `;
 
@@ -76,19 +75,12 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: #de9ba1; //#f5f2fc;
+    background-color: gold; //#f5f2fc;
     cursor: pointer;
   }
 `;
 
-export const CommentPagination = styled.div`
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* padding-top: 50px; */
-  /* position: relative; */
-`;
+export const CommentPagination = styled.div``;
 
 export const BestBoardWrapper = styled.div`
   display: flex;
@@ -146,4 +138,9 @@ interface IProps {
 }
 export const MyWord = styled.span`
   color: ${(props: IProps) => (props.isMatched ? "red" : "black")};
+`;
+
+export const SearchBar = styled.input`
+  width: 200px;
+  height: 30px;
 `;

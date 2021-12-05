@@ -9,7 +9,7 @@ export default function BoardListUI(props) {
       <S.BestBoardWrapper>
         {props.boardsBest?.fetchBoardsOfTheBest.map((el: any) => (
           <S.BestBoard key={el._id}>
-            <S.BestBoardHeader src={"/images/a.jpg"}></S.BestBoardHeader>
+            <S.BestBoardHeader src={"/images/flower.jpg"}></S.BestBoardHeader>
             {/* {el.images[0] ? (
               <S.BestBoardHeader
                 src={`https://storage.googleapis.com/${el?.images[0]}`}
@@ -62,9 +62,9 @@ export default function BoardListUI(props) {
         </S.Row>
       ))}
       <S.TableBottom />
-      <input type="text" onChange={props.onChangeSearch} />
       {/* 게시글 목록 페이지 네이션 */}
       <S.Footer>
+        <S.SearchBar type="text" onChange={props.onChangeSearch} />
         <S.CommentPagination>
           <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
             ←

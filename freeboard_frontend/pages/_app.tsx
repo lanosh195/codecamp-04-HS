@@ -37,17 +37,23 @@ const firebaseConfig = {
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: string;
+  isLoggedin: boolean;
+  setIsLoggedin: Dispatch<SetStateAction<boolean>>;
 }
 
 export const GlobalContext = createContext<IGlobalContext>({});
 function MyApp({ Component, pageProps }: AppProps) {
   const [myAccessToken, setAccessToken] = useState("");
-  // const [myuserInfo, setMyUserInfo] = useState({});
+  const [myuserInfo, setMyUserInfo] = useState({});
+  const [isLoggedin, setIsLoggedin] = useState(false);
   const myValue = {
     accessToekn: myAccessToken,
     setAccessToken: setAccessToken,
-    // userInfo: myuserInfo,
-    // setUserInfo: setMyUserInfo,
+    userInfo: myuserInfo,
+    setUserInfo: setMyUserInfo,
+    isLoggedin,
+    setIsLoggedin,
   };
 
   useEffect(() => {

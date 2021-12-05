@@ -25,10 +25,11 @@ const Sidebar = styled.div`
   /* background-color: #eef8b2; */
 `;
 
-const HIDDEN_HEADERS = [
-  "/12-05-modal-address-sate-prev",
-  //...
-];
+const HIDDEN_HEADERS = ["/boards/login"];
+const HIDDEN_BANNERS = ["/boards/home", "/boards/login"];
+const HIDDEN_NAVS = ["/boards/home"];
+const HIDDEN_FOOTERS = ["/boards/home", "/boards/login"];
+const HIDDEN_SIDEBARS = ["/boards/home", "/boards/login"];
 
 interface ILayoutProps {
   children: ReactChild;
@@ -38,18 +39,22 @@ export default function Layout(props: ILayoutProps) {
   console.log(router);
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+  const isBanners = HIDDEN_BANNERS.includes(router.asPath);
+  const isNavs = HIDDEN_NAVS.includes(router.asPath);
+  const isFooters = HIDDEN_FOOTERS.includes(router.asPath);
+  const isSidebars = HIDDEN_SIDEBARS.includes(router.asPath);
   //asPath 주소값
 
   return (
     <Wrapper>
       {!isHiddenHeader && <Header />}
-      <Banner />
-      <Navigation />
+      {!isBanners && <Banner />}
+      {!isNavs && <Navigation />}
       <BodyWrapper>
-        <Sidebar>sidebar</Sidebar>
+        {!isSidebars && <Sidebar></Sidebar>}
         <Body>{props.children}</Body>
       </BodyWrapper>
-      <Footer />
+      {!isFooters && <Footer />}
     </Wrapper>
   );
 }
