@@ -1,4 +1,3 @@
-import Login from "../../../../../pages/boards/login";
 import * as S from "./login.styles";
 
 export default function LoginPageUI(props) {

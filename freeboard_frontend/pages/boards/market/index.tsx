@@ -1,3 +1,5 @@
+import MarketList from "../../../src/components/units/market/list/marketList.container";
+
 export default function Market() {
-  return <div>마켓입니다.</div>;
+  return <MarketList />;
 }

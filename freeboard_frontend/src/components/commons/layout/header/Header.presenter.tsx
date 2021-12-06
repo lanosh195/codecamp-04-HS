@@ -6,7 +6,7 @@ export default function HeaderUI(props) {
     <S.Wrapper>
       <S.Header>
         <S.HeaderLeft>
-          <S.HomeWrapper onClick={moveToPage("/boards/home")}>
+          <S.HomeWrapper onClick={moveToPage("/")}>
             <S.HomeIcon src="/images/sol.png" />
             <S.HomeName>Sol's Home</S.HomeName>
           </S.HomeWrapper>
@@ -40,10 +40,6 @@ export default function HeaderUI(props) {
     //     <div>날씨: {props.weatherMain}</div>
     //     <div>온도: {props.getTemp(props.temp)}</div>
     //   </HeaderLeft>
-    //   <HeaderRight>
-    //     <Button onClick={props.MoveLogin}>로그인</Button>
-    //     <Button onClick={props.MoveSignup}>회원가입</Button>
-    //   </HeaderRight>
     // </Header>
   );
 }

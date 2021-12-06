@@ -45,10 +45,10 @@ export default function LoginPage() {
     setIsLoggedin(true);
     alert("로그인 되었습니다.");
     console.log(result);
-    router.push("/boards/home");
+    router.push("/");
   }
   function MoveHome() {
-    router.push("/boards/home");
+    router.push("/");
   }
 
   return (

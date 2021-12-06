@@ -10,13 +10,6 @@ export default function BoardListUI(props) {
         {props.boardsBest?.fetchBoardsOfTheBest.map((el: any) => (
           <S.BestBoard key={el._id}>
             <S.BestBoardHeader src={"/images/flower.jpg"}></S.BestBoardHeader>
-            {/* {el.images[0] ? (
-              <S.BestBoardHeader
-                src={`https://storage.googleapis.com/${el?.images[0]}`}
-              />
-            ) : (
-              <S.BestBoardHeader src={"/images/a.jpg"}></S.BestBoardHeader>
-            )} */}
             <S.BestBoardTitle
               id={el._id}
               onClick={props.onClickMoveToBestBoard}

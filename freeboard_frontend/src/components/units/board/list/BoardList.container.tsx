@@ -1,6 +1,5 @@
 import BoardListUI from "./BoardList.presenter";
 import { gql, useQuery } from "@apollo/client";
-import styled from "@emotion/styled";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
@@ -43,12 +42,12 @@ export default function BoardList() {
 
   function onClickPrevPage() {
     if (startPage <= 1) return;
-    setStartPage((prev) => prev - 5);
+    setStartPage((prev) => prev - 10);
   }
 
   function onClickNextPage() {
     if (startPage + 5 > lastPage) return;
-    setStartPage((prev) => prev + 5);
+    setStartPage((prev) => prev + 10);
   }
 
   function onClickMoveToBoardNew() {

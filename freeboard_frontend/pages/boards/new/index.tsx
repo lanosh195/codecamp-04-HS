@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { withAuth } from "../../../src/components/commons/hocs/withAuth";
 import BoardWrite from "../../../src/components/units/board/write/BoardWrite.container";
 
-export default function BoardsNewPage() {
-  const [isEdit, setIsEdit] = useState(false);
+const BoardsNewPage = () => {
   return <BoardWrite />;
-}
+};
+
+export default withAuth(BoardsNewPage);

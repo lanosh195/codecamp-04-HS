@@ -58,6 +58,6 @@ export const SubmitButton = styled.button`
   :hover {
     cursor: pointer;
     color: white;
-    background-color: #de9ba1;
+    background-color: gold;
   }
 `;

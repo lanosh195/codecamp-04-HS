@@ -26,10 +26,10 @@ const Sidebar = styled.div`
 `;
 
 const HIDDEN_HEADERS = ["/boards/login"];
-const HIDDEN_BANNERS = ["/boards/home", "/boards/login"];
-const HIDDEN_NAVS = ["/boards/home"];
-const HIDDEN_FOOTERS = ["/boards/home", "/boards/login"];
-const HIDDEN_SIDEBARS = ["/boards/home", "/boards/login"];
+const HIDDEN_BANNERS = ["/", "/boards/login"];
+const HIDDEN_NAVS = ["/"];
+const HIDDEN_FOOTERS = ["/", "/boards/login"];
+const HIDDEN_SIDEBARS = ["/", "/boards/login"];
 
 interface ILayoutProps {
   children: ReactChild;
