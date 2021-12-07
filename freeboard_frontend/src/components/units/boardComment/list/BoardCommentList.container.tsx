@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import {
   IQuery,
   IQueryFetchBoardCommentsArgs,

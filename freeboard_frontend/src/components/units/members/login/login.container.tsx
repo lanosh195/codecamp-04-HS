@@ -45,7 +45,7 @@ export default function LoginPage() {
     setIsLoggedin(true);
     alert("로그인 되었습니다.");
     console.log(result);
-    router.push("/");
+    router.back();
   }
   function MoveHome() {
     router.push("/");

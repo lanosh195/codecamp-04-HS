@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { LikeOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -140,7 +141,32 @@ export const MyWord = styled.span`
   color: ${(props: IProps) => (props.isMatched ? "red" : "black")};
 `;
 
-export const SearchBar = styled.input`
-  width: 200px;
+export const Searchbar = styled.div`
+  width: 220px;
   height: 30px;
+  border-radius: 15px;
+  background-color: #f5f2fc;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const SearchBarInput = styled.input`
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  margin: 0px 20px;
+`;
+
+export const SearchIcon = styled(SearchOutlined)`
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+
+  :hover {
+    color: red;
+  }
 `;

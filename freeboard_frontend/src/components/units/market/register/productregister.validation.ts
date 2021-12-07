@@ -17,5 +17,5 @@ export const schema = yup.object().shape({
 
   // tag:
 
-  // images:
+  // images: yup.array(),
 });

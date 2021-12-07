@@ -57,7 +57,10 @@ export default function BoardListUI(props) {
       <S.TableBottom />
       {/* 게시글 목록 페이지 네이션 */}
       <S.Footer>
-        <S.SearchBar type="text" onChange={props.onChangeSearch} />
+        <S.Searchbar>
+          <S.SearchIcon />
+          <S.SearchBarInput type="text" onChange={props.onChangeSearch} />
+        </S.Searchbar>
         <S.CommentPagination>
           <span onClick={props.onClickPrevPage} style={{ cursor: "pointer" }}>
             ←

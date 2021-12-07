@@ -68,6 +68,7 @@ export default function BoardList() {
     refetch({ search: data, page: 1 });
     setMyKeyword(data);
   }, 1000);
+
   const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
     getDebounce(event.target.value);
   };
