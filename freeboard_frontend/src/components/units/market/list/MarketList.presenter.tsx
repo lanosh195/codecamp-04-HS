@@ -4,7 +4,7 @@ import * as S from "./MarketList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 export default function MarketListUI(props) {
   // console.log(props.data);
-  // console.log(props.fetchBest);
+  console.log(props.fetchBest);
   const { moveToPage } = useMoveToPage();
   return (
     <>
@@ -19,9 +19,12 @@ export default function MarketListUI(props) {
           <S.BestItemsWrapper>
             {props.fetchBest?.fetchUseditemsOfTheBest.map((el: any) => (
               <S.BestItems key={el._id}>
-                <S.BestItemsHeader>
+                <S.BestItemsHeader
+                  id={el._id}
+                  onClick={props.onClickMoveItemDetail}
+                >
                   <S.BestItemsImg
-                    src={`https://storage.googleapis.com/${el.images}`}
+                    src={`https://storage.googleapis.com/${el.images[0]}`}
                     onError={props.onErrorImg}
                   />
                   <S.BestitemsPickedCount>
@@ -54,9 +57,12 @@ export default function MarketListUI(props) {
               <S.InfiniteScrollWrapper>
                 {props.data?.fetchUseditems.map((el: any) => (
                   <S.Items key={el._id}>
-                    <S.ItemsHeader>
+                    <S.ItemsHeader
+                      id={el._id}
+                      onClick={props.onClickMoveItemDetail}
+                    >
                       <S.ItemsImg
-                        src={`https://storage.googleapis.com/${el.images}`}
+                        src={`https://storage.googleapis.com/${el.images[0]}`}
                         onError={props.onErrorImg}
                       />
                       <S.ItemsPickedCount>
@@ -78,7 +84,7 @@ export default function MarketListUI(props) {
             </InfiniteScroll>
           </S.ItemsWrapper>
         </div>
-        <S.RegisterBtn onClick={moveToPage("/boards/market/new")}>
+        <S.RegisterBtn onClick={props.onClickMoveItemDetail}>
           상품 등록하기
         </S.RegisterBtn>
       </S.Wrapper>

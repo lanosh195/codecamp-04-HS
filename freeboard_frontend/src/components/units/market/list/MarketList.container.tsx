@@ -6,6 +6,7 @@ import {
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
+import router from "next/router";
 
 export default function MarketList() {
   const [startPage, setStartPage] = useState(1);
@@ -15,7 +16,7 @@ export default function MarketList() {
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USEDITEMS, {
-    variables: { page: startPage },
+    variables: { page: 1 },
   });
 
   const { data: fetchBest } = useQuery(FETCH_USEDITEMS_BEST);
@@ -38,6 +39,10 @@ export default function MarketList() {
     console.log(data.fetchUseditems);
   };
 
+  function onClickMoveItemDetail(event: any) {
+    router.push(`/boards/market/${event.currentTarget.id}`);
+  }
+
   function onChangeKeyword(value: string) {
     setKeyword(value);
   }
@@ -50,11 +55,12 @@ export default function MarketList() {
       data={data}
       // refetch={refetch}
       onLoadMore={onLoadMore}
-      keyword={keyword}
+      // keyword={keyword}
       startPage={startPage}
       setStartPage={setStartPage}
       onChnageKeyword={onChangeKeyword}
       onErrorImg={onErrorImg}
+      onClickMoveItemDetail={onClickMoveItemDetail}
     />
   );
 }

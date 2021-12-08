@@ -30,6 +30,7 @@ export const BestItemsBody = styled.div``;
 export const BestItemsImg = styled.img`
   width: 100%;
   height: 100%;
+  position: absolute;
 `;
 
 export const BestitemsName = styled.div`
@@ -49,6 +50,7 @@ export const BestitemsRemarks = styled.div`
 export const BestitemsPrice = styled.div``;
 export const BestitemsPickedCount = styled.div`
   font-size: 20px;
+  position: absolute;
   z-index: 1;
 `;
 export const LikeImg = styled.img`

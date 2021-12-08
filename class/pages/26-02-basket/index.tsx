@@ -1,5 +1,4 @@
 import { useQuery, gql } from "@apollo/client";
-import { el } from "date-fns/locale";
 import {
   IBoard,
   IQuery,
