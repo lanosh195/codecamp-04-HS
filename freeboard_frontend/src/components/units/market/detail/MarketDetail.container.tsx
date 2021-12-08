@@ -63,6 +63,7 @@ export default function MarketDetail() {
     baskets.push(newEl);
 
     localStorage.setItem("basket", JSON.stringify(baskets));
+    alert("장바구니에 상품을 담았습니다.");
   }
 
   return (

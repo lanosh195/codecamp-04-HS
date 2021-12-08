@@ -5,7 +5,7 @@ export default function MarketDetailUI(props) {
       <S.Wrapper>
         <S.DetailLeft>
           <S.ItemImg
-            src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images}`}
+            src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`}
           />
         </S.DetailLeft>
         <S.DetailRight>

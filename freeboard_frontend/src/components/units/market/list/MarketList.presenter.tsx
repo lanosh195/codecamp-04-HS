@@ -84,7 +84,7 @@ export default function MarketListUI(props) {
             </InfiniteScroll>
           </S.ItemsWrapper>
         </div>
-        <S.RegisterBtn onClick={props.onClickMoveItemDetail}>
+        <S.RegisterBtn onClick={moveToPage("/boards/market/new")}>
           상품 등록하기
         </S.RegisterBtn>
       </S.Wrapper>

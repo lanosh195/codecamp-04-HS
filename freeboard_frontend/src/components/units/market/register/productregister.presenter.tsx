@@ -63,37 +63,6 @@ export default function ProductRegisterUI(props) {
           </S.ButtonWrapper>
         </form>
       </S.Wrapper>
-      {/* <form onSubmit={handleSubmit(props.onClickSubmit)}>
-        <Title>상품등록</Title>
-        <S.Label>상품명</S.Label>
-        <br />
-        <S.Inputs type="text" register={...register("name")} />
-        <S.ErrorMessage>{formState.errors.name?.message}</S.ErrorMessage>
-        <br />
-        <S.Label>한줄 요약</S.Label>
-        <br />
-        <S.Inputs type="text" register={...register("remarks")} />
-        <S.ErrorMessage>{formState.errors.remarks?.message}</S.ErrorMessage>
-        <br />
-        <S.Label>상품 설명</S.Label>
-        <br />
-        <S.Inputs type="text" register={...register("contents")} />
-        <S.ErrorMessage>{formState.errors.contents?.message}</S.ErrorMessage>
-        <br />
-        <S.Label>판매 가격</S.Label>
-        <br />
-        <S.Inputs type="text" register={...register("price")} />
-        <S.ErrorMessage>{formState.errors.price?.message}</S.ErrorMessage>
-        <br />
-        <S.Label>태그</S.Label>
-        <br />
-        <S.Inputs type="text" />
-        <br />
-        <S.Label>사진 첨부</S.Label>
-      </form>
-      <button type="submit" name="등록하기">
-        등록하기
-      </button> */}
     </>
   );
 }
