@@ -8,15 +8,36 @@ export const FETCH_USEDITEM = gql`
       remarks
       contents
       price
+      tags
       images
       pickedCount
+      buyer {
+        _id
+        email
+        name
+        picture
+      }
+      seller {
+        _id
+        email
+        name
+        picture
+      }
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
     }
   }
 `;
 
 export const DELETE_USEDITEM = gql`
-  mutation fetchUseditem($useditemId: ID!) {
-    fetchUseditem(useditemId: $useditemId) {
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId) {
       _id
     }
   }

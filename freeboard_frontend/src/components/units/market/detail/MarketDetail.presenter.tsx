@@ -18,6 +18,7 @@ export default function MarketDetailUI(props) {
           <S.ItemNotice>안내사항</S.ItemNotice>
           <S.BasketBtn onClick={props.onClickBasket}>장바구니</S.BasketBtn>
           <S.BuyBtn>바로 구매하기</S.BuyBtn>
+          <button onClick={props.onClickEdit}>수정하기</button>
         </S.DetailRight>
       </S.Wrapper>
     </>

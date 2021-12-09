@@ -2,7 +2,7 @@ import HeaderUI from "./Header.presenter";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { FETCH_USER_LOGED_IN } from "./Header.queries";
+import { FETCH_USER_LOGGED_IN } from "./Header.queries";
 import { useQuery } from "@apollo/client";
 import {
   IQuery,
@@ -34,7 +34,7 @@ export default function Header() {
   }, []);
   const { accessToken, isLoggedin, setIsLoggedin } = useContext(GlobalContext);
   const { data } =
-    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGED_IN);
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
   function getTemp(temp: any) {
     return (temp - 273.15).toFixed(2);

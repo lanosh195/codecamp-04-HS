@@ -4,7 +4,6 @@ import { ChangeEvent, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
-import { Address, Zipcode } from "./BoardWrite.styles";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -127,12 +126,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setYoutubeUrl(event.target.value);
   }
 
-  function onChangeMyAddress(event: ChangeEvent<HTMLInputElement>) {
-    setMyAddress(event.target.value);
-  }
-  function onChangeMyZonecode(event: ChangeEvent<HTMLInputElement>) {
-    setMyZonecode(event.target.value);
-  }
   function onChangeMyAddressDetail(event: ChangeEvent<HTMLInputElement>) {
     setMyAddressDetail(event.target.value);
   }
@@ -208,7 +201,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      alert(error.message);
+      error instanceof Error && alert(error.message);
     }
   }
 

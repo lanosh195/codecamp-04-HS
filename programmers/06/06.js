@@ -198,3 +198,18 @@ function solution(N, stages) {
 
   return result;
 }
+
+04;
+("예산");
+
+function solution(d, budget) {
+  const answer = d
+    .sort((a, b) => a - b)
+    .filter((price) => {
+      budget -= price;
+      if (budget >= 0) {
+        return price;
+      }
+    });
+  return answer.length;
+}

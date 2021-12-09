@@ -1,16 +1,27 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_USEDITEMS = gql`
-  query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
-    fetchUseditems(isSoldout: $isSoldout, search: $search, page: $page) {
+export const FETCH_USER_LOGGEDIN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
       _id
+      email
       name
-      remarks
-      contents
-      price
-      tags
-      images
-      pickedCount
+      picture
+      userPoint
+      createdAt
+      updatedAt
+      deletedAt
+    }
+  }
+`;
+
+export const CEATE_POINT_LOADING = gql`
+  mutation createPointTransactionOfLoading($impUid: ID!) {
+    createPointTransactionOfLoading(impUid: $impUid) {
+      _id
+      impUid
+      amount
+      status
     }
   }
 `;

@@ -40,7 +40,7 @@ export default function MarketList() {
   };
 
   function onClickMoveItemDetail(event: any) {
-    router.push(`/boards/market/${event.currentTarget.id}`);
+    router.push(`/market/${event.currentTarget.id}`);
   }
 
   function onChangeKeyword(value: string) {

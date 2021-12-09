@@ -10,3 +10,20 @@ export const CREATE_PRODUCT = gql`
     }
   }
 `;
+
+export const UPDATE_USEDITEM = gql`
+  mutation updateUseditem(
+    $updateUseditemInput: UpdateUseditemInput!
+    $useditemId: ID!
+  ) {
+    updateUseditem(
+      updateUseditemInput: $updateUseditemInput
+      useditemId: $useditemId
+    ) {
+      _id
+      name
+      remarks
+      contents
+    }
+  }
+`;

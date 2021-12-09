@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import ReactQuill from "react-quill";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -25,9 +26,10 @@ export const Inputs = styled.input`
   width: 996px;
   height: 52px;
 `;
-export const Contents = styled.input`
+export const Contents = styled(ReactQuill)`
   width: 996px;
   height: 400px;
+  margin-bottom: 50px;
 `;
 export const Price = styled.input`
   width: 300px;

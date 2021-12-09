@@ -29,10 +29,10 @@ export default function MarketDetail() {
   >(DELETE_USEDITEM);
 
   function onCLickMoveToUpdate() {
-    router.push(`/boards/market${router.query.useditemId}/edit`);
+    router.push(`/market${router.query.useditemId}/edit`);
   }
   function onClickMoveToList() {
-    router.push("/boards/market");
+    router.push("/market");
   }
 
   async function onClickDelete() {
@@ -41,7 +41,7 @@ export default function MarketDetail() {
         variables: { useditemId: String(router.query.useditemId) },
       });
       alert("상품이 삭제되었습니다.");
-      router.push("/boards/market");
+      router.push("/market");
     } catch (error) {
       error instanceof Error && console.log(error.message);
     }
@@ -65,6 +65,9 @@ export default function MarketDetail() {
     localStorage.setItem("basket", JSON.stringify(baskets));
     alert("장바구니에 상품을 담았습니다.");
   }
+  function onClickEdit() {
+    router.push(`/market/${router.query.useditemId}/edit`);
+  }
 
   return (
     <MarketDetailUI
@@ -72,6 +75,7 @@ export default function MarketDetail() {
       onCLickMoveToUpdate={onCLickMoveToUpdate}
       onClickMoveToList={onClickMoveToList}
       onClickBasket={onClickBasket}
+      onClickEdit={onClickEdit}
       data={data}
     />
   );
