@@ -6,7 +6,7 @@ import ProductRegister from "../../../../src/components/units/market/register/pr
 export default function EditPage() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USEDITEM, {
-    variables: { useditemId: router.query.usedItemId },
+    variables: { useditemId: router.query.useditemId },
   });
   return <ProductRegister isEdit={true} data={data} />;
 }

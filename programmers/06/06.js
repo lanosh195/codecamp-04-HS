@@ -213,3 +213,69 @@ function solution(d, budget) {
     });
   return answer.length;
 }
+
+05;
+("크레인 인형뽑기 게임");
+
+function solution(board, moves) {
+  let answer = 0;
+  const bucket = [];
+
+  // 크레인이 이동하는 위치값을 구하는 반복문
+  for (let i = 0; i < moves.length; i++) {
+    for (let l = 0; l < board.length; l++) {
+      const doll = board[l][moves[i] - 1];
+
+      // 인형이 있는 칸이 빈칸이 아니라면
+      if (doll !== 0) {
+        // 방금 뽑은 인형의 위치를 빈칸으로 만들어준다.
+        board[l][moves[i] - 1] = 0;
+
+        // 버켓에 넣으려고 하는 인형과 버켓의 마지막 (맨 위에 있는) 인형이 동일한지
+        if (bucket[bucket.length - 1] === doll) {
+          answer += 2;
+          bucket.splice(bucket.length - 1, 1);
+          // bucket.pop(); 스플라이스나 팝을 이용해서 마지막에 있는 값 제거해줌.
+          break;
+        }
+
+        bucket.push(doll);
+        break;
+      }
+    }
+  }
+  // console.log(answer, bucket)
+  return answer;
+}
+
+//매서드 방식
+
+function solution(board, moves) {
+  let answer = 0;
+  const bucket = [];
+
+  moves.forEach((move) => {
+    //forEach 는 break처럼 종료를 못시키기 때문에
+    // cheak가 false일 때만 forEach를 실행할 수 있게함
+    let check = false;
+
+    board.forEach((location) => {
+      const doll = location[move - 1];
+
+      if (check === false) {
+        if (doll != 0) {
+          location[move - 1] = 0;
+
+          if (bucket[bucket.length - 1] === doll) {
+            answer += 2;
+            bucket.splice(bucket.length - 1, 1);
+          } else {
+            bucket.push(doll);
+          }
+          check = true;
+        }
+      }
+    });
+  });
+  return answer;
+}

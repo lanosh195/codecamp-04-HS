@@ -79,6 +79,7 @@ export default function ProductRegisterUI(props: any) {
             <S.SubmitButton type="submit" name="등록하기">
               {props.isEdit ? "수정하기" : "등록하기"}
             </S.SubmitButton>
+            ˜
           </S.ButtonWrapper>
         </form>
       </S.Wrapper>

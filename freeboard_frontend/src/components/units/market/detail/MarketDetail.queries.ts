@@ -11,6 +11,14 @@ export const FETCH_USEDITEM = gql`
       tags
       images
       pickedCount
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
       buyer {
         _id
         email
@@ -22,14 +30,6 @@ export const FETCH_USEDITEM = gql`
         email
         name
         picture
-      }
-      useditemAddress {
-        _id
-        zipcode
-        address
-        addressDetail
-        lat
-        lng
       }
     }
   }
