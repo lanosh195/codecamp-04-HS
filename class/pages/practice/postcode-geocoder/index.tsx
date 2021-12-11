@@ -1,66 +1,66 @@
 import { useEffect } from "react";
-import Head from "next/head";
 
 declare const window: typeof globalThis & {
   kakao: any;
-  daum: any;
 };
-export default function KakaoMapPractice() {
-  const mapContainer = document.getElementById("map"), // 지도를 표시할 div
-    mapOption = {
-      center: new window.daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-      level: 5, // 지도의 확대 레벨
-    };
+export default function KakaoMapPracticePage() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=974b9cbaade1b363c98373c4ab957683&libraries=services";
 
-  //지도를 미리 생성
-  const map = new window.daum.maps.Map(mapContainer, mapOption);
-  //주소-좌표 변환 객체를 생성
-  const geocoder = new window.daum.maps.services.Geocoder();
-  //마커를 미리 생성
-  const marker = new window.daum.maps.Marker({
-    position: new window.daum.maps.LatLng(37.537187, 127.005476),
-    map: map,
-  });
+    document.head.appendChild(script);
 
-  function practiceDaumpostcode() {
-    new window.daum.Postcode({
-      oncomplete: function (data: any) {
-        const addr = data.address; // 최종 주소 변수
+    script.onload = () => {
+      window.kakao.maps.load(function () {
+        const container = document.getElementById("map"), // 지도를 표시할 div
+          options = {
+            center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3, // 지도의 확대 레벨
+          };
 
-        // 주소 정보를 해당 필드에 넣는다.
-        document.getElementById("sample5_address").value = addr;
-        // 주소로 상세 정보를 검색
+        // 지도를 생성합니다
+        const map = new window.kakao.maps.Map(container, options);
+
+        // 주소-좌표 변환 객체를 생성합니다
+        const geocoder = new window.kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
         geocoder.addressSearch(
-          data.address,
-          function (results: any, status: any) {
+          "별내중앙로",
+          function (result: any, status: any) {
             // 정상적으로 검색이 완료됐으면
-            if (status === window.daum.maps.services.Status.OK) {
-              const result = results[0]; //첫번째 결과의 값을 활용
+            if (status === window.kakao.maps.services.Status.OK) {
+              const coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
 
-              // 해당 주소에 대한 좌표를 받아서
-              const coords = new window.daum.maps.LatLng(result.y, result.x);
-              // 지도를 보여준다.
-              mapContainer.style.display = "block";
-              map.relayout();
-              // 지도 중심을 변경한다.
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              const marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
+
+              // 인포윈도우로 장소에 대한 설명을 표시합니다
+              const infowindow = new window.kakao.maps.InfoWindow({
+                content:
+                  '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+              });
+              infowindow.open(map, marker);
+
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
               map.setCenter(coords);
-              // 마커를 결과값으로 받은 위치로 옮긴다.
-              marker.setPosition(coords);
+              console.log(coords);
             }
           }
         );
-      },
-    }).open();
-  }
+      });
+    };
+  }, []);
   return (
     <>
-      <Head>
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=974b9cbaade1b363c98373c4ab957683&libraries=services"></script>
-      </Head>
       <div id="map" style={{ width: "500px", height: "400px" }}></div>
-      <input type="text" id="sample" placeholder="주소" />
-      <button onClick={practiceDaumpostcode}>지도</button>
     </>
   );
 }

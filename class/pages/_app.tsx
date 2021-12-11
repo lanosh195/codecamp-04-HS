@@ -1,9 +1,12 @@
+// import { GraphQLClient } from "graphql-request";
+
 import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { Global } from "@emotion/react";
 import "antd/dist/antd.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
@@ -21,6 +24,7 @@ import {
   useState,
 } from "react";
 import router from "next/router";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -66,17 +70,41 @@ function MyApp({ Component, pageProps }: AppProps) {
   //useEffect 사용
   //로컬 스토리지에 토큰이 있으면 꺼내서 글로벌 스테이트로!!!!///////////
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setAccessToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // if (accessToken) setAccessToken(accessToken);
+  }, []);
+
+  //operation -> 방금 실패한 쿼리 , forward -> 방금 실패한 거 다시 전송
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      // graphQlErrors를 에러라는 이름으로 반복
+      for (const err of graphQLErrors) {
+        // 1. 토큰만료 에러를 캐치
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          const newAccessToken = getAccessToken(setAccessToken);
+          //3. 기존에 실패한 요청 다시 요청하기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers, // <-- 기존 내용은 다 가져오고
+              authorization: `bearer ${newAccessToken}`, //2. refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+            },
+          });
+
+          return forward(operation);
+        }
+      }
+    }
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${myAccessToken} ` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as any]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
 

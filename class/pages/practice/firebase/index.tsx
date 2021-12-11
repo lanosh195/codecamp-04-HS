@@ -7,7 +7,7 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore/lite";
-import { firebaseApp } from "../_app";
+import { firebaseApp } from "../../_app";
 
 export default function FirebasePage() {
   //   async function onClicksubmit() {
