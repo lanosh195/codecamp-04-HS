@@ -67,7 +67,7 @@ export default function ModalBasicPage() {
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
                 const infowindow = new window.kakao.maps.InfoWindow({
                   content:
-                    '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+                    '<div style="width:150px;text-align:center;padding:6px 0;">거래 장소</div>',
                 });
                 infowindow.open(map, marker);
 
