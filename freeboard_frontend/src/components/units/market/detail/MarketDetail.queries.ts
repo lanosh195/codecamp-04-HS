@@ -37,8 +37,24 @@ export const FETCH_USEDITEM = gql`
 
 export const DELETE_USEDITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {
-    deleteUseditem(useditemId: $useditemId) {
+    deleteUseditem(useditemId: $useditemId)
+  }
+`;
+
+export const TOGGLE_USEDITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
+  }
+`;
+
+export const BUY_USEDITEM = gql`
+  mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!) {
+    createPointTransactionOfBuyingAndSelling(useritemId: $useritemId) {
       _id
+      name
+      remarks
+      contents
+      price
     }
   }
 `;

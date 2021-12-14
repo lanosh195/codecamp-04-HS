@@ -40,7 +40,9 @@ export default function LoginPage() {
       "accessToken",
       result.data?.loginUser.accessToken || ""
     );
-    setAccessToken(result.data?.loginUser.accessToken || "");
+    setAccessToken?.(result.data?.loginUser.accessToken || "");
+    localStorage.setItem("refreshToken", "true");
+    // setAccessToken?.(result.data?.loginUser.accessToken || "");
 
     setIsLoggedin(true);
     alert("로그인 되었습니다.");

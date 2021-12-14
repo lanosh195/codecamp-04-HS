@@ -6,9 +6,9 @@ import {
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import "antd/dist/antd.css";
 import { onError } from "@apollo/client/link/error";
 import { Global } from "@emotion/react";
-import "antd/dist/antd.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalStyles";
@@ -41,7 +41,7 @@ const firebaseConfig = {
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
-  useInfo?: {
+  userInfo?: {
     name?: string;
     email?: string;
     picture?: string;

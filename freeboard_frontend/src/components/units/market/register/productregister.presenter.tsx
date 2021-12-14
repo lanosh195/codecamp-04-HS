@@ -6,6 +6,8 @@ import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { v4 as uuidv4 } from "uuid";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import DaumPostcode from "react-daum-postcode";
+import { Modal, Button } from "antd";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -14,8 +16,6 @@ export default function ProductRegisterUI(props: any) {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-
-  // const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
   function handleChange(value: string) {
     console.log(value);
@@ -65,21 +65,47 @@ export default function ProductRegisterUI(props: any) {
           />
           <S.ErrorMessage>{formState.errors.price?.message}</S.ErrorMessage>
           <div>
-            {props.fileUrls.map((el: any, index) => (
+            {props.fileUrls.map((el: any, index: any) => (
               <Uploads01
                 key={uuidv4()}
                 index={index}
                 fileUrl={el}
-                defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+                defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
                 onChangeFileUrls={props.onChangeFileUrls}
               />
             ))}
           </div>
+          <Button onClick={props.showModal}>주소 검색</Button>
+          <div>내주소</div>
+          <S.Address
+            value={
+              props.myAddress ||
+              props.data?.fetchUseditem.useditemAddress?.address ||
+              ""
+            }
+          />
+          <div>내우편번호</div>
+          <S.Zipcode
+            value={
+              props.myZonecode ||
+              props.data?.fetchUseditem.useditemAddress?.zipcode ||
+              ""
+            }
+          />
+          <div id="map" style={{ width: "500px", height: "400px" }}></div>
+          {props.isOpen && (
+            <Modal
+              visible={true}
+              onOk={props.handleOk}
+              onCancel={props.handleCancel}
+            >
+              <DaumPostcode onComplete={props.handleComplete} />;
+            </Modal>
+          )}
           <S.ButtonWrapper>
             <S.SubmitButton type="submit" name="등록하기">
               {props.isEdit ? "수정하기" : "등록하기"}
             </S.SubmitButton>
-            ˜
           </S.ButtonWrapper>
         </form>
       </S.Wrapper>

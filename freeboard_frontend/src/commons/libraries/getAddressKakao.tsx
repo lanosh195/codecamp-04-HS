@@ -56,7 +56,7 @@ export default function ModalBasicPage() {
 
               // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
               map.setCenter(coords);
-              console.log(coords, coords.La, coords.Ma);
+              console.log(coords);
               console.log(myAddress);
             }
           }

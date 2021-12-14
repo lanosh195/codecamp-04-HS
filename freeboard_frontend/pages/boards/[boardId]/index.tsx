@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { withAuth } from "../../../src/components/commons/hocs/withAuth";
 import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.container";
 import BoardCommentList from "../../../src/components/units/boardComment/list/BoardCommentList.container";

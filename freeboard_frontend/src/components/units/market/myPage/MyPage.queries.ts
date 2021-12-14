@@ -7,7 +7,10 @@ export const FETCH_USER_LOGGEDIN = gql`
       email
       name
       picture
-      userPoint
+      userPoint {
+        _id
+        amount
+      }
       createdAt
       updatedAt
       deletedAt
@@ -22,6 +25,19 @@ export const CEATE_POINT_LOADING = gql`
       impUid
       amount
       status
+    }
+  }
+`;
+
+export const FETCH_POINT = gql`
+  query fetchPointTransactions($search: String, $page: Int) {
+    fetchPointTransactions(search: $search, page: $page) {
+      _id
+      amount
+      balance
+      status
+      statusDetail
+      createdAt
     }
   }
 `;

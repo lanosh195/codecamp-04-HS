@@ -8,7 +8,12 @@ import {
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import MarketDetailUI from "./MarketDetail.presenter";
-import { DELETE_USEDITEM, FETCH_USEDITEM } from "./MarketDetail.queries";
+import {
+  BUY_USEDITEM,
+  DELETE_USEDITEM,
+  FETCH_USEDITEM,
+  TOGGLE_USEDITEM_PICK,
+} from "./MarketDetail.queries";
 
 export default function MarketDetail() {
   const router = useRouter();
@@ -28,13 +33,16 @@ export default function MarketDetail() {
     IMutationDeleteUseditemArgs
   >(DELETE_USEDITEM);
 
+  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [buyUseditem] = useMutation(BUY_USEDITEM);
+
   function onCLickMoveToUpdate() {
     router.push(`/market${router.query.useditemId}/edit`);
   }
   function onClickMoveToList() {
     router.push("/market");
   }
-
+  //상품 삭제
   async function onClickDelete() {
     try {
       await deleteBoard({
@@ -46,7 +54,7 @@ export default function MarketDetail() {
       error instanceof Error && console.log(error.message);
     }
   }
-
+  //장바구니에 담기
   function onClickBasket() {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
 
@@ -65,8 +73,30 @@ export default function MarketDetail() {
     localStorage.setItem("basket", JSON.stringify(baskets));
     alert("장바구니에 상품을 담았습니다.");
   }
+  //상품 수정페이지로 이동
   function onClickEdit() {
     router.push(`/market/${router.query.useditemId}/edit`);
+  }
+
+  //상품 찜하기
+  function onClickPick() {
+    toggleUseditemPick({
+      variables: { useditemId: router.query.useditemId },
+      refetchQueries: [
+        {
+          query: FETCH_USEDITEM,
+          variables: { useditemId: router.query.useditemId },
+        },
+      ],
+    });
+  }
+
+  //상품 구매
+  function onClickBuyItem(id: any) {
+    buyUseditem({
+      variables: { useritemId: id },
+    });
+    alert("상품 구매가 완료되었습니다.");
   }
 
   return (
@@ -76,6 +106,8 @@ export default function MarketDetail() {
       onClickMoveToList={onClickMoveToList}
       onClickBasket={onClickBasket}
       onClickEdit={onClickEdit}
+      onClickPick={onClickPick}
+      onClickBuyItem={onClickBuyItem}
       data={data}
     />
   );

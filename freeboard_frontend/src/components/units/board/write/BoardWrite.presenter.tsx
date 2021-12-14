@@ -59,7 +59,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </S.ZipcodeWrapper>
         <S.Address
           value={
-            props.myAddress || props.data?.fetchBoard.boardAddress.address || ""
+            props.myAddress ||
+            props.data?.fetchBoard.boardAddress?.address ||
+            ""
           }
         />
 

@@ -43,6 +43,21 @@ export const ErrorMessage = styled.div`
   /* background-color: grey; */
 `;
 
+export const Address = styled.input`
+  width: 996px;
+  height: 52px;
+  margin-top: 16px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const Zipcode = styled.input`
+  width: 77px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;

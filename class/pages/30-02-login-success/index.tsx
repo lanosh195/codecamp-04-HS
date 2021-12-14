@@ -6,12 +6,14 @@ const FETCH_USER_LOGGED_IN = gql`
       email
       name
       picture
+      _id
     }
   }
 `;
 
 export default function LoginSuccessPage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  console.log(data);
 
   return (
     <>
