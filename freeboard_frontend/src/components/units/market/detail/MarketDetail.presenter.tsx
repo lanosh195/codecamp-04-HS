@@ -19,7 +19,14 @@ export default function MarketDetailUI(props: any) {
             <S.ItemRemarks>{props.data?.fetchUseditem.remarks}</S.ItemRemarks>
             <S.ItemPrice>{props.data?.fetchUseditem.price}</S.ItemPrice>
             <S.ItemWon>원</S.ItemWon>
+
             <button onClick={props.onClickPick}>찜하기</button>
+            {props.data?.fetchUseditem.pickedCount}
+            {props.isPicked ? (
+              <S.LikeImg src="/images/eheart.png" />
+            ) : (
+              <S.LikeImg src="/images/heart1.png" />
+            )}
           </S.RightHeader>
           <S.ItemNotice>안내사항</S.ItemNotice>
           <div></div>

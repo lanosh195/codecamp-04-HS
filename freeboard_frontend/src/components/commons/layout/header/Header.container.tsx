@@ -11,28 +11,29 @@ import {
 import { GlobalContext } from "../../../../../pages/_app";
 
 export default function Header() {
-  const [weatherUrl, setWeatherUrl] = useState("");
-  const [cityNmae, setCityName] = useState("");
-  const [weatherMain, setWeatherMain] = useState("");
-  const [temp, setTemp] = useState("");
-  const [weather, setWeather] = useState("");
+  // const [weatherUrl, setWeatherUrl] = useState("");
+  // const [cityNmae, setCityName] = useState("");
+  // const [weatherMain, setWeatherMain] = useState("");
+  // const [temp, setTemp] = useState("");
+  // const [weather, setWeather] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    async function fetchWeather() {
-      const result: any = await axios.get(
-        "http://api.openweathermap.org/data/2.5/weather?lat=37.56826&lon=126.977829&APPID=5eb310782345882f568bd1492c938cab"
-      );
-      setWeatherUrl(result);
-      console.log(result);
-      setCityName(result.data.name);
-      setWeatherMain(result.data.weather[0].main);
-      setTemp(result.data.main.temp);
-      setWeather(result.data.weather[0].description);
-    }
+  // useEffect(() => {
+  //   async function fetchWeather() {
+  //     const result: any = await axios.get(
+  //       "http://api.openweathermap.org/data/2.5/weather?lat=37.56826&lon=126.977829&APPID=5eb310782345882f568bd1492c938cab"
+  //     );
+  //     setWeatherUrl(result);
+  //     console.log(result);
+  //     setCityName(result.data.name);
+  //     setWeatherMain(result.data.weather[0].main);
+  //     setTemp(result.data.main.temp);
+  //     setWeather(result.data.weather[0].description);
+  //   }
 
-    fetchWeather();
-  }, []);
+  //   fetchWeather();
+  // }, []);
+
   const { accessToken, isLoggedin, setIsLoggedin } = useContext(GlobalContext);
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
@@ -57,10 +58,10 @@ export default function Header() {
   return (
     <>
       <HeaderUI
-        getTemp={getTemp}
-        weatherMain={weatherMain}
-        temp={temp}
-        cityName={cityNmae}
+        // getTemp={getTemp}
+        // weatherMain={weatherMain}
+        // temp={temp}
+        // cityName={cityNmae}
         MoveLogin={MoveLogin}
         MoveSignup={MoveSignup}
         data={data}

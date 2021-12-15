@@ -46,3 +46,9 @@ export const BuyBtn = styled.button`
   width: 408px;
   height: 54px;
 `;
+
+export const LikeImg = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 3px;
+`;

@@ -1,5 +1,4 @@
 import * as S from "../register/productregister.styles";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./productregister.validation";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
@@ -8,14 +7,16 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import DaumPostcode from "react-daum-postcode";
 import { Modal, Button } from "antd";
+import { useForm } from "react-hook-form";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function ProductRegisterUI(props: any) {
-  const { handleSubmit, register, formState, setValue, trigger } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schema),
-  });
+  const { handleSubmit, register, setValue, trigger, formState, getValues } =
+    useForm({
+      mode: "onChange",
+      resolver: yupResolver(schema),
+    });
 
   function handleChange(value: string) {
     console.log(value);
@@ -51,10 +52,18 @@ export default function ProductRegisterUI(props: any) {
           />
           <S.ErrorMessage>{formState.errors.remarks?.message}</S.ErrorMessage>
           상품 설명:
-          <S.Contents
-            // defaultValue={props.isEdit && props.data?.fetchUseditem.contents}
-            onChange={handleChange}
-          />
+          {props.isEdit ? (
+            <S.Contents
+              onChange={handleChange}
+              value={
+                getValues("contents") ||
+                props.data?.fetchUseditem.contents ||
+                ""
+              }
+            />
+          ) : (
+            <S.Contents onChange={handleChange} />
+          )}
           {/* <S.ErrorMessage>{formState.errors.contents?.message}</S.ErrorMessage> */}
           <div>가격:</div>
           <S.Price
@@ -92,7 +101,7 @@ export default function ProductRegisterUI(props: any) {
               ""
             }
           />
-          <div id="map" style={{ width: "500px", height: "400px" }}></div>
+          <div id="map" style={{ width: "400px", height: "300px" }}></div>
           {props.isOpen && (
             <Modal
               visible={true}

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   IMutation,
   IMutationDeleteUseditemArgs,
@@ -13,7 +13,7 @@ import {
   BUY_USEDITEM,
   DELETE_USEDITEM,
   FETCH_USEDITEM,
-  TOGGLE_USEDITEM_PICK,
+  USEDITEM_PICK,
 } from "./MarketDetail.queries";
 
 declare const window: typeof globalThis & {
@@ -21,6 +21,7 @@ declare const window: typeof globalThis & {
 };
 
 export default function MarketDetail() {
+  const [isPicked, setIsPicked] = useState(false);
   const router = useRouter();
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
@@ -38,7 +39,7 @@ export default function MarketDetail() {
     IMutationDeleteUseditemArgs
   >(DELETE_USEDITEM);
 
-  const [toggleUseditemPick] = useMutation(TOGGLE_USEDITEM_PICK);
+  const [toggleUseditemPick] = useMutation(USEDITEM_PICK);
   const [buyUseditem] = useMutation(BUY_USEDITEM);
 
   function onCLickMoveToUpdate() {
@@ -84,6 +85,7 @@ export default function MarketDetail() {
   }
 
   //상품 찜하기
+
   function onClickPick() {
     toggleUseditemPick({
       variables: { useditemId: router.query.useditemId },
@@ -94,6 +96,7 @@ export default function MarketDetail() {
         },
       ],
     });
+    setIsPicked((prev) => !prev);
   }
 
   //상품 구매
@@ -165,6 +168,7 @@ export default function MarketDetail() {
       onClickPick={onClickPick}
       onClickBuyItem={onClickBuyItem}
       data={data}
+      isPicked={isPicked}
     />
   );
 }

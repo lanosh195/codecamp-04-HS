@@ -44,6 +44,7 @@ export default function ProductRegister(props: any) {
         },
       });
       console.log(result.data);
+      alert("상품이 등록되었습니다.");
       router.push(`/market/${result.data.createUseditem._id}`);
     } catch (error) {
       error instanceof Error && alert(error.message);
@@ -60,8 +61,8 @@ export default function ProductRegister(props: any) {
       useditemAddress: {
         zipcode: myZonecode,
         address: myAddress,
-        lat,
-        lng,
+        // lat,
+        // lng,
       },
     };
 
@@ -72,6 +73,7 @@ export default function ProductRegister(props: any) {
           updateUseditemInput,
         },
       });
+      alert("수정이 완료되었습니다.");
       router.push(`/market/${router.query.useditemId}`);
       console.log(result);
     } catch (error) {
@@ -151,7 +153,6 @@ export default function ProductRegister(props: any) {
 
   const handleComplete = (data: any) => {
     // console.log(data);
-
     setMyAddress(data.address);
     setMyZonecode(data.zonecode);
     setIsOpen(false);
