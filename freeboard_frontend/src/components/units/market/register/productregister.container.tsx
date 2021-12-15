@@ -1,10 +1,10 @@
 import ProductRegitserUI from "../register/productregister.presenter";
 import React, { useState, useEffect } from "react";
 import { FormValues } from "./productregister.types";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_PRODUCT, UPDATE_USEDITEM } from "./productregister.queries";
 import { useRouter } from "next/router";
-import { getDefaultValues } from "@apollo/client/utilities";
+import { FETCH_USEDITEM } from "../detail/MarketDetail.queries";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -14,6 +14,9 @@ export default function ProductRegister(props: any) {
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [updateUseditem] = useMutation(UPDATE_USEDITEM);
   const router = useRouter();
+  const { data } = useQuery(FETCH_USEDITEM, {
+    variables: { useditemId: router.query.useditemId },
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [myAddress, setMyAddress] = useState("");
   const [myZonecode, setMyZonecode] = useState("");
@@ -99,7 +102,9 @@ export default function ProductRegister(props: any) {
 
         // 주소로 좌표를 검색합니다
         geocoder.addressSearch(
-          `${myAddress}`,
+          data?.fetchUseditem.useditemAddress?.address
+            ? `${data?.fetchUseditem.useditemAddress?.address}`
+            : `${myAddress}`,
           function (result: any, status: any) {
             // 정상적으로 검색이 완료됐으면
             if (status === window.kakao.maps.services.Status.OK) {
@@ -130,7 +135,7 @@ export default function ProductRegister(props: any) {
         );
       });
     };
-  }, [myAddress]);
+  }, [data, myAddress]);
 
   const showModal = () => {
     setIsOpen(true);

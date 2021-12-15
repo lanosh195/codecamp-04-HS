@@ -7,6 +7,11 @@ export default function MarketDetailUI(props: any) {
           <S.ItemImg
             src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`}
           />
+          {props.data?.fetchUseditem.useditemAddress.address ? (
+            <div id="map" style={{ width: "500px", height: "400px" }}></div>
+          ) : (
+            <div>거래 장소가 등록되지 않았습니다.</div>
+          )}
         </S.DetailLeft>
         <S.DetailRight>
           <S.RightHeader>
@@ -18,6 +23,7 @@ export default function MarketDetailUI(props: any) {
           </S.RightHeader>
           <S.ItemNotice>안내사항</S.ItemNotice>
           <div></div>
+
           <S.BasketBtn onClick={props.onClickBasket}>장바구니</S.BasketBtn>
           <S.BuyBtn onClick={props.onClickBuyItem}>바로 구매하기</S.BuyBtn>
           <button onClick={props.onClickEdit}>수정하기</button>

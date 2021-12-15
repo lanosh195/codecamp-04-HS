@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   display: flex;
+  margin: 0 0 50px 0;
 `;
 
 export const DetailLeft = styled.div`
