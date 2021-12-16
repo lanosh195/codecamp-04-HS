@@ -40,7 +40,7 @@ export default function ProductRegisterUI(props: any) {
             type="text"
             placeholder="상품명을 입력해주세요."
             {...register("name")}
-            defaultValue={props.isEdit && props.data?.fetchUseditem.name}
+            defaultValue={props.data?.fetchUseditem.name}
           />
           <S.ErrorMessage>{formState.errors.name?.message}</S.ErrorMessage>
           한줄요약:
@@ -48,7 +48,7 @@ export default function ProductRegisterUI(props: any) {
             type="text"
             placeholder="한줄요약을 입력해주세요."
             {...register("remarks")}
-            defaultValue={props.isEdit && props.data?.fetchUseditem.remarks}
+            defaultValue={props.data?.fetchUseditem.remarks}
           />
           <S.ErrorMessage>{formState.errors.remarks?.message}</S.ErrorMessage>
           상품 설명:
@@ -70,7 +70,7 @@ export default function ProductRegisterUI(props: any) {
             type="text"
             placeholder="가격을 입력해주세요."
             {...register("price")}
-            defaultValue={props.isEdit && props.data?.fetchUseditem.price}
+            defaultValue={props.data?.fetchUseditem.price}
           />
           <S.ErrorMessage>{formState.errors.price?.message}</S.ErrorMessage>
           <div>

@@ -113,3 +113,54 @@ function solution(dartResult) {
   answer = cnt.reduce((acc, cur) => acc + cur, 0);
   return answer;
 }
+
+05;
+("신규 아이디 추천");
+
+const filter = "1234567890abcdefghijklmnopqrstuvwxyz-_.";
+
+function solution(new_id) {
+  //1단계 : 대문자 -> 소문자
+  new_id = new_id.toLowerCase();
+
+  //2단계 : 소문자, 숫자, -, _, . 를 제외한 문자 제거
+  let answer = "";
+  for (let i = 0; i < new_id.length; i++) {
+    if (filter.includes(new_id[i])) {
+      answer += new_id[i];
+    }
+  }
+
+  //3단계 : .가 연속으로 들어오면 하나로 (.. -> .)
+  while (answer.includes("..")) {
+    answer = answer.replace("..", ".");
+  }
+  //4단계 : .가 처음이나 마지막에 위치하면 제거
+  if (answer[0] === ".") {
+    answer = answer.substr(1);
+  }
+  //마지막에 위치하면 제거 하는 함수 만들기(밑에서 또 씀)
+  function removeLastDot() {
+    if (answer[answer.length - 1] === ".") {
+      answer = answer.slice(0, answer.length - 1);
+    }
+  }
+  //함수 사용
+  removeLastDot();
+
+  //5단계 : 빈 문자열이면, "a"를 대입
+  if (answer.length === 0) {
+    answer = "a";
+  }
+  //6단계 : id 길이가 16자 이상이면 15개를 제외한 나머지 제거
+  //       제거한 후에, 마침표가 끝에 붙으면 제거
+  if (answer.length > 15) {
+    answer = answer.slice(0, 15);
+    removeLastDot();
+  }
+  //7단계 : 문자열의 길이가 2자 이하라면, 마지막 글자 반복해서 3글자로 만들기
+  if (answer.length < 3) {
+    answer = answer.padEnd(3, answer[answer.length - 1]);
+  }
+  return answer;
+}

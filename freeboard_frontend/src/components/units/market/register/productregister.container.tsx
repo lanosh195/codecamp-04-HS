@@ -32,7 +32,7 @@ export default function ProductRegister(props: any) {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
-            price: Number(data.price),
+            price: data.price,
             images: fileUrls,
             useditemAddress: {
               zipcode: myZonecode,
@@ -51,18 +51,18 @@ export default function ProductRegister(props: any) {
     }
   }
 
-  async function onClickUpdate(data: FormValues) {
+  async function onClickUpdate(modify: FormValues) {
     const updateUseditemInput = {
-      name: data.name,
-      remarks: data.remarks,
-      contents: data.contents,
-      price: data.price,
+      name: modify.name ? modify.name : data.name,
+      remarks: modify.remarks ? modify.remarks : data.remarks,
+      contents: modify.contents ? modify.contents : data.contents,
+      price: modify.price ? modify.price : data.price,
       images: fileUrls,
       useditemAddress: {
         zipcode: myZonecode,
         address: myAddress,
-        // lat,
-        // lng,
+        lat,
+        lng,
       },
     };
 
