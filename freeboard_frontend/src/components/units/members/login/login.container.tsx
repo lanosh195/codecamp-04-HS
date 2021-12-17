@@ -36,18 +36,18 @@ export default function LoginPage() {
       },
     });
 
-    localStorage.setItem(
-      "accessToken",
-      result.data?.loginUser.accessToken || ""
-    );
+    // localStorage.setItem(
+    //   "accessToken",
+    //   result.data?.loginUser.accessToken || ""
+    // );
     setAccessToken?.(result.data?.loginUser.accessToken || "");
     localStorage.setItem("refreshToken", "true");
-    // setAccessToken?.(result.data?.loginUser.accessToken || "");
 
-    setIsLoggedin(true);
+    // setIsLoggedin(true);
     alert("로그인 되었습니다.");
     console.log(result);
-    router.back();
+    // router.back();
+    router.push("/");
   }
   function MoveHome() {
     router.push("/");

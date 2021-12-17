@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
-import { onError } from "@apollo/client/link/error";
+import { onError } from "@apollo/client/link/error"; //토근 만료 시 에러 캐치 부분.
 import { Global } from "@emotion/react";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import { globalStyles } from "../src/commons/styles/globalStyles";
@@ -64,11 +64,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
-    // const accessToken = localStorage.getItem("accessToken") || "";
-    // if (accessToken) setAccessToken(accessToken);
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    //실패한 요청 -operation / 재요청 -forward
     if (graphQLErrors) {
       // graphQlErrors를 에러라는 이름으로 반복
       for (const err of graphQLErrors) {
@@ -78,8 +77,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           //3. 기존에 실패한 요청 다시 요청하기
           operation.setContext({
             headers: {
-              ...operation.getContext().headers, // <-- 기존 내용은 다 가져오고
-              authorization: `bearer ${newAccessToken}`, //2. refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+              ...operation.getContext().headers, // <-- 기존 내용은 다 가져오고 헤더에 있는 Token만 바꿔줌
+              authorization: `bearer ${newAccessToken}`, // <-- 스프레드 시 authorization도 있지만, 키가 중복될 시 아래 것으로 대치됨.
             },
           });
 
@@ -90,12 +89,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${myAccessToken} ` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as any]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
 

@@ -1,10 +1,15 @@
 import { useMutation, useQuery } from "@apollo/client";
 import MyPageUI from "./MyPage.presenter";
-import { FETCH_USER_LOGGEDIN, CEATE_POINT_LOADING } from "./MyPage.queries";
+import {
+  FETCH_USER_LOGGEDIN,
+  CEATE_POINT_LOADING,
+  FETCH_USEDITEM_I_BOUGHT,
+} from "./MyPage.queries";
 
 export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
   const [createPoint] = useMutation(CEATE_POINT_LOADING);
+  const { data: data2 } = useQuery(FETCH_USEDITEM_I_BOUGHT);
 
   function onClickPayment() {
     const IMP = window.IMP;
@@ -36,5 +41,7 @@ export default function MyPage() {
       }
     );
   }
-  return <MyPageUI onClickPayment={onClickPayment} data={data} />;
+  console.log(data);
+  console.log(data2);
+  return <MyPageUI onClickPayment={onClickPayment} data={data} data2={data2} />;
 }

@@ -1,6 +1,5 @@
 import HeaderUI from "./Header.presenter";
-import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import { FETCH_USER_LOGGED_IN, LOGOUT_USER } from "./Header.queries";
 import { useMutation, useQuery } from "@apollo/client";
@@ -39,9 +38,9 @@ export default function Header() {
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
   const [logoutUser] = useMutation(LOGOUT_USER);
 
-  function getTemp(temp: any) {
-    return (temp - 273.15).toFixed(2);
-  }
+  // function getTemp(temp: any) {
+  //   return (temp - 273.15).toFixed(2);
+  // }
   function MoveLogin() {
     router.push("/boards/login");
   }
@@ -49,10 +48,13 @@ export default function Header() {
     router.push("/boards/signup");
   }
   function logout() {
-    logoutUser;
-    localStorage.removeItem("accessToken");
+    logoutUser();
+    localStorage.removeItem("refreshToken");
+    location.reload();
+    // router.push("/");
     alert("로그아웃 되었습니다.");
-    setIsLoggedin(false);
+    // setIsLoggedin(false);
+    console.log(data);
   }
 
   return (

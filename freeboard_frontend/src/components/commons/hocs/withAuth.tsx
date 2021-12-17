@@ -7,7 +7,8 @@ export const withAuth = (Component) => (props) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
+    // if (!accessToken) {
+    if (!localStorage.getItem("refreshToken")) {
       alert("로그인 해주세요");
       router.push("/boards/login");
     }

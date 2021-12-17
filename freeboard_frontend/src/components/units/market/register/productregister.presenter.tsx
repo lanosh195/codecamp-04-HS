@@ -27,7 +27,6 @@ export default function ProductRegisterUI(props: any) {
     <>
       <S.Wrapper>
         <S.Title>{props.isEdit ? "상품수정" : "상품등록"}</S.Title>
-
         <form
           onSubmit={
             props.isEdit

@@ -164,3 +164,154 @@ function solution(new_id) {
   }
   return answer;
 }
+
+///매서드 방식
+const filter = "1234567890abcdefghijklmnopqrstuvwxyz-_.";
+
+function solution(new_id) {
+  //1단계 : 대문자 -> 소문자
+  new_id = new_id.toLowerCase();
+
+  //2단계 : 소문자, 숫자, -, _, . 를 제외한 문자 제거
+  let answer = new_id.split("").filter((str) => filter.includes(str));
+
+  //3단계 : .가 연속으로 들어오면 하나로 (.. -> .)
+  answer = answer.filter(
+    (str, i) => (str === "." && answer[i + 1] !== ".") || str !== "."
+  );
+  //4단계 : .가 처음이나 마지막에 위치하면 제거
+  if (answer[0] === ".") {
+    // answer.splice(0,1);
+    answer.shift();
+  }
+  const removeLastDot = () => {
+    if (answer[answer.length - 1] === ".") {
+      // answer.splice(answer.length -1, 1);
+      answer.pop();
+    }
+  };
+  removeLastDot();
+  //5단계 : 빈 문자열이면, "a"를 대입
+  if (answer.length === 0) {
+    answer = ["a"];
+  }
+  //6단계 : id 길이가 16자 이상이면 15개를 제외한 나머지 제거
+  //       제거한 후에, 마침표가 끝에 붙으면 제거
+  if (answer.length > 15) {
+    answer = answer.slice(0, 15);
+    removeLastDot();
+  }
+  //7단계 : 문자열의 길이가 2자 이하라면, 마지막 글자 반복해서 3글자로 만들기
+  if (answer.length < 3) {
+    const add = new Array(3 - answer.length).fill(answer[answer.length - 1]);
+    answer = answer.concat(add);
+  }
+  return answer.join("");
+}
+
+06;
+("키패드 누르기");
+
+const [leftNum, rightNum] = [
+  [1, 4, 7],
+  [3, 6, 9],
+]; //비구조화 할당
+
+function solution(numbers, hand) {
+  let answer = "";
+
+  //현재 손가락의 위치
+  const current = {
+    left: 10, //"*",
+    right: 12, //"#"
+  };
+  for (let i = 0; i < numbers.length; i++) {
+    if (leftNum.includes(numbers[i])) {
+      answer += "L";
+      current["left"] = numbers[i];
+    } else if (rightNum.includes(numbers[i])) {
+      answer += "R";
+      current["right"] = numbers[i];
+    } else {
+      //가운데 번호를 누를 때, 위치값을 저장하는 객체
+      const centerObj = { ...current };
+      //객체 반복
+      for (let key in centerObj) {
+        numbers[i] = numbers[i] === 0 ? 11 : numbers[i];
+        let location = Math.abs(numbers[i] - centerObj[key]);
+        //위 아래로 이동한 것 처리해주기
+        if (location >= 3) {
+          location = Math.trunc(location / 3) + (location % 3);
+        }
+
+        centerObj[key] = location;
+      }
+      // 거리가 동일하다면 주로 쓰는 손으로 키패드를 누른다.
+      if (centerObj["left"] === centerObj["right"]) {
+        answer += hand === "left" ? "L" : "R";
+      } else {
+        if (centerObj["left"] > centerObj["right"]) {
+          answer += "R";
+          current["right"] = numbers[i];
+        } else answer += "L";
+        current["left"] = numbers[i];
+      }
+    }
+  }
+  return answer;
+}
+
+///매서드 방식
+
+const [leftNum, rightNum] = [
+  [1, 4, 7],
+  [3, 6, 9],
+]; //비구조화 할당
+
+function solution(numbers, hand) {
+  //현재 손가락의 위치
+  const current = {
+    left: 10, //"*",
+    right: 12, //"#"
+  };
+
+  const answer = numbers
+    .map((num) => {
+      if (leftNum.includes(num)) {
+        current["left"] = num;
+        return "L";
+      } else if (rightNum.includes(num)) {
+        current["right"] = num;
+        return "R";
+      } else {
+        const centerObj = { ...current };
+        Object.entries(centerObj).forEach((el) => {
+          const hand = el[0];
+
+          num = num === 0 ? 11 : num;
+          let location = Math.abs(num - el[1]);
+
+          if (location > 2) {
+            location = Math.trunc(location / 3) + (location % 3);
+          }
+
+          centerObj[hand] = location;
+        });
+
+        if (centerObj["left"] === centerObj["right"]) {
+          current[hand] = num;
+          return hand === "right" ? "R" : "L";
+        } else {
+          if (centerObj["left"] > centerObj["right"]) {
+            current["right"] = num;
+            return "R";
+          } else {
+            current["left"] = num;
+            return "L";
+          }
+        }
+      }
+    })
+    .join("");
+  return answer;
+}

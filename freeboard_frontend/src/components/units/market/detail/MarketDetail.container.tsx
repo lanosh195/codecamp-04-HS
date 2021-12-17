@@ -48,7 +48,7 @@ export default function MarketDetail() {
   function onClickMoveToList() {
     router.push("/market");
   }
-  //상품 삭제
+
   async function onClickDelete() {
     try {
       await deleteBoard({
@@ -60,7 +60,7 @@ export default function MarketDetail() {
       error instanceof Error && console.log(error.message);
     }
   }
-  //장바구니에 담기
+
   function onClickBasket() {
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
 
@@ -85,7 +85,6 @@ export default function MarketDetail() {
   }
 
   //상품 찜하기
-
   function onClickPick() {
     toggleUseditemPick({
       variables: { useditemId: router.query.useditemId },
@@ -99,14 +98,13 @@ export default function MarketDetail() {
     setIsPicked((prev) => !prev);
   }
 
-  //상품 구매
-  function onClickBuyItem(id: any) {
+  const onClickBuyItem = (id: any) => {
     buyUseditem({
       variables: { useritemId: id },
     });
-    alert("상품 구매가 완료되었습니다.");
-  }
-  //지도
+    // alert("상품 구매가 완료되었습니다.");
+  };
+  //지도 표시
   useEffect(() => {
     const script = document.createElement("script");
     script.src =

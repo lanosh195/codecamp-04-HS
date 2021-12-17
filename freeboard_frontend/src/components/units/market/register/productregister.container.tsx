@@ -51,12 +51,12 @@ export default function ProductRegister(props: any) {
     }
   }
 
-  async function onClickUpdate(modify: FormValues) {
+  async function onClickUpdate(data: FormValues) {
     const updateUseditemInput = {
-      name: modify.name ? modify.name : data.name,
-      remarks: modify.remarks ? modify.remarks : data.remarks,
-      contents: modify.contents ? modify.contents : data.contents,
-      price: modify.price ? modify.price : data.price,
+      name: data.name,
+      remarks: data.remarks,
+      contents: data.contents,
+      price: data.price,
       images: fileUrls,
       useditemAddress: {
         zipcode: myZonecode,

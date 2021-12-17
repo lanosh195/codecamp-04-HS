@@ -41,3 +41,15 @@ export const FETCH_POINT = gql`
     }
   }
 `;
+
+export const FETCH_USEDITEM_I_BOUGHT = gql`
+  query fetchUseditemsIBought($search: String, $page: Int) {
+    fetchUseditemsIBought(search: $search, page: $page) {
+      _id
+      name
+      remarks
+      conents
+      price
+    }
+  }
+`;

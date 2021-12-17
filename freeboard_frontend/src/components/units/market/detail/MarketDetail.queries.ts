@@ -53,7 +53,6 @@ export const BUY_USEDITEM = gql`
       _id
       name
       remarks
-      contents
       price
     }
   }

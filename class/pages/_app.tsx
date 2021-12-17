@@ -1,5 +1,5 @@
 // import { GraphQLClient } from "graphql-request";
-
+import * as Sentry from "@sentry/nextjs";
 import {
   ApolloClient,
   ApolloProvider,
@@ -47,6 +47,10 @@ interface IGlobalContext {
     picture?: string;
   };
 }
+
+Sentry.init({
+  dsn: "https://10edf894102d4a958c956e563d746d49@o1091868.ingest.sentry.io/6109518",
+});
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
 
