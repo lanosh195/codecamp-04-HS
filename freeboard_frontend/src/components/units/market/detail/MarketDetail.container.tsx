@@ -98,11 +98,12 @@ export default function MarketDetail() {
     setIsPicked((prev) => !prev);
   }
 
-  const onClickBuyItem = (id: any) => {
+  const onClickBuyItem = (id: any) => () => {
     buyUseditem({
       variables: { useritemId: id },
     });
-    // alert("상품 구매가 완료되었습니다.");
+    alert("상품 구매가 완료되었습니다.");
+    router.push("/");
   };
   //지도 표시
   useEffect(() => {
