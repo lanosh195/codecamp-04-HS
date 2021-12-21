@@ -1,15 +1,23 @@
 import { useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
 import MyPageUI from "./MyPage.presenter";
 import {
   FETCH_USER_LOGGEDIN,
   CEATE_POINT_LOADING,
   FETCH_USEDITEM_I_BOUGHT,
+  FETCH_USEDITEM_ISOLD,
 } from "./MyPage.queries";
+
+declare const window: typeof globalThis & {
+  IMP: any;
+};
 
 export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
   const [createPoint] = useMutation(CEATE_POINT_LOADING);
+  const [point, setPoint] = useState(0);
   const { data: data2 } = useQuery(FETCH_USEDITEM_I_BOUGHT);
+  const { data: data3 } = useQuery(FETCH_USEDITEM_ISOLD);
 
   function onClickPayment() {
     const IMP = window.IMP;
@@ -18,8 +26,8 @@ export default function MyPage() {
       {
         pg: "html5_inicis",
         pay_method: "card",
-        name: "포인트 500",
-        amount: 500,
+        name: "포인트",
+        amount: `${point}`,
         buyer_email: data?.fetchUserLoggedIn.email,
         buyer_name: data?.fetchUserLoggedIn.name,
         buyer_tel: "010-4242-4242",
@@ -27,21 +35,34 @@ export default function MyPage() {
         buyer_postcode: "01181",
         m_redirect_url: "", //모바일 결제 후 리다이렉트 될 주소
       },
-      (rsp) => {
+      (rsp: any) => {
         // callback
         if (rsp.success) {
           console.log(rsp);
           createPoint({
-            variables: { impUid: rsp.imp._uid },
-            refetchQueries: [{ query: FETCH_USER_LOGGEDIN }],
+            variables: { impUid: String(rsp.imp_uid) },
+            // refetchQueries: [{ query: FETCH_USER_LOGGEDIN }],
           });
+          alert("포인트가 충전되었습니다.");
+          location.reload();
         } else {
           // 결제 실패 시
         }
+        console.log(rsp);
       }
     );
   }
-  console.log(data);
-  console.log(data2);
-  return <MyPageUI onClickPayment={onClickPayment} data={data} data2={data2} />;
+
+  // console.log(data);
+  // console.log(data2);
+  // console.log(data3);
+  return (
+    <MyPageUI
+      onClickPayment={onClickPayment}
+      data={data}
+      data2={data2}
+      data3={data3}
+      setPoint={setPoint}
+    />
+  );
 }

@@ -51,10 +51,7 @@ export default function Header() {
     logoutUser();
     localStorage.removeItem("refreshToken");
     location.reload();
-    // router.push("/");
     alert("로그아웃 되었습니다.");
-    // setIsLoggedin(false);
-    console.log(data);
   }
 
   return (

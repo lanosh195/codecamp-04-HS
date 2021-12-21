@@ -15,6 +15,7 @@ export default function HeaderUI(props) {
           <S.BoardName onClick={moveToPage("")}>PROFILE</S.BoardName>
           <S.BoardName onClick={moveToPage("/boards")}>BOARD</S.BoardName>
           <S.BoardName onClick={moveToPage("/market")}>MARKET</S.BoardName>
+          <S.BoardName onClick={moveToPage("/mypage")}>MYPAGE</S.BoardName>
         </S.HeaderCenter>
         {props.data?.fetchUserLoggedIn ? (
           <S.UserInfo>

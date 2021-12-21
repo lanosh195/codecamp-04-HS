@@ -34,7 +34,7 @@ export default function MarketDetailUI(props: any) {
           <S.BasketBtn onClick={props.onClickBasket}>장바구니</S.BasketBtn>
           <S.BuyBtn
             // onClick={props.onClickBuyItem}
-            onClick={props.onClickBuyItem(props.data?.fetchUseditem._id)}
+            onClick={props.onClickBuyItem}
           >
             바로 구매하기
           </S.BuyBtn>

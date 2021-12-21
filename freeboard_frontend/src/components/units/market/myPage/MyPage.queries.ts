@@ -24,7 +24,6 @@ export const CEATE_POINT_LOADING = gql`
       _id
       impUid
       amount
-      status
     }
   }
 `;
@@ -43,13 +42,28 @@ export const FETCH_POINT = gql`
 `;
 
 export const FETCH_USEDITEM_I_BOUGHT = gql`
-  query fetchUseditemsIBought($search: String, $page: Int) {
-    fetchUseditemsIBought(search: $search, page: $page) {
+  query fetchUseditemsIBought($page: Int) {
+    fetchUseditemsIBought(page: $page) {
       _id
       name
       remarks
-      conents
+      contents
       price
+      createdAt
+    }
+  }
+`;
+
+export const FETCH_USEDITEM_ISOLD = gql`
+  query fetchUseditemsISold($page: Int) {
+    fetchUseditemsISold(page: $page) {
+      _id
+      name
+      price
+      createdAt
+      buyer {
+        name
+      }
     }
   }
 `;

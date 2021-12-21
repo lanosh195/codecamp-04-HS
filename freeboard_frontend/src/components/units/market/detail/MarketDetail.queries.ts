@@ -51,8 +51,17 @@ export const BUY_USEDITEM = gql`
   mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!) {
     createPointTransactionOfBuyingAndSelling(useritemId: $useritemId) {
       _id
+    }
+  }
+`;
+
+export const FETCH_USEDITEMS_I_PICKED = gql`
+  query fetchUseditemsIPicked($page: Int) {
+    fetchUseditemsIPicked(page: $page) {
+      _id
       name
-      remarks
+      reamarks
+      contents
       price
     }
   }

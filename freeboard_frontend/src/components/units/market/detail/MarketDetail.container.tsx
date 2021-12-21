@@ -6,6 +6,7 @@ import {
   IMutationDeleteUseditemArgs,
   IQuery,
   IQueryFetchUseditemArgs,
+  IQueryFetchUseditemsIPickedArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import MarketDetailUI from "./MarketDetail.presenter";
@@ -14,6 +15,7 @@ import {
   DELETE_USEDITEM,
   FETCH_USEDITEM,
   USEDITEM_PICK,
+  FETCH_USEDITEMS_I_PICKED,
 } from "./MarketDetail.queries";
 
 declare const window: typeof globalThis & {
@@ -31,8 +33,10 @@ export default function MarketDetail() {
       useditemId: String(router.query.useditemId),
     },
   });
-
-  console.log(data);
+  const { data: data2 } = useQuery<
+    Pick<IQuery, "fetchUseditemsIPicked">,
+    IQueryFetchUseditemsIPickedArgs
+  >(FETCH_USEDITEMS_I_PICKED);
 
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteUseditem">,
@@ -95,16 +99,28 @@ export default function MarketDetail() {
         },
       ],
     });
+    // if (data2._id.includes(data?.fetchUseditem._id)) {
     setIsPicked((prev) => !prev);
+    // }
   }
 
-  const onClickBuyItem = (id: any) => () => {
-    buyUseditem({
-      variables: { useritemId: id },
-    });
-    alert("상품 구매가 완료되었습니다.");
-    router.push("/");
-  };
+  async function onClickBuyItem() {
+    try {
+      await buyUseditem({
+        variables: { useritemId: router.query.useditemId },
+        refetchQueries: [
+          {
+            query: FETCH_USEDITEM,
+            variables: { useritemId: router.query.useditemId },
+          },
+        ],
+      });
+      alert("상품 구매가 완료되었습니다.");
+      router.push("/market");
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  }
   //지도 표시
   useEffect(() => {
     const script = document.createElement("script");
@@ -157,6 +173,7 @@ export default function MarketDetail() {
       });
     };
   }, [data]);
+
   return (
     <MarketDetailUI
       onClickDelete={onClickDelete}
@@ -167,6 +184,7 @@ export default function MarketDetail() {
       onClickPick={onClickPick}
       onClickBuyItem={onClickBuyItem}
       data={data}
+      data2={data2}
       isPicked={isPicked}
     />
   );
