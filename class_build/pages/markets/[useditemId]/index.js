@@ -8,7 +8,7 @@ export default function MarketsPage(props) {
         <meta property="og:title" content={props.fetchUseditem.name} />
         {/* <meta property="og:url" content="http://hansol.site/boards" /> */}
         <meta property="og:image" content={props.fetchUseditem.images[0]} />
-        <meta property="og:description" content={props.fetchUseditem.remakrs} />
+        <meta property="og:description" content={props.fetchUseditem.remarks} />
       </Head>
       <div>안녕하세요 상품페이지입니다..</div>
     </>
