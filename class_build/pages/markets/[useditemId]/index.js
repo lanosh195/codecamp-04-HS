@@ -36,7 +36,7 @@ export const getServerSideProps = async (context) => {
     props: {
       fetchUseditem: {
         name: result.fetchUseditem.name,
-        remarks: result.fetchUseditem.remakrs,
+        remarks: result.fetchUseditem.remarks,
         images: result.fetchUseditem.images[0],
       },
     },
