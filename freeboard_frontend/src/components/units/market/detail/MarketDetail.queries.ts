@@ -56,11 +56,11 @@ export const BUY_USEDITEM = gql`
 `;
 
 export const FETCH_USEDITEMS_I_PICKED = gql`
-  query fetchUseditemsIPicked($page: Int) {
-    fetchUseditemsIPicked(page: $page) {
+  query fetchUseditemsIPicked($search: String, $page: Int) {
+    fetchUseditemsIPicked(search: $search, page: $page) {
       _id
       name
-      reamarks
+      remarks
       contents
       price
     }

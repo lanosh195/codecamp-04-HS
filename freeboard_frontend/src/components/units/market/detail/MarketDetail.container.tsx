@@ -25,6 +25,7 @@ declare const window: typeof globalThis & {
 export default function MarketDetail() {
   const [isPicked, setIsPicked] = useState(false);
   const router = useRouter();
+
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
@@ -33,10 +34,16 @@ export default function MarketDetail() {
       useditemId: String(router.query.useditemId),
     },
   });
+
   const { data: data2 } = useQuery<
     Pick<IQuery, "fetchUseditemsIPicked">,
     IQueryFetchUseditemsIPickedArgs
-  >(FETCH_USEDITEMS_I_PICKED);
+  >(FETCH_USEDITEMS_I_PICKED, {
+    variables: {
+      search: "",
+      page: 1,
+    },
+  });
 
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteUseditem">,
@@ -97,12 +104,21 @@ export default function MarketDetail() {
           query: FETCH_USEDITEM,
           variables: { useditemId: router.query.useditemId },
         },
+        {
+          query: FETCH_USEDITEMS_I_PICKED,
+          variables: { search: "", page: 1 },
+        },
       ],
     });
-    // if (data2._id.includes(data?.fetchUseditem._id)) {
     setIsPicked((prev) => !prev);
-    // }
+    // const [__typename, name, remarks, contents, ...pickedId] =
+    //   data2?.fetchUseditemsIPicked;
+    // console.log(pickedId);
   }
+
+  // const newPickedId = data2?.fetchUseditemsIPicked.filter((el) =>
+  //   el._id.includes(data?.fetchUseditem._id)
+  // );
 
   async function onClickBuyItem() {
     try {
@@ -174,6 +190,8 @@ export default function MarketDetail() {
     };
   }, [data]);
 
+  // console.log(data2);
+
   return (
     <MarketDetailUI
       onClickDelete={onClickDelete}
@@ -186,6 +204,7 @@ export default function MarketDetail() {
       data={data}
       data2={data2}
       isPicked={isPicked}
+      // newPickedId={newPickedId}
     />
   );
 }
