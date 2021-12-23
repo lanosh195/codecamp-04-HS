@@ -1,4 +1,4 @@
-import * as S from "../register/productregister.styles";
+import * as S from "./productregister.styles";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { schema } from "./productregister.validation";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
@@ -51,7 +51,7 @@ export default function ProductRegisterUI(props: any) {
           />
           <S.ErrorMessage>{formState.errors.remarks?.message}</S.ErrorMessage>
           상품 설명:
-          {props.isEdit ? (
+          {/* {props.isEdit ? (
             <S.Contents
               onChange={handleChange}
               value={
@@ -62,7 +62,7 @@ export default function ProductRegisterUI(props: any) {
             />
           ) : (
             <S.Contents onChange={handleChange} />
-          )}
+          )} */}
           {/* <S.ErrorMessage>{formState.errors.contents?.message}</S.ErrorMessage> */}
           <div>가격:</div>
           <S.Price
@@ -91,6 +91,7 @@ export default function ProductRegisterUI(props: any) {
               props.data?.fetchUseditem.useditemAddress?.address ||
               ""
             }
+            onChange={() => {}}
           />
           <div>내우편번호</div>
           <S.Zipcode
@@ -99,6 +100,7 @@ export default function ProductRegisterUI(props: any) {
               props.data?.fetchUseditem.useditemAddress?.zipcode ||
               ""
             }
+            onChange={() => {}}
           />
           <div id="map" style={{ width: "400px", height: "300px" }}></div>
           {props.isOpen && (

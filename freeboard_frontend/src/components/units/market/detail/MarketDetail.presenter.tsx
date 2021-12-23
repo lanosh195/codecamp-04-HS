@@ -1,5 +1,6 @@
 import * as S from "./MarketDetail.styles";
 export default function MarketDetailUI(props: any) {
+  console.log(props.isPicked);
   return (
     <>
       <S.Wrapper>
@@ -23,9 +24,9 @@ export default function MarketDetailUI(props: any) {
             <button onClick={props.onClickPick}>찜하기</button>
             {props.data?.fetchUseditem.pickedCount}
             {props.isPicked ? (
-              <S.LikeImg src="/images/eheart.png" />
+              <S.LikeImg src="/images/eheart.png" alt="찬하트" />
             ) : (
-              <S.LikeImg src="/images/heart1.png" />
+              <S.LikeImg src="/images/heart1.png" alt="빈하트" />
             )}
           </S.RightHeader>
           <S.ItemNotice>안내사항</S.ItemNotice>

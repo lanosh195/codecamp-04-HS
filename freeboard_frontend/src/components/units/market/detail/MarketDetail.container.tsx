@@ -53,6 +53,8 @@ export default function MarketDetail() {
   const [toggleUseditemPick] = useMutation(USEDITEM_PICK);
   const [buyUseditem] = useMutation(BUY_USEDITEM);
 
+  const newPicked = data2?.fetchUseditemsIPicked.map((el) => el._id);
+
   function onCLickMoveToUpdate() {
     router.push(`/market${router.query.useditemId}/edit`);
   }
@@ -110,7 +112,9 @@ export default function MarketDetail() {
         },
       ],
     });
-    setIsPicked((prev) => !prev);
+    newPicked?.includes(data?.fetchUseditem._id)
+      ? setIsPicked(true)
+      : setIsPicked(false);
     // const [__typename, name, remarks, contents, ...pickedId] =
     //   data2?.fetchUseditemsIPicked;
     // console.log(pickedId);
@@ -191,6 +195,8 @@ export default function MarketDetail() {
   }, [data]);
 
   // console.log(data2);
+  // console.log(data?.fetchUseditem._id);
+  // console.log(newPicked);
 
   return (
     <MarketDetailUI
@@ -204,7 +210,7 @@ export default function MarketDetail() {
       data={data}
       data2={data2}
       isPicked={isPicked}
-      // newPickedId={newPickedId}
+      newPicked={newPicked}
     />
   );
 }
