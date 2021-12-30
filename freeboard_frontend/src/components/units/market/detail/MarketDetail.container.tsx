@@ -112,17 +112,15 @@ export default function MarketDetail() {
         },
       ],
     });
+    // useEffect(() => {
+    //   newPicked?.includes(data?.fetchUseditem._id)
+    //     ? setIsPicked(true)
+    //     : setIsPicked(false);
+    // }, [data]);
     newPicked?.includes(data?.fetchUseditem._id)
-      ? setIsPicked(true)
-      : setIsPicked(false);
-    // const [__typename, name, remarks, contents, ...pickedId] =
-    //   data2?.fetchUseditemsIPicked;
-    // console.log(pickedId);
+      ? setIsPicked(false)
+      : setIsPicked(true);
   }
-
-  // const newPickedId = data2?.fetchUseditemsIPicked.filter((el) =>
-  //   el._id.includes(data?.fetchUseditem._id)
-  // );
 
   async function onClickBuyItem() {
     try {
