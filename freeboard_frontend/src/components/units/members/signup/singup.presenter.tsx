@@ -1,14 +1,8 @@
 import * as S from "./singup.styles";
-export default function SignupUIPage(props) {
+export default function SignupUIPage(props: any) {
   return (
     <>
       <S.SignupWrapper>
-        {/* <div>아이디</div>
-        <S.InputBox
-          type="text"
-          placeholder="아이디를 입력해주세요."
-          name="id"
-        /> */}
         <div>이메일</div>
 
         <S.InputBox
@@ -17,12 +11,7 @@ export default function SignupUIPage(props) {
           name="email"
           onChange={props.onChangeInputs}
         />
-        {/* <div>닉네임</div>
-        <S.InputBox
-          type="text"
-          placeholder="닉네임을 입력해주세요."
-          name="nickname"
-        /> */}
+
         <div>이름</div>
         <S.InputBox
           type="text"
