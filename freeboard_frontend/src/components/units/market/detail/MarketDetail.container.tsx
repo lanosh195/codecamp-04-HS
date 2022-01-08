@@ -112,12 +112,13 @@ export default function MarketDetail() {
         },
       ],
     });
-    useEffect(() => {
-      newPicked?.includes(data?.fetchUseditem._id)
-        ? setIsPicked(true)
-        : setIsPicked(false);
-    }, [data2]);
   }
+
+  useEffect(() => {
+    newPicked?.includes(data?.fetchUseditem._id)
+      ? setIsPicked(true)
+      : setIsPicked(false);
+  }, [data2]);
 
   async function onClickBuyItem() {
     try {
