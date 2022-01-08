@@ -52,7 +52,7 @@ export default function MarketDetail() {
 
   const [toggleUseditemPick] = useMutation(USEDITEM_PICK);
   const [buyUseditem] = useMutation(BUY_USEDITEM);
-
+  //내가 찜한 목록들 Id
   const newPicked = data2?.fetchUseditemsIPicked.map((el) => el._id);
 
   function onCLickMoveToUpdate() {
@@ -112,14 +112,11 @@ export default function MarketDetail() {
         },
       ],
     });
-    // useEffect(() => {
-    //   newPicked?.includes(data?.fetchUseditem._id)
-    //     ? setIsPicked(true)
-    //     : setIsPicked(false);
-    // }, [data]);
-    newPicked?.includes(data?.fetchUseditem._id)
-      ? setIsPicked(false)
-      : setIsPicked(true);
+    useEffect(() => {
+      newPicked?.includes(data?.fetchUseditem._id)
+        ? setIsPicked(true)
+        : setIsPicked(false);
+    }, [data2]);
   }
 
   async function onClickBuyItem() {
