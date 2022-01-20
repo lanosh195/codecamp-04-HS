@@ -13,14 +13,21 @@ export default function SignupPage() {
     password: "",
   });
   const [password2, setPassword2] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   function onChangeInputs(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.value !== "") {
       setInputs({ ...inputs, [event.target.name]: event.target.value });
     }
   }
+  ////
+  ///// 인풋에 한 번에 패스워드 확인이랑 핸드폰 번호 넣어도 될 듯.
   function onChangePassword2(event: ChangeEvent<HTMLInputElement>) {
     setPassword2(event.target.value);
+  }
+
+  function onChangePhoneNumber(event: ChangeEvent<HTMLInputElement>) {
+    setPhoneNumber(event.target.value);
   }
   async function onClickSignup() {
     if (!/\w+@\w+\.\w+/.test(inputs.email)) {
@@ -63,6 +70,7 @@ export default function SignupPage() {
       onChangeInputs={onChangeInputs}
       onChangePassword2={onChangePassword2}
       onClickSignup={onClickSignup}
+      onChangePhoneNumber={onChangePhoneNumber}
     />
   );
 }

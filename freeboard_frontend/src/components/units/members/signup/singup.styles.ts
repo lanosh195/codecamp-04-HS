@@ -8,6 +8,8 @@ export const Signup = styled.div`
   width: 104px;
   height: 40px;
 `;
+
+export const Title = styled.div``;
 export const InputBox = styled.input`
   width: 384px;
   height: 64px;

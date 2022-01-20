@@ -18,11 +18,11 @@ export default function ProductRegisterUI(props: any) {
       resolver: yupResolver(schema),
     });
 
-  function handleChange(value: string) {
-    console.log(value);
-    setValue("contents", value === "<p><br><p>" ? "" : value);
-    trigger("contents");
-  }
+  // function handleChange(value: string) {
+  //   console.log(value);
+  //   setValue("contents", value === "<p><br><p>" ? "" : value);
+  //   trigger("contents");
+  // }
   return (
     <>
       <S.Wrapper>

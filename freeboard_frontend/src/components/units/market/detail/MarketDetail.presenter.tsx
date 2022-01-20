@@ -1,6 +1,7 @@
 import * as S from "./MarketDetail.styles";
 export default function MarketDetailUI(props: any) {
   console.log(props.isPicked);
+  console.log(props.data?.fetchUseditem?.images);
   return (
     <>
       <S.Wrapper>
