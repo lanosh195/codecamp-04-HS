@@ -20,13 +20,13 @@ export default function SignupUIPage(props: any) {
           onChange={props.onChangeInputs}
         />
 
-        {/* <S.Title>핸드폰 번호</S.Title>
+        <S.Title>핸드폰 번호</S.Title>
         <S.InputBox
           type="text"
           placeholder="핸드폰 번호를 입력해주세요."
           name="phoneNumber"
           onChange={props.onChangePhoneNumber}
-        /> */}
+        />
 
         <S.Title>비밀번호</S.Title>
         <S.InputBox

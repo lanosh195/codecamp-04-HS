@@ -58,12 +58,12 @@ export default function SignupPage() {
     }
   }
 
-  // function PhoneNumberCheck() {
-  //   let PhoneNumberCk = /^\d{3}-\d{3,4}-\d{4}$/;
-  //   if (!PhoneNumberCk.test(String(PhoneNumber))) {
-  //     alert("번호를 확인해 주세요.");
-  //   }
-  // }
+  function PhoneNumberCheck() {
+    let PhoneNumberCk = /^\d{3}-\d{3,4}-\d{4}$/;
+    if (!PhoneNumberCk.test(String(phoneNumber))) {
+      alert("번호를 확인해 주세요.");
+    }
+  }
 
   return (
     <SignupUIPage
@@ -71,6 +71,7 @@ export default function SignupPage() {
       onChangePassword2={onChangePassword2}
       onClickSignup={onClickSignup}
       onChangePhoneNumber={onChangePhoneNumber}
+      PhoneNumberCheck={PhoneNumberCheck}
     />
   );
 }
