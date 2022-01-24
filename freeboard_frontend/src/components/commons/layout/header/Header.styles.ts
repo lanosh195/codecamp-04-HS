@@ -13,6 +13,7 @@ export const Header = styled.div`
 `;
 export const HeaderLeft = styled.div`
   padding-left: 100px;
+  margin: auto 0;
 `;
 
 export const HomeWrapper = styled.div`
@@ -33,6 +34,7 @@ export const HeaderCenter = styled.div`
   width: 300px;
   /* display: flex;
   justify-content: space-between; */
+  margin: auto 0;
 `;
 export const BoardName = styled.span`
   padding-right: 30px;
@@ -42,6 +44,7 @@ export const BoardName = styled.span`
 `;
 export const HeaderRight = styled.div`
   padding-right: 40px;
+  margin: auto 0;
 `;
 export const UserInfo = styled.div`
   margin-right: 40px;

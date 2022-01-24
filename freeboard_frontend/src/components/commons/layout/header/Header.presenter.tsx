@@ -1,14 +1,14 @@
 import * as S from "./Header.styles";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
-export default function HeaderUI(props) {
+export default function HeaderUI(props: any) {
   const { moveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
       <S.Header>
         <S.HeaderLeft>
           <S.HomeWrapper onClick={moveToPage("/")}>
-            <S.HomeIcon src="/images/sol.png" />
-            <S.HomeName>Sol's Home</S.HomeName>
+            <S.HomeIcon src="/images/heart.png" />
+            <S.HomeName>Home</S.HomeName>
           </S.HomeWrapper>
         </S.HeaderLeft>
         <S.HeaderCenter>
