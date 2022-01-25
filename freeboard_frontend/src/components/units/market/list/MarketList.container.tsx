@@ -1,7 +1,7 @@
 import MarketListUI from "./MarketList.presenter";
 import { FETCH_USEDITEMS, FETCH_USEDITEMS_BEST } from "./MarketList.queries";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
@@ -11,16 +11,18 @@ import router from "next/router";
 export default function MarketList() {
   const [startPage, setStartPage] = useState(1);
   const [keyword, setKeyword] = useState("");
+  const [search, setSearch] = useState("");
 
-  const { data, fetchMore } = useQuery<
+  const { data, fetchMore, refetch } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USEDITEMS, {
-    variables: { page: 1 },
+    variables: { search: "" },
   });
 
   const { data: fetchBest } = useQuery(FETCH_USEDITEMS_BEST);
 
+  //무한 스크롤 product card
   const onLoadMore = () => {
     if (!data) return;
     fetchMore({
@@ -43,24 +45,41 @@ export default function MarketList() {
     router.push(`/market/${event.currentTarget.id}`);
   }
 
-  function onChangeKeyword(value: string) {
-    setKeyword(value);
+  function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
+    setSearch(event.target.value);
+  }
+  function onClickSearch() {
+    refetch({ search: keyword, page: 1 });
+    setKeyword(search);
+  }
+
+  function onClickPage(event: any) {
+    if (event.target instanceof Element)
+      refetch({ search: keyword, page: Number(event.target.id) });
   }
   const onErrorImg = (event: any) => {
     (event.target as any).style = "display: none;";
   };
+
+  const onPressEnter = (event: any) => {
+    if (event.key === "Enter") {
+      onClickSearch();
+    }
+  };
+
   return (
     <MarketListUI
       fetchBest={fetchBest}
       data={data}
-      // refetch={refetch}
       onLoadMore={onLoadMore}
-      // keyword={keyword}
       startPage={startPage}
       setStartPage={setStartPage}
-      onChnageKeyword={onChangeKeyword}
+      onClickSearch={onClickSearch}
+      onChangeSearch={onChangeSearch}
+      onClickPage={onClickPage}
       onErrorImg={onErrorImg}
       onClickMoveItemDetail={onClickMoveItemDetail}
+      onPressEnter={onPressEnter}
     />
   );
 }

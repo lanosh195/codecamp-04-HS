@@ -11,9 +11,9 @@ export default function SignupPage() {
     name: "",
     email: "",
     password: "",
+    password2: "",
+    phoneNumber: "",
   });
-  const [password2, setPassword2] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   function onChangeInputs(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.value !== "") {
@@ -22,23 +22,20 @@ export default function SignupPage() {
   }
   ////
   ///// 인풋에 한 번에 패스워드 확인이랑 핸드폰 번호 넣어도 될 듯.
-  function onChangePassword2(event: ChangeEvent<HTMLInputElement>) {
-    setPassword2(event.target.value);
-  }
-
-  function onChangePhoneNumber(event: ChangeEvent<HTMLInputElement>) {
-    setPhoneNumber(event.target.value);
-  }
   async function onClickSignup() {
+    console.log(inputs);
     if (!/\w+@\w+\.\w+/.test(inputs.email)) {
       alert("이메일 주소가 잘못되었습니다.");
     }
-    if (inputs.password !== password2) {
+    if (inputs.password !== inputs.password2) {
       alert("비밀번호가 일치하지 않습니다");
+    }
+    if (!/^\d{3}-\d{3,4}-\d{4}$/.test(inputs.phoneNumber)) {
+      alert("핸드폰 번호가 올바르지 않습니다.");
     }
     if (
       inputs &&
-      inputs.password === password2 &&
+      inputs.password === inputs.password2 &&
       /\w+@\w+\.\w+/.test(inputs.email)
     ) {
       try {
@@ -60,7 +57,7 @@ export default function SignupPage() {
 
   function PhoneNumberCheck() {
     let PhoneNumberCk = /^\d{3}-\d{3,4}-\d{4}$/;
-    if (!PhoneNumberCk.test(String(phoneNumber))) {
+    if (!PhoneNumberCk.test(String(inputs.phoneNumber))) {
       alert("번호를 확인해 주세요.");
     }
   }
@@ -68,9 +65,7 @@ export default function SignupPage() {
   return (
     <SignupUIPage
       onChangeInputs={onChangeInputs}
-      onChangePassword2={onChangePassword2}
       onClickSignup={onClickSignup}
-      onChangePhoneNumber={onChangePhoneNumber}
       PhoneNumberCheck={PhoneNumberCheck}
     />
   );

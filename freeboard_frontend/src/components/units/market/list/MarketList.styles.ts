@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { SearchOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -124,11 +125,42 @@ export const RegisterBtn = styled.button`
   margin-top: 150px;
   position: absolute;
   right: 11%;
-  background-color: #f5f2fc;
+  background-color: #e6e1f2;
 
   :hover {
     cursor: pointer;
     color: white;
     background-color: #5729ff;
   }
+`;
+
+export const SearcIcon = styled(SearchOutlined)`
+  color: #5729ff;
+  font-size: 30px;
+  cursor: pointer;
+
+  :hover {
+    color: red;
+  }
+`;
+
+export const Searchbar = styled.div`
+  width: 376px;
+  height: 52px;
+  border-radius: 15px;
+  background-color: #f5f2fc;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const SearchbarInput = styled.input`
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  margin: 0px 20px;
+  font-size: 20px;
 `;

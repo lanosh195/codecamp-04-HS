@@ -2,14 +2,22 @@ import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardList.styles";
 import { v4 as uuid } from "uuid";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: any) {
   return (
     <S.Wrapper>
       {/* 베스트 게시물 */}
       <S.BestBoardWrapper>
         {props.boardsBest?.fetchBoardsOfTheBest.map((el: any) => (
           <S.BestBoard key={el._id}>
-            <S.BestBoardHeader src={"/images/flower.jpg"}></S.BestBoardHeader>
+            {el.images ? (
+              <S.BestBoardHeader
+                src={`https://storage.googleapis.com/${el.images[0]}`}
+              ></S.BestBoardHeader>
+            ) : (
+              <S.BestBoardHeader
+                src={"/images/bgimg2.jpeg"}
+              ></S.BestBoardHeader>
+            )}
             <S.BestBoardTitle
               id={el._id}
               onClick={props.onClickMoveToBestBoard}
@@ -37,14 +45,14 @@ export default function BoardListUI(props) {
         <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
-      {props.data?.fetchBoards.map((el, index) => (
+      {props.data?.fetchBoards.map((el: any, index: any) => (
         <S.Row key={el._id}>
           <S.ColumnBasic>{index + 1}</S.ColumnBasic>
           <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
             {el.title
               .replaceAll(props.myKeyword, `#$%${props.myKeyword}#$%`)
               .split("#$%")
-              .map((el) => (
+              .map((el: any) => (
                 <S.MyWord key={uuid()} isMatched={props.myKeyword === el}>
                   {el}
                 </S.MyWord>

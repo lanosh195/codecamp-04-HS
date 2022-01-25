@@ -5,8 +5,8 @@ import _ from "lodash";
 
 export default function Searchbars01(props: ISearchbars01Props) {
   const getDebounce = _.debounce((data) => {
-    // props.refetch({ search: data });
-    // props.refetchBoardsCount({ search: data });
+    props.refetch({ search: data });
+    props.refetchBoardsCount({ search: data });
     props.onChangeKeyword(data);
   }, 200);
 

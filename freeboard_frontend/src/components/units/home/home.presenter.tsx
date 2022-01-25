@@ -1,4 +1,4 @@
-import * as S from "./home.styles";
+import * as S from "./Home.styles";
 export default function HomeUI() {
   return (
     <>

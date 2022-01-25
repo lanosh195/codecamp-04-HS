@@ -16,7 +16,7 @@ const FETCH_BAORDS = gql`
 `;
 
 export default function SearchPaginationPage() {
-  const [mySearch, serMySearch] = useState("");
+  const [mySearch, setMySearch] = useState("");
   const [myKeyword, setMyKeyword] = useState("");
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
@@ -24,7 +24,7 @@ export default function SearchPaginationPage() {
   >(FETCH_BAORDS);
 
   function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
-    serMySearch(event.target.value);
+    setMySearch(event.target.value);
   }
   function onClickSearch() {
     //mySearch 키워드로 fetchBoard 요청하기!

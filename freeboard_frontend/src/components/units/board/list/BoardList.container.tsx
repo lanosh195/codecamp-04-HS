@@ -6,7 +6,7 @@ import {
   FETCH_BOARDS_BEST,
 } from "./BoardList.queries";
 import { useRouter } from "next/router";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, ChangeEvent } from "react";
 import _ from "lodash";
 import {
   IQuery,

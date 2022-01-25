@@ -73,6 +73,9 @@ export const UserEmail = styled.input`
   background-color: rgba(255, 255, 255, 0);
   color: white;
   border-color: white;
+  ::placeholder {
+    color: black;
+  }
 `;
 export const PasswordWrapper = styled.div`
   width: 320px;
@@ -85,6 +88,9 @@ export const Password = styled.input`
   background-color: rgba(255, 255, 255, 0);
   color: white;
   border-color: white;
+  ::placeholder {
+    color: black;
+  }
 `;
 export const LoginBtnWrapper = styled.div`
   width: 320px;

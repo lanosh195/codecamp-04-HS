@@ -53,6 +53,15 @@ export default function LoginPage() {
     router.push("/");
   }
 
+  function MoveSignup() {
+    router.push("/boards/signup");
+  }
+  const onPressEnter = (e: any) => {
+    if (e.key === "Enter") {
+      onClickLogin();
+    }
+  };
+
   return (
     <LoginPageUI
       // onClickLogin={onClickLogin}
@@ -60,6 +69,8 @@ export default function LoginPage() {
       onChangeMyEmail={onChangeMyEmail}
       onChangeMyPassword={onChangeMyPassword}
       MoveHome={MoveHome}
+      MoveSignup={MoveSignup}
+      onPressEnter={onPressEnter}
     />
   );
 }

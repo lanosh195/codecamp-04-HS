@@ -74,7 +74,7 @@ export const Logout = styled.button`
   font-size: 15px;
   :hover {
     cursor: pointer;
-    background-color: gold;
+    background-color: #e6e1f2;
   }
   border-radius: 10px;
 `;

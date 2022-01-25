@@ -29,14 +29,16 @@ export const RequiredWrapper = styled.div`
 export const Required = styled.text`
   color: red;
 `;
+
 export const RequiredFields = styled.div`
   font-size: 15px;
 `;
 
+export const TitleWrapper = styled.div``;
 export const Title = styled.text``;
 export const InputBox = styled.input`
   width: 384px;
-  height: 64px;
+  height: 54px;
   /* border-radius: 16px; */
   margin-bottom: 12px;
 `;

@@ -17,14 +17,14 @@ const FETCH_BAORDS = gql`
 `;
 
 export default function SearchPage() {
-  const [mySearch, serMySearch] = useState("");
+  const [mySearch, setMySearch] = useState("");
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BAORDS);
 
   function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
-    serMySearch(event.target.value);
+    setMySearch(event.target.value);
   }
   function onClickSearch() {
     //mySearch 키워드로 fetchBoard 요청하기!

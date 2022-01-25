@@ -4,7 +4,7 @@ export default function LoginPageUI(props) {
   return (
     <>
       <S.Wrapper>
-        <S.BackgroundImg src="/images/snow.png" />
+        <S.BackgroundImg src="/images/bgimg3.webp" />
         <S.WrapperBody>
           <S.ExitBtn onClick={props.MoveHome}></S.ExitBtn>
           <S.LoginForm>
@@ -21,6 +21,7 @@ export default function LoginPageUI(props) {
               placeholder="비밀번호"
               name="password"
               onChange={props.onChangeMyPassword}
+              onKeyPress={props.onPressEnter}
             />
             <br />
 
@@ -30,7 +31,7 @@ export default function LoginPageUI(props) {
 
             <S.LoginBot>
               <S.SignupWrapper>
-                <S.Signup>회원가입</S.Signup>
+                <S.Signup onClick={props.MoveSignup}>회원가입</S.Signup>
               </S.SignupWrapper>
               <div></div>
               <S.HomeWrapper>
