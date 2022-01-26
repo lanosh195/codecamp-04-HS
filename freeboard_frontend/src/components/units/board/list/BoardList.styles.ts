@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import { LikeOutlined } from "@ant-design/icons";
 import { SearchOutlined } from "@ant-design/icons";
 
+interface ITextTokenProps {
+  isMatched: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
@@ -25,7 +29,7 @@ export const Row = styled.div`
 `;
 
 export const TextToken = styled.span`
-  color: ${(props) => (props.isMatched ? "red" : "black")};
+  color: ${(props: ITextTokenProps) => (props.isMatched ? "red" : "black")};
 `;
 
 export const ColumnHeaderBasic = styled.div`
@@ -76,7 +80,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: gold; //#f5f2fc;
+    background-color: #e6e1f2; //#f5f2fc;
     cursor: pointer;
   }
 `;
@@ -92,14 +96,21 @@ export const BestBoard = styled.div`
   border: solid black 1px;
   border-radius: 5px;
   margin-right: 24px;
-  /* background-color: black; */
+  cursor: pointer;
+`;
+
+export const ImgWrapper = styled.div`
+  overflow: hidden;
 `;
 export const BestBoardHeader = styled.img`
-  width: 282px;
+  width: 100%;
   height: 120px;
   border-radius: 5px;
   border-bottom: solid black 1px;
-  /* background-color: black; */
+  transition: transform 1s;
+  :hover {
+    transform: scale(1.2);
+  }
 `;
 export const BestBoardContents = styled.div`
   /* display: flex;
@@ -108,11 +119,10 @@ export const BestBoardContents = styled.div`
 export const BestBoardBody = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
+  margin: 0px 10px;
 `;
 export const BestBoardTitle = styled.div`
-  /* max-height: 80px; */
-  margin: 24px 10px;
+  margin: 0px 10px;
   font-size: 18px;
   cursor: pointer;
   white-space: nowrap;

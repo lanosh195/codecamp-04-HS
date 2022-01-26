@@ -3,27 +3,23 @@ import * as S from "./BoardList.styles";
 import { v4 as uuid } from "uuid";
 
 export default function BoardListUI(props: any) {
+  console.log(props.boardsBest?.fetchBoardsOfTheBest);
   return (
     <S.Wrapper>
       {/* 베스트 게시물 */}
       <S.BestBoardWrapper>
         {props.boardsBest?.fetchBoardsOfTheBest.map((el: any) => (
-          <S.BestBoard key={el._id}>
-            {el.images ? (
+          <S.BestBoard key={el._id} onClick={props.onClickMoveToBestBoard}>
+            <S.ImgWrapper>
               <S.BestBoardHeader
-                src={`https://storage.googleapis.com/${el.images[0]}`}
-              ></S.BestBoardHeader>
-            ) : (
-              <S.BestBoardHeader
-                src={"/images/bgimg2.jpeg"}
-              ></S.BestBoardHeader>
-            )}
-            <S.BestBoardTitle
-              id={el._id}
-              onClick={props.onClickMoveToBestBoard}
-            >
-              {el.title}
-            </S.BestBoardTitle>
+                src={
+                  el.images
+                    ? `https://storage.googleapis.com/${el.images[0]}`
+                    : "/images/bgimg2.jpeg"
+                }
+              />
+            </S.ImgWrapper>
+            <S.BestBoardTitle id={el._id}>{el.title}</S.BestBoardTitle>
             <S.BestBoardBody>
               <S.BestBoardContents>
                 <S.BestBoardWriter>{el.writer}</S.BestBoardWriter>

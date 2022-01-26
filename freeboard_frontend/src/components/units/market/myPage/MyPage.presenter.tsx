@@ -15,12 +15,12 @@ export default function MyPageUI(props: any) {
       </Head>
       {/* <input type="text" /> */}
       충전 금액:
-      <input type="text" onChange={props.setPoint} />
+      <input type="text" onChange={props.onChangePoint} />
       <button onClick={props.onClickPayment}>충전하기</button>
       <div>내 포인트:{props.data?.fetchUserLoggedIn.userPoint?.amount}</div>
       <div>
         내가 산 상품:
-        {props.data2?.fetchUseditemsIBought.map((el: any) => (
+        {props.dataIBought?.fetchUseditemsIBought.map((el: any) => (
           <div key={el._id}>
             <div>상품명:{el.name}</div>
             <div>한줄요약:{el.remarks}</div>

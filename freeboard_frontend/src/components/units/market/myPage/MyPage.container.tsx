@@ -16,8 +16,8 @@ export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
   const [createPoint] = useMutation(CEATE_POINT_LOADING);
   const [point, setPoint] = useState(0);
-  const { data: data2 } = useQuery(FETCH_USEDITEM_I_BOUGHT);
-  const { data: data3 } = useQuery(FETCH_USEDITEM_ISOLD);
+  const { data: dataIBought } = useQuery(FETCH_USEDITEM_I_BOUGHT);
+  const { data: dataISold } = useQuery(FETCH_USEDITEM_ISOLD);
 
   function onClickPayment() {
     const IMP = window.IMP;
@@ -27,7 +27,7 @@ export default function MyPage() {
         pg: "html5_inicis",
         pay_method: "card",
         name: "포인트",
-        amount: `${point}`,
+        amount: Number(point),
         buyer_email: data?.fetchUserLoggedIn.email,
         buyer_name: data?.fetchUserLoggedIn.name,
         buyer_tel: "010-4242-4242",
@@ -53,6 +53,10 @@ export default function MyPage() {
     );
   }
 
+  function onChangePoint(event) {
+    setPoint(event.target.value);
+  }
+
   // console.log(data);
   // console.log(data2);
   // console.log(data3);
@@ -60,9 +64,9 @@ export default function MyPage() {
     <MyPageUI
       onClickPayment={onClickPayment}
       data={data}
-      data2={data2}
-      data3={data3}
-      setPoint={setPoint}
+      dataIBought={dataIBought}
+      dataISold={dataISold}
+      onChangePoint={onChangePoint}
     />
   );
 }

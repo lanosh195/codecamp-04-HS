@@ -179,7 +179,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       return;
     }
 
-    const myUpdateboardInput: IMyUpdateBoardInput = {};
+    const myUpdateboardInput: IMyUpdateBoardInput = { images: myImages };
     if (myTitle) myUpdateboardInput.title = myTitle;
     if (myContents) myUpdateboardInput.contents = myContents;
     if (youtubeUrl) myUpdateboardInput.youtubeUrl = youtubeUrl;

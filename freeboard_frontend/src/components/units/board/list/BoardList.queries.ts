@@ -7,6 +7,7 @@ export const FETCH_BOARDS = gql`
       writer
       title
       createdAt
+      images
     }
   }
 `;
@@ -25,6 +26,7 @@ export const FETCH_BOARDS_BEST = gql`
       title
       createdAt
       likeCount
+      images
     }
   }
 `;

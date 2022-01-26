@@ -76,6 +76,9 @@ export const UserEmail = styled.input`
   ::placeholder {
     color: black;
   }
+  :focus {
+    outline: none;
+  }
 `;
 export const PasswordWrapper = styled.div`
   width: 320px;
@@ -90,6 +93,9 @@ export const Password = styled.input`
   border-color: white;
   ::placeholder {
     color: black;
+  }
+  :focus {
+    outline: none;
   }
 `;
 export const LoginBtnWrapper = styled.div`
