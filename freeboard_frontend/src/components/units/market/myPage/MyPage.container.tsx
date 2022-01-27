@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import MyPageUI from "./MyPage.presenter";
+import Sidebar from "../../../commons/layout/sidebar/Sidebar.container";
+import styled from "@emotion/styled";
 import {
   FETCH_USER_LOGGEDIN,
   CEATE_POINT_LOADING,
@@ -11,6 +13,10 @@ import {
 declare const window: typeof globalThis & {
   IMP: any;
 };
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
@@ -61,12 +67,17 @@ export default function MyPage() {
   // console.log(data2);
   // console.log(data3);
   return (
-    <MyPageUI
-      onClickPayment={onClickPayment}
-      data={data}
-      dataIBought={dataIBought}
-      dataISold={dataISold}
-      onChangePoint={onChangePoint}
-    />
+    <>
+      <Wrapper>
+        <Sidebar />
+        <MyPageUI
+          onClickPayment={onClickPayment}
+          data={data}
+          dataIBought={dataIBought}
+          dataISold={dataISold}
+          onChangePoint={onChangePoint}
+        />
+      </Wrapper>
+    </>
   );
 }

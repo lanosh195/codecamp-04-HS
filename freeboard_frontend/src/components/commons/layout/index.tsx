@@ -3,6 +3,7 @@ import Banner from "./banner/Banner.container";
 import Footer from "./footer/Footer.container";
 import Header from "./header/Header.container";
 import Navigation from "./Navigation/Navigation.container";
+// import Sidebar from "./sidebar/Sidebar.container";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
@@ -18,11 +19,6 @@ const Body = styled.div`
 
 const BodyWrapper = styled.div`
   display: flex;
-`;
-const Sidebar = styled.div`
-  width: 300px;
-  /* height: 500px; */
-  /* background-color: #eef8b2; */
 `;
 
 const HIDDEN_HEADERS = ["/boards/login"];
@@ -51,7 +47,7 @@ export default function Layout(props: ILayoutProps) {
       {/* {!isBanners && <Banner />} */}
       {!isNavs && <Navigation />}
       <BodyWrapper>
-        {!isSidebars && <Sidebar></Sidebar>}
+        {/* {!isSidebars && <Sidebar></Sidebar>} */}
         <Body>{props.children}</Body>
       </BodyWrapper>
       {!isFooters && <Footer />}
