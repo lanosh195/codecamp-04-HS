@@ -63,9 +63,6 @@ export default function MyPage() {
     setPoint(event.target.value);
   }
 
-  // console.log(data);
-  // console.log(data2);
-  // console.log(data3);
   return (
     <>
       <Wrapper>
