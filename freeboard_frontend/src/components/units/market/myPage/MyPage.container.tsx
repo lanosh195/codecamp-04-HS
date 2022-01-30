@@ -59,7 +59,7 @@ export default function MyPage() {
     );
   }
 
-  function onChangePoint(event) {
+  function onChangePoint(event: any) {
     setPoint(event.target.value);
   }
 
