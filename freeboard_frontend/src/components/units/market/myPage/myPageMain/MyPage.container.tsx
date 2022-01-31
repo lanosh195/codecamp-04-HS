@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import MyPageUI from "./MyPage.presenter";
-import Sidebar from "../../../commons/layout/sidebar/Sidebar.container";
+import Sidebar from "../../../../commons/layout/sidebar/Sidebar.container";
 import styled from "@emotion/styled";
 import {
   FETCH_USER_LOGGEDIN,
