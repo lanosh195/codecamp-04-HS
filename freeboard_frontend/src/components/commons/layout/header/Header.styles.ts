@@ -24,7 +24,7 @@ export const HomeWrapper = styled.div`
 `;
 export const HomeName = styled.h2`
   font-size: 30px;
-  color: gold;
+  color: #5729ff;
 `;
 export const HomeIcon = styled.img`
   width: 50px;
@@ -47,7 +47,8 @@ export const HeaderRight = styled.div`
   margin: auto 0;
 `;
 export const UserInfo = styled.div`
-  margin-right: 40px;
+  padding-right: 40px;
+  margin: auto 0;
 `;
 export const UserName = styled.span`
   color: #4287f5;

@@ -66,7 +66,7 @@ export default function MyPage() {
   return (
     <>
       <Wrapper>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <MyPageUI
           onClickPayment={onClickPayment}
           data={data}

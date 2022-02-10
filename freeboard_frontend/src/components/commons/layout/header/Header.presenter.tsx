@@ -7,8 +7,8 @@ export default function HeaderUI(props: any) {
       <S.Header>
         <S.HeaderLeft>
           <S.HomeWrapper onClick={moveToPage("/")}>
-            <S.HomeIcon src="/images/heart.png" />
-            <S.HomeName>Home</S.HomeName>
+            {/* <S.HomeIcon src="/images/heart.png" /> */}
+            <S.HomeName>Sol's Home</S.HomeName>
           </S.HomeWrapper>
         </S.HeaderLeft>
         <S.HeaderCenter>

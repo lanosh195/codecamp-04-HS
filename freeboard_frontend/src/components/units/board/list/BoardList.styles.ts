@@ -8,7 +8,8 @@ interface ITextTokenProps {
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 100px;
+  margin: 0 auto;
+  margin-top: 100px;
 `;
 
 export const TableTop = styled.div`

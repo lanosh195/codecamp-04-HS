@@ -12,6 +12,7 @@ export default function BoardListUI(props: any) {
           <S.BestBoard key={el._id} onClick={props.onClickMoveToBestBoard}>
             <S.ImgWrapper>
               <S.BestBoardHeader
+                id={el._id}
                 src={
                   el.images
                     ? `https://storage.googleapis.com/${el.images[0]}`
@@ -22,8 +23,10 @@ export default function BoardListUI(props: any) {
             <S.BestBoardTitle id={el._id}>{el.title}</S.BestBoardTitle>
             <S.BestBoardBody>
               <S.BestBoardContents>
-                <S.BestBoardWriter>{el.writer}</S.BestBoardWriter>
-                <S.BestBoardDate>{getDate(el.createdAt)}</S.BestBoardDate>
+                <S.BestBoardWriter id={el._id}>{el.writer}</S.BestBoardWriter>
+                <S.BestBoardDate id={el._id}>
+                  {getDate(el.createdAt)}
+                </S.BestBoardDate>
               </S.BestBoardContents>
               <S.LikeCounter>
                 <S.LikeIcon>icon</S.LikeIcon>

@@ -2,8 +2,15 @@ import styled from "@emotion/styled";
 import { SearchOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 100px;
+  width: 100%;
+  /* margin: 0 auto; */
+`;
+export const SearchBarWrapper = styled.div`
+  margin-left: 150px;
+`;
+export const BestWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const BestTitle = styled.h1`
@@ -12,6 +19,7 @@ export const BestTitle = styled.h1`
   padding-right: 120px;
   margin-top: 50px;
   color: #5729ff;
+  margin-left: 40px;
 `;
 export const BestItemsWrapper = styled.div`
   margin-top: 50px;
@@ -59,7 +67,10 @@ export const LikeImg = styled.img`
   height: 30px;
   margin-right: 3px;
 `;
-
+export const ProductListWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export const ItemsWrapper = styled.div`
   margin-top: 100px;
 `;
@@ -112,17 +123,16 @@ export const ItemsTitle = styled.h1`
   margin-top: 150px;
   display: flex;
   justify-content: center;
-  padding-right: 120px;
   color: #5729ff;
+  margin-left: 25%;
 `;
-
 export const RegisterBtn = styled.button`
   width: 179px;
   height: 52px;
   border: none;
   font-size: 16px;
   font-weight: 500;
-  margin-top: 150px;
+  margin: 150px 160px 0px 0px;
   position: absolute;
   right: 11%;
   background-color: #e6e1f2;

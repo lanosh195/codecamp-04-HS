@@ -10,8 +10,12 @@ export default function MarketListUI(props: any) {
   return (
     <>
       <S.Wrapper>
-        <div>
-          <S.BestTitle>베스트 상품</S.BestTitle>
+        {console.log(props.data?.fetchUseditems)}
+        {props.data?.fetchUseditems.map((el: any) => (
+          <div key={el._id}></div>
+        ))}
+        <S.BestTitle>베스트 상품</S.BestTitle>
+        <S.BestWrapper>
           {/* 베스트 상품 맵으로 뿌리기 */}
           <S.BestItemsWrapper>
             {props.fetchBest?.fetchUseditemsOfTheBest.map((el: any) => (
@@ -37,22 +41,22 @@ export default function MarketListUI(props: any) {
               </S.BestItems>
             ))}
           </S.BestItemsWrapper>
-        </div>
+        </S.BestWrapper>
 
-        <div>
-          <S.ItemsTitle>상품 목록</S.ItemsTitle>
-          <S.Searchbar onKeyPress={props.onPressEnter}>
-            <S.SearcIcon onClick={props.onClickSearch} />
-            <S.SearchbarInput
-              type="text"
-              onChange={props.onChangeSearch}
-            ></S.SearchbarInput>
-          </S.Searchbar>
-          {console.log(props.data?.fetchUseditems)}
-          {props.data?.fetchUseditems.map((el: any) => (
-            <div key={el._id}></div>
-          ))}
-          {/* {new Array(10).fill(1).map((_, index) => (
+        <S.ItemsTitle>
+          상품 목록
+          <S.SearchBarWrapper>
+            <S.Searchbar onKeyPress={props.onPressEnter}>
+              <S.SearcIcon onClick={props.onClickSearch} />
+              <S.SearchbarInput
+                type="text"
+                onChange={props.onChangeSearch}
+              ></S.SearchbarInput>
+            </S.Searchbar>
+          </S.SearchBarWrapper>
+        </S.ItemsTitle>
+
+        {/* {new Array(10).fill(1).map((_, index) => (
             <span
               key={uuidv4()}
               onClick={props.onClickPage}
@@ -61,6 +65,7 @@ export default function MarketListUI(props: any) {
               {index + 1}
             </span>
           ))} */}
+        <S.ProductListWrapper>
           <S.ItemsWrapper
             style={{ width: "1150px", height: "600px", overflow: "auto" }}
           >
@@ -99,7 +104,7 @@ export default function MarketListUI(props: any) {
               </S.InfiniteScrollWrapper>
             </InfiniteScroll>
           </S.ItemsWrapper>
-        </div>
+        </S.ProductListWrapper>
 
         <S.RegisterBtn onClick={moveToPage("/market/new")}>
           상품 등록하기
