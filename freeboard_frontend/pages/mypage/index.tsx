@@ -4,7 +4,6 @@ import Sidebar from "../../src/components/commons/layout/sidebar/Sidebar.contain
 export default function MyPagePage() {
   return (
     <>
-      <Sidebar />
       <MyPage />
     </>
   );

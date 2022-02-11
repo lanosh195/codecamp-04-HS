@@ -3,7 +3,7 @@ import Banner from "./banner/Banner.container";
 import Footer from "./footer/Footer.container";
 import Header from "./header/Header.container";
 import Navigation from "./Navigation/Navigation.container";
-// import Sidebar from "./sidebar/Sidebar.container";
+import Sidebar from "./sidebar/Sidebar.container";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
@@ -25,7 +25,7 @@ const HIDDEN_HEADERS = ["/boards/login"];
 const HIDDEN_BANNERS = ["/", "/boards/login"];
 const HIDDEN_NAVS = ["/"];
 const HIDDEN_FOOTERS = ["/", "/boards/login"];
-const HIDDEN_SIDEBARS = ["/", "/boards/login"];
+const HIDDEN_SIDEBARS = ["/", "/boards/login", "/boards"];
 
 interface ILayoutProps {
   children: ReactChild;
@@ -47,7 +47,7 @@ export default function Layout(props: ILayoutProps) {
       {/* {!isBanners && <Banner />} */}
       {!isNavs && <Navigation />}
       <BodyWrapper>
-        {/* {!isSidebars && <Sidebar></Sidebar>} */}
+        {!isSidebars && <Sidebar></Sidebar>}
         <Body>{props.children}</Body>
       </BodyWrapper>
       {!isFooters && <Footer />}
