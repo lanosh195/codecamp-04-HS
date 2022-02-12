@@ -47,7 +47,7 @@ export default function Layout(props: ILayoutProps) {
       {/* {!isBanners && <Banner />} */}
       {!isNavs && <Navigation />}
       <BodyWrapper>
-        {!isSidebars && <Sidebar></Sidebar>}
+        {!isSidebars && <Sidebar />}
         <Body>{props.children}</Body>
       </BodyWrapper>
       {!isFooters && <Footer />}

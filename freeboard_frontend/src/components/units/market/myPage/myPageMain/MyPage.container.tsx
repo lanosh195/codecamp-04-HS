@@ -1,29 +1,25 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import MyPageUI from "./MyPage.presenter";
-import Sidebar from "../../../../commons/layout/sidebar/Sidebar.container";
 import styled from "@emotion/styled";
 import {
   FETCH_USER_LOGGEDIN,
   CEATE_POINT_LOADING,
-  FETCH_USEDITEM_I_BOUGHT,
-  FETCH_USEDITEM_ISOLD,
+  FETCH_COUNT_IBOUGHT,
+  FETCH_COUNT_ISOLD,
 } from "./MyPage.queries";
+import router from "next/router";
 
 declare const window: typeof globalThis & {
   IMP: any;
 };
 
-const Wrapper = styled.div`
-  display: flex;
-`;
-
 export default function MyPage() {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
   const [createPoint] = useMutation(CEATE_POINT_LOADING);
   const [point, setPoint] = useState(0);
-  const { data: dataIBought } = useQuery(FETCH_USEDITEM_I_BOUGHT);
-  const { data: dataISold } = useQuery(FETCH_USEDITEM_ISOLD);
+  const { data: dataIBought } = useQuery(FETCH_COUNT_IBOUGHT);
+  const { data: dataISold } = useQuery(FETCH_COUNT_ISOLD);
 
   function onClickPayment() {
     const IMP = window.IMP;
@@ -58,6 +54,9 @@ export default function MyPage() {
       }
     );
   }
+  function onClickMoveToMyPoint() {
+    router.push("mypage/myPoint");
+  }
 
   function onChangePoint(event: any) {
     setPoint(event.target.value);
@@ -65,16 +64,14 @@ export default function MyPage() {
 
   return (
     <>
-      <Wrapper>
-        {/* <Sidebar /> */}
-        <MyPageUI
-          onClickPayment={onClickPayment}
-          data={data}
-          dataIBought={dataIBought}
-          dataISold={dataISold}
-          onChangePoint={onChangePoint}
-        />
-      </Wrapper>
+      <MyPageUI
+        onClickPayment={onClickPayment}
+        data={data}
+        dataIBought={dataIBought}
+        dataISold={dataISold}
+        onChangePoint={onChangePoint}
+        onClickMoveToMyPoint={onClickMoveToMyPoint}
+      />
     </>
   );
 }

@@ -44,6 +44,12 @@ export default function SidebarUI(props: any) {
           >
             찜목록
           </S.MenuMarket>
+          <S.MenuBasket
+            onClick={props.onClickMoveToMyBasket}
+            basket={props.basket}
+          >
+            장바구니
+          </S.MenuBasket>
           <S.MenuPoint onClick={props.onClickMoveToMyPoint} point={props.point}>
             내 포인트
           </S.MenuPoint>

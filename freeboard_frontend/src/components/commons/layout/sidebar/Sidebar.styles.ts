@@ -65,15 +65,17 @@ export const MenuWrapper = styled.div`
   margin-top: 69px;
 `;
 export const MenuMarket = styled.div<{ market: boolean }>`
+  width: 150px;
   font-style: normal;
   font-weight: ${(props) => (props.market === true ? 80 : "normal")};
   font-size: ${(props) => (props.market === true ? "40px" : "25px")};
   line-height: 27px;
   margin-top: 50px;
   cursor: pointer;
-  color: ${(props) => (props.market === true ? "#bbb0d4" : "#5729ff")};
+  color: ${(props) => (props.market === true ? "#5729ff" : "#4f4f4f")};
 `;
 export const MenuPoint = styled.div<{ point: boolean }>`
+  width: 150px;
   font-style: normal;
   font-weight: ${(props) => (props.point === true ? 80 : "normal")};
   font-size: ${(props) => (props.point === true ? "40px" : "25px")};
@@ -81,7 +83,7 @@ export const MenuPoint = styled.div<{ point: boolean }>`
   margin-top: 80px;
 
   cursor: pointer;
-  color: ${(props) => (props.point === true ? "#00bfa5" : "#4f4f4f")};
+  color: ${(props) => (props.point === true ? "#5729ff" : "#4f4f4f")};
 `;
 export const MenuProfile = styled.div<{ profile: boolean }>`
   width: 150px;
@@ -92,5 +94,16 @@ export const MenuProfile = styled.div<{ profile: boolean }>`
   margin-top: 80px;
 
   cursor: pointer;
-  color: ${(props) => (props.profile === true ? "#00bfa5" : "#4f4f4f")};
+  color: ${(props) => (props.profile === true ? "#5729ff" : "#4f4f4f")};
+`;
+export const MenuBasket = styled.div<{ basket: boolean }>`
+  width: 150px;
+  font-style: normal;
+  font-weight: ${(props) => (props.basket === true ? 80 : "normal")};
+  font-size: ${(props) => (props.basket === true ? "40px" : "25px")};
+  line-height: 27px;
+  margin-top: 80px;
+
+  cursor: pointer;
+  color: ${(props) => (props.basket === true ? "#5729ff" : "#4f4f4f")};
 `;

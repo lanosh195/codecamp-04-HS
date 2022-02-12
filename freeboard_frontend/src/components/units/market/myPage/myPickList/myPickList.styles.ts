@@ -13,25 +13,22 @@ export const WrapperHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const ProductMenu = styled.div<{ isPickList: boolean }>`
-  font-family: myfont;
+export const ProductMenu = styled.div`
   font-style: normal;
-  font-weight: ${(props) => (props.isPickList === true ? "normal" : 800)};
-  font-size: ${(props) => (props.isPickList === true ? "18px" : "25px")};
+  font-weight: 800;
+  font-size: 18px;
   line-height: 24px;
   margin-right: 25px;
-  color: ${(props) => (props.isPickList === true ? "#4f4f4f" : "#00bfa5")};
-  cursor: pointer;
+  color: #bbb0d4;
 `;
 
-export const PickMenu = styled.div<{ isPickList: boolean }>`
-  font-family: myfont;
+export const PickMenu = styled.div`
   font-style: normal;
-  font-weight: ${(props) => (props.isPickList === true ? 800 : "normal")};
-  font-size: ${(props) => (props.isPickList === true ? "25px" : "18px")};
+  font-weight: 800;
+  font-size: 18px;
   line-height: 24px;
-  color: ${(props) => (props.isPickList === true ? "#00bfa5" : "#4f4f4f")};
-  cursor: pointer;
+  margin-right: 25px;
+  color: #bbb0d4;
 `;
 
 export const MenuWrapper = styled.div`

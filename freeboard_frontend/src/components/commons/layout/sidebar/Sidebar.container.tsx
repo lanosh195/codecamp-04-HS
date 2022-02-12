@@ -7,6 +7,7 @@ export default function Sidebar() {
   const [market, setMarket] = useState(true);
   const [point, setPoint] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [basket, setBasket] = useState(false);
   const [isPointOpen, setIsPointOpen] = useState(false);
 
   const router = useRouter();
@@ -14,19 +15,29 @@ export default function Sidebar() {
     setMarket(true);
     setPoint(false);
     setProfile(false);
+    setBasket(false);
     router.push("/mypage/myPickList");
   }
   function onClickMoveToMyPoint() {
     setMarket(false);
     setPoint(true);
     setProfile(false);
-    router.push("/mypage/mypoint");
+    setBasket(false);
+    router.push("/mypage/myPoint");
   }
   function onClickMoveToMyProfile() {
     setMarket(false);
     setPoint(false);
     setProfile(true);
-    router.push("/mypage/myprofile");
+    setBasket(false);
+    router.push("/mypage/myProfile");
+  }
+  function onClickMoveToMyBasket() {
+    setMarket(false);
+    setPoint(false);
+    setProfile(false);
+    setBasket(true);
+    router.push("/market/basket");
   }
   function onToglePoint() {
     setIsPointOpen((prev) => !prev);
@@ -39,10 +50,12 @@ export default function Sidebar() {
       market={market}
       point={point}
       profile={profile}
+      basket={basket}
       isPointOpen={isPointOpen}
       onClcikMoveToMyPickList={onClcikMoveToMyPickList}
       onClickMoveToMyPoint={onClickMoveToMyPoint}
       onClickMoveToMyProfile={onClickMoveToMyProfile}
+      onClickMoveToMyBasket={onClickMoveToMyBasket}
       onToglePoint={onToglePoint}
     />
   );

@@ -1,4 +1,4 @@
-import PointUI from "./myPoint.presenter";
+import MyPointUI from "./myPoint.presenter";
 import Head from "next/head";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
@@ -11,7 +11,7 @@ declare const window: typeof globalThis & {
   IMP: any;
 };
 
-export default function Point() {
+export default function MyPoint() {
   const [myPoint, setMyPoint] = useState();
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
@@ -40,7 +40,7 @@ export default function Point() {
         pg: "html5_inicis",
         pay_method: "card",
         // merchant_uid: "ORD20180131-0000011", // 회사마다 주문번호 만드는 규칙이 있음
-        name: `포인트 ${myPoint} 냥`,
+        name: `포인트 ${myPoint} `,
         amount: myPoint,
         buyer_email: "gildong@gmail.com",
         buyer_name: "홍길동",
@@ -49,7 +49,7 @@ export default function Point() {
         buyer_postcode: "08608",
         m_redirect_url: "",
       },
-      (rsp) => {
+      (rsp: any) => {
         // callback
         if (rsp.success) {
           console.log(rsp); // rsp안에 결제 정보가 다 담겨져있다.
@@ -60,33 +60,17 @@ export default function Point() {
               impUid: String(rsp.imp_uid),
             },
           });
-          alert(`포인트 ${myPoint} 냥이 충전되었습니다!`);
+          alert(`포인트 ${myPoint}이 충전되었습니다!`);
           location.reload();
-          // mutation () => createPointTransactionOfLoading
-          // ...,
-          // 결제 성공 시 로직,
-          // ...
         } else {
-          // ...,
           // 결제 실패 시 로직,
-          // ...
         }
       }
     );
   }
   return (
     <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://code.jquery.com/jquery-1.12.4.min.js"
-        ></script>
-        <script
-          type="text/javascript"
-          src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
-        ></script>
-      </Head>
-      <PointUI
+      <MyPointUI
         onChangeMyPoint={onChangeMyPoint}
         onClickPayment={onClickPayment}
         data={data}

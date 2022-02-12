@@ -9,8 +9,6 @@ export const Wrapper = styled.div`
 export const Title = styled.div`
   margin-top: 40px;
   font-style: "normal";
-  font-family: myfont;
-
   font-size: 40px;
   text-align: center;
   font-weight: bold;
@@ -34,8 +32,6 @@ export const PointAmount = styled.div`
 `;
 
 export const Input = styled.input`
-  font-family: myfont;
-
   width: 300px;
   height: 52px;
   background: #f2f2f2;

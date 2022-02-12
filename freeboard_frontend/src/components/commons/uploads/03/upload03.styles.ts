@@ -17,7 +17,8 @@ export const UploadButton = styled.div`
   font-weight: bold;
 
   :hover {
-    background-color: #81d8b1;
+    background-color: #5729ff;
+    color: white;
   }
 `;
 

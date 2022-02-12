@@ -67,3 +67,15 @@ export const FETCH_USEDITEM_ISOLD = gql`
     }
   }
 `;
+
+export const FETCH_COUNT_IBOUGHT = gql`
+  query fetchUseditemsCountIBought {
+    fetchUseditemsCountIBought
+  }
+`;
+
+export const FETCH_COUNT_ISOLD = gql`
+  query fetchUseditemsCountISold {
+    fetchUseditemsCountISold
+  }
+`;
