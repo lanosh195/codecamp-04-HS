@@ -26,7 +26,7 @@ export const ProfileBox = styled.div`
   width: 40%;
   height: 80%;
   background-color: white;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   margin: 50px 10px 0px 10px;
   display: flex;
   align-items: center;
