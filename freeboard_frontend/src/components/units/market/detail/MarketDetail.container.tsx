@@ -192,7 +192,6 @@ export default function MarketDetail() {
 
   // console.log(data2);
   // console.log(data?.fetchUseditem._id);
-  // console.log(newPicked);
 
   return (
     <MarketDetailUI
