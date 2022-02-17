@@ -51,7 +51,8 @@ export const UserInfo = styled.div`
   margin: auto 0;
 `;
 export const UserName = styled.span`
-  color: #4287f5;
+  /* color: #4287f5; */
+  font-weight: bold;
   font-size: 20px;
 `;
 export const Welcome = styled.span`

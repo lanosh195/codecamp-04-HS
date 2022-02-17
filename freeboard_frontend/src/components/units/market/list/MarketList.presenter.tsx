@@ -36,7 +36,9 @@ export default function MarketListUI(props: any) {
                 <S.BestItemsBody>
                   <S.BestitemsName>{el.name}</S.BestitemsName>
                   <S.BestitemsRemarks>한줄평:{el.remarks}</S.BestitemsRemarks>
-                  <S.BestitemsPrice>{el.price}원</S.BestitemsPrice>
+                  <S.BestitemsPrice>
+                    {el.price.toLocaleString("ko-KR")}원
+                  </S.BestitemsPrice>
                 </S.BestItemsBody>
               </S.BestItems>
             ))}

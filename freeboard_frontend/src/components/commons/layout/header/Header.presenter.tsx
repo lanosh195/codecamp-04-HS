@@ -20,7 +20,7 @@ export default function HeaderUI(props: any) {
         {props.data?.fetchUserLoggedIn ? (
           <S.UserInfo>
             <S.UserName>{props.data?.fetchUserLoggedIn.name}</S.UserName>
-            <S.Welcome>님 </S.Welcome>
+            <S.Welcome> 님 </S.Welcome>
             <S.Logout onClick={props.logout}>로그아웃</S.Logout>
           </S.UserInfo>
         ) : (

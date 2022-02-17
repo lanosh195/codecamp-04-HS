@@ -6,7 +6,7 @@ const ProductDetailUI = () => {
   return (
     <>
       <MarketDetail />
-      <MarketComment />
+      {/* <MarketComment /> */}
     </>
   );
 };
