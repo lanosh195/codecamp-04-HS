@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  /* height: 100%; */
   display: flex;
   margin: 0 0 50px 0;
+  /* background-color: blanchedalmond; */
 `;
 
 export const DetailLeft = styled.div`
@@ -16,10 +18,17 @@ export const ItemImg = styled.img`
 export const DetailRight = styled.div`
   padding-left: 50px;
 `;
-export const RightHeader = styled.div``;
-export const ItemName = styled.div`
+export const RightHeader = styled.div`
+  margin-bottom: 40px;
+`;
+export const ItemName = styled.h1`
   padding-bottom: 10px;
-  font-size: 24px;
+  font-size: 34px;
+  font-weight: bold;
+`;
+export const ItemTag = styled.div`
+  font-size: 14px;
+  color: #bbb0d4;
 `;
 export const ItemRemarks = styled.div`
   padding-bottom: 20px;
@@ -32,23 +41,65 @@ export const ItemPrice = styled.span`
 export const ItemWon = styled.span`
   font-size: 22px;
 `;
-export const ItemNotice = styled.div`
-  padding-bottom: 20px;
-  height: 352px;
+export const ItemMain = styled.div`
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 20px;
+  margin-top: 20px; */
+  height: 80px;
+  border-bottom: 1px solid gray;
+`;
+
+export const MainTitle = styled.div`
+  width: 25%;
+  /* width: 150px; */
+  font-size: 20px;
+  color: #959096;
+  margin-right: 20px;
+`;
+export const MainContents = styled.div`
+  font-size: 20px;
+  width: 60%;
 `;
 export const BasketBtn = styled.button`
   width: 138px;
   height: 54px;
-
-  margin-right: 20px;
+  background-color: white;
+  border: 1px solid gray;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 export const BuyBtn = styled.button`
   width: 408px;
   height: 54px;
+  background-color: #bbb0d4;
+  border: 1px solid gray;
+  /* :hover {
+    background-color: #bbb0d4;
+  } */
+  cursor: pointer;
+`;
+export const LikeBtn = styled.button`
+  width: 54;
+  height: 54px;
+  background-color: white;
+  border: 1px solid gray;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  margin-top: 50px;
 `;
 
 export const LikeImg = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 3px;
+`;
+
+export const KakaoMap = styled.div`
+  width: 75%;
+  height: 600px;
 `;

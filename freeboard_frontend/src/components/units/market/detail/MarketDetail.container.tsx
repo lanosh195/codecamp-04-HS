@@ -16,6 +16,7 @@ import {
   FETCH_USEDITEM,
   USEDITEM_PICK,
   FETCH_USEDITEMS_I_PICKED,
+  FETCH_USER_LOGGEDIN,
 } from "./MarketDetail.queries";
 
 declare const window: typeof globalThis & {
@@ -44,6 +45,7 @@ export default function MarketDetail() {
       page: 1,
     },
   });
+  const { data: loggedinData } = useQuery(FETCH_USER_LOGGEDIN);
 
   const [deleteBoard] = useMutation<
     Pick<IMutation, "deleteUseditem">,
@@ -52,8 +54,11 @@ export default function MarketDetail() {
 
   const [toggleUseditemPick] = useMutation(USEDITEM_PICK);
   const [buyUseditem] = useMutation(BUY_USEDITEM);
-  //내가 찜한 목록들 Id
+  //내가 찜한 목록들 ID
   const newPicked = data2?.fetchUseditemsIPicked.map((el) => el._id);
+  //내가 등록한 게시글인지 확인하기 위한 ID
+  const sellerId = data?.fetchUseditem.seller?._id;
+  const myId = loggedinData?.fetchUserLoggedIn._id;
 
   function onCLickMoveToUpdate() {
     router.push(`/market${router.query.useditemId}/edit`);
@@ -115,7 +120,7 @@ export default function MarketDetail() {
   }
 
   useEffect(() => {
-    newPicked?.includes(data?.fetchUseditem._id)
+    newPicked?.includes(String(data?.fetchUseditem._id))
       ? setIsPicked(true)
       : setIsPicked(false);
   }, [data2]);
@@ -190,8 +195,8 @@ export default function MarketDetail() {
     };
   }, [data]);
 
-  // console.log(data2);
-  // console.log(data?.fetchUseditem._id);
+  console.log(data);
+  console.log(data?.fetchUseditem._id);
 
   return (
     <MarketDetailUI
@@ -204,6 +209,8 @@ export default function MarketDetail() {
       onClickBuyItem={onClickBuyItem}
       data={data}
       data2={data2}
+      sellerId={sellerId}
+      myId={myId}
       isPicked={isPicked}
       newPicked={newPicked}
     />

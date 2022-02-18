@@ -1,7 +1,8 @@
+import SmallCommonButton from "../../../commons/buttons/03/SmallCommonButton";
 import * as S from "./MarketDetail.styles";
 export default function MarketDetailUI(props: any) {
-  console.log(props.isPicked);
-  console.log(props.data?.fetchUseditem?.address);
+  // console.log(props.isPicked);
+  console.log(props.data?.fetchUseditem?.useditemAddress);
   return (
     <>
       <S.Wrapper>
@@ -9,38 +10,69 @@ export default function MarketDetailUI(props: any) {
           <S.ItemImg
             src={`https://storage.googleapis.com/${props.data?.fetchUseditem?.images[0]}`}
           />
-          {props.data?.fetchUseditem.useditemAddress?.address ? (
-            <div id="map" style={{ width: "500px", height: "400px" }}></div>
-          ) : (
-            <div>거래 장소가 등록되지 않았습니다.</div>
-          )}
+          {/* {props.data?.fetchUseditem.useditemAddress?.address ? ( */}
+
+          {/* ) : ( */}
+          {/* <div>거래 장소가 등록되지 않았습니다.</div> */}
+          {/* )} */}
         </S.DetailLeft>
         <S.DetailRight>
           <S.RightHeader>
-            <S.ItemName>{props.data?.fetchUseditem.name}</S.ItemName>
+            <S.ItemName>{props.data?.fetchUseditem.name}</S.ItemName>{" "}
+            <S.ItemTag>{props.data?.fetchUseditem.tags}</S.ItemTag>
+            {/* {props.data?.fetchUseditem.pickedCount} */}
             <S.ItemRemarks>{props.data?.fetchUseditem.remarks}</S.ItemRemarks>
             <S.ItemPrice>
               {props.data?.fetchUseditem.price.toLocaleString("ko-KR")}
             </S.ItemPrice>
             <S.ItemWon>원</S.ItemWon>
-
-            <button onClick={props.onClickPick}>찜하기</button>
-            {props.data?.fetchUseditem.pickedCount}
-            {props.isPicked ? (
-              <S.LikeImg src="/images/eheart.png" alt="찬하트" />
-            ) : (
-              <S.LikeImg src="/images/heart1.png" alt="빈하트" />
-            )}
           </S.RightHeader>
-          <S.ItemNotice>안내사항</S.ItemNotice>
-          <div>{props.data?.fetchUseditem.contents}</div>
+          <S.ItemMain>
+            <S.MainTitle>판매자 이름</S.MainTitle>
+            <S.MainContents>
+              {props.data?.fetchUseditem.seller.name}
+            </S.MainContents>
+          </S.ItemMain>
+          <S.ItemMain>
+            <S.MainTitle>판매자 이메일</S.MainTitle>
+            <S.MainContents>
+              {props.data?.fetchUseditem.seller.email}
+            </S.MainContents>
+          </S.ItemMain>
+          <S.ItemMain>
+            <S.MainTitle>상세 설명</S.MainTitle>
+            <S.MainContents>
+              {props.data?.fetchUseditem.contents}
+            </S.MainContents>
+          </S.ItemMain>
 
-          <S.BasketBtn onClick={props.onClickBasket}>장바구니</S.BasketBtn>
-          <S.BuyBtn onClick={props.onClickBuyItem}>바로 구매하기</S.BuyBtn>
-          <button onClick={props.onClickEdit}>수정하기</button>
-          <button onClick={props.onClickDelete}>삭제하기</button>
+          {props.myId === props.sellerId ? (
+            <>
+              <SmallCommonButton onClick={props.onClickEdit}>
+                수정하기
+              </SmallCommonButton>
+              <SmallCommonButton onClick={props.onClickDelete}>
+                삭제하기
+              </SmallCommonButton>
+            </>
+          ) : (
+            <S.BtnWrapper>
+              <S.LikeBtn onClick={props.onClickPick}>
+                {props.isPicked ? (
+                  <S.LikeImg src="/images/heart.png" alt="찬하트" />
+                ) : (
+                  <S.LikeImg src="/images/heart1.png" alt="빈하트" />
+                )}
+              </S.LikeBtn>
+
+              <S.BasketBtn onClick={props.onClickBasket}>장바구니</S.BasketBtn>
+              <S.BuyBtn onClick={props.onClickBuyItem}>바로 구매하기</S.BuyBtn>
+            </S.BtnWrapper>
+          )}
         </S.DetailRight>
       </S.Wrapper>
+      <h1>거래장소</h1>
+      <S.KakaoMap id="map"></S.KakaoMap>
     </>
   );
 }
