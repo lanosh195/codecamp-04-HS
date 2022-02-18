@@ -94,6 +94,7 @@ export const ColumnTitle = styled.div`
 
 export const PickColumnTitle = styled.div`
   width: 40%;
+  cursor: pointer;
 `;
 export const SearchWrapper = styled.div`
   display: flex;

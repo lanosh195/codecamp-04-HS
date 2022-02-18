@@ -103,3 +103,11 @@ export const KakaoMap = styled.div`
   width: 75%;
   height: 600px;
 `;
+
+export const Adress = styled.div`
+  margin-top: 15px;
+  font-weight: bold;
+`;
+export const Zipcode = styled.div`
+  font-weight: bold;
+`;

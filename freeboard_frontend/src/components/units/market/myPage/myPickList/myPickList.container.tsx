@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import router from "next/router";
 import { useState } from "react";
 import MyMarketUI from "./myPickList.presenter";
 import {
@@ -16,21 +17,26 @@ export default function MyPickList() {
     variables: { search: "" },
   });
 
-  function onClickMyPickList() {
-    setIsPickList(true);
-    console.log(isPickList);
-  }
+  // function onClickMyPickList() {
+  //   setIsPickList(true);
+  //   console.log(isPickList);
+  // }
 
-  function onClickMyProductList() {
-    setIsPickList(false);
+  // function onClickMyProductList() {
+  //   setIsPickList(false);
+  // }
+
+  function onClickMoveItemDetail(event: any) {
+    router.push(`/market/${event.currentTarget.id}`);
   }
   return (
     <MyMarketUI
       data={data}
       pickData={pickData}
       isPickList={isPickList}
-      onClickMyProductList={onClickMyProductList}
-      onClickMyPickList={onClickMyPickList}
+      // onClickMyProductList={onClickMyProductList}
+      // onClickMyPickList={onClickMyPickList}
+      onClickMoveItemDetail={onClickMoveItemDetail}
     />
   );
 }

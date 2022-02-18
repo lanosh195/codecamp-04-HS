@@ -26,10 +26,15 @@ export default function BasketUI(props: any) {
             <S.ColumnName>판매가격</S.ColumnName>
             <S.ColumnName>판매자</S.ColumnName>
           </S.RowName>
-          {props.baskets.map((el, index) => (
+          {props.baskets.map((el: any, index: number) => (
             <S.Row key={el._id}>
               <S.Column>{index + 1}</S.Column>
-              <S.PickColumnTitle>{el.name}</S.PickColumnTitle>
+              <S.PickColumnTitle
+                id={el._id}
+                onClick={props.onClickMoveItemDetail}
+              >
+                {el.name}
+              </S.PickColumnTitle>
               <S.ColumnSoldOut>{el?.buyer?.name && "판매완료"}</S.ColumnSoldOut>
               <S.Column>￦ {el.price.toLocaleString("ko-KR")}</S.Column>
               <S.Column>{el.seller.name}</S.Column>

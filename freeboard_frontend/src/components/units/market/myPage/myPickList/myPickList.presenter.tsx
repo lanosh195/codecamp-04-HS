@@ -35,16 +35,23 @@ export default function MyPickListUI(props: any) {
             <ColumnName>판매자</ColumnName>
             <ColumnName>날짜</ColumnName>
           </RowName>
-          {props.pickData?.fetchUseditemsIPicked.map((el, index) => (
-            <Row key={el._id}>
-              <Column>{index + 1}</Column>
-              <PickColumnTitle>{el.name}</PickColumnTitle>
-              <ColumnSoldOut>{el?.buyer?.name && "판매완료"}</ColumnSoldOut>
-              <Column>￦ {el.price.toLocaleString("ko-KR")}</Column>
-              <Column>{el.seller.name}</Column>
-              <Column>{el.createdAt.slice(0, 10)}</Column>
-            </Row>
-          ))}
+          {props.pickData?.fetchUseditemsIPicked.map(
+            (el: any, index: number) => (
+              <Row key={el._id}>
+                <Column>{index + 1}</Column>
+                <PickColumnTitle
+                  id={el._id}
+                  onClick={props.onClickMoveItemDetail}
+                >
+                  {el.name}{" "}
+                </PickColumnTitle>
+                <ColumnSoldOut>{el?.buyer?.name && "판매완료"}</ColumnSoldOut>
+                <Column>￦ {el.price.toLocaleString("ko-KR")}</Column>
+                <Column>{el.seller.name}</Column>
+                <Column>{el.createdAt.slice(0, 10)}</Column>
+              </Row>
+            )
+          )}
         </WrapperBody>
       </Wrapper>
     </>

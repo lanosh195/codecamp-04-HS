@@ -73,6 +73,11 @@ export default function MarketDetailUI(props: any) {
       </S.Wrapper>
       <h1>거래장소</h1>
       <S.KakaoMap id="map"></S.KakaoMap>
+      <S.Adress>
+        {props.data?.fetchUseditem.useditemAddress.address}
+        {props.data?.fetchUseditem.useditemAddress.addressDetail}
+      </S.Adress>
+      <S.Zipcode>{props.data?.fetchUseditem.useditemAddress.zipcode}</S.Zipcode>
     </>
   );
 }
