@@ -18,6 +18,8 @@ export default function ProductRegisterUI(props: any) {
       resolver: yupResolver(schema),
     });
 
+  //리액트 퀼 태그표시부분 제거
+
   // function handleChange(value: string) {
   //   console.log(value);
   //   setValue("contents", value === "<p><br><p>" ? "" : value);
