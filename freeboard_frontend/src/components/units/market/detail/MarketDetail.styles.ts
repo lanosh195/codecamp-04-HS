@@ -44,8 +44,6 @@ export const ItemWon = styled.span`
 export const ItemMain = styled.div`
   display: flex;
   align-items: center;
-  /* margin-bottom: 20px;
-  margin-top: 20px; */
   height: 80px;
   border-bottom: 1px solid gray;
 `;
@@ -74,9 +72,7 @@ export const BuyBtn = styled.button`
   height: 54px;
   background-color: #bbb0d4;
   border: 1px solid gray;
-  /* :hover {
-    background-color: #bbb0d4;
-  } */
+
   cursor: pointer;
 `;
 export const LikeBtn = styled.button`
