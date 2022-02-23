@@ -50,7 +50,6 @@ export const ItemMain = styled.div`
 
 export const MainTitle = styled.div`
   width: 25%;
-  /* width: 150px; */
   font-size: 20px;
   color: #959096;
   margin-right: 20px;
