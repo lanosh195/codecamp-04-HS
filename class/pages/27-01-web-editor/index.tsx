@@ -6,7 +6,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false }); //서�
 
 export default function WebEditorPage() {
   function handleChange(value: string) {
-    //value 자체가 event target value 라이브러리가 그렇게 만들어져 있음
+    //value 자체가 event target value -라이브러리 자체 설정
     console.log(value);
   }
 
