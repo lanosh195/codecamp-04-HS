@@ -16,6 +16,4 @@ export const schema = yup.object().shape({
     .required("필수 입력 항목입니다."),
 
   // tag:
-
-  // images: yup.array(),
 });
