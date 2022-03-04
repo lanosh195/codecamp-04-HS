@@ -53,6 +53,13 @@ export default function ProductRegisterUI(props: any) {
           />
           <S.ErrorMessage>{formState.errors.remarks?.message}</S.ErrorMessage>
           상품 설명:
+          <S.Inputs 
+            type="text"
+            placeholder="상품 설명을 입력해주세요."
+            {...register("contents")}
+            defaultValue={props.data?.fetchUseditem.contents}
+          />
+          <S.ErrorMessage>{formState.errors.contents?.message}</S.ErrorMessage>
           {/* {props.isEdit ? (
             <S.Contents
               onChange={handleChange}
@@ -74,6 +81,7 @@ export default function ProductRegisterUI(props: any) {
             defaultValue={props.data?.fetchUseditem.price}
           />
           <S.ErrorMessage>{formState.errors.price?.message}</S.ErrorMessage>
+          <S.Transaction>사진등록</S.Transaction>
           <div>
             {props.fileUrls.map((el: any, index: any) => (
               <Uploads01
@@ -85,8 +93,9 @@ export default function ProductRegisterUI(props: any) {
               />
             ))}
           </div>
+          
+          <S.Transaction>거래 장소</S.Transaction>
           <Button onClick={props.showModal}>주소 검색</Button>
-          <div>내주소</div>
           <S.Address
             value={
               props.myAddress ||
@@ -95,7 +104,7 @@ export default function ProductRegisterUI(props: any) {
             }
             onChange={() => {}}
           />
-          <div>내우편번호</div>
+          <div>우편번호</div>
           <S.Zipcode
             value={
               props.myZonecode ||
@@ -104,7 +113,7 @@ export default function ProductRegisterUI(props: any) {
             }
             onChange={() => {}}
           />
-          <div id="map" style={{ width: "400px", height: "300px" }}></div>
+          <S.KakaoMap id="map" ></S.KakaoMap>
           {props.isOpen && (
             <Modal
               visible={true}
@@ -114,6 +123,7 @@ export default function ProductRegisterUI(props: any) {
               <DaumPostcode onComplete={props.handleComplete} />;
             </Modal>
           )}
+          <div></div>
           <S.ButtonWrapper>
             <S.SubmitButton type="submit" name="등록하기">
               {props.isEdit ? "수정하기" : "등록하기"}

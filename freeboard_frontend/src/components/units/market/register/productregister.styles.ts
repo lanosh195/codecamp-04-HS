@@ -63,6 +63,12 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 
+export const Transaction = styled.div`
+  /* font-size: 20px; */
+  font-weight: bold;
+  margin: 20px 0px 20px 0px;
+`
+
 export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
@@ -78,4 +84,10 @@ export const SubmitButton = styled.button`
     color: white;
     background-color: #5729ff;
   }
+`;
+
+export const KakaoMap = styled.div`
+margin: 20px auto;
+  width: 75%;
+  height: 400px;
 `;
